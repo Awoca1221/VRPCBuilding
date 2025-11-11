@@ -563,15 +563,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efe3d8cc09b2394897777a4dcb8ebeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raycastDistance: 10
   interactableLayer:
     serializedVersion: 2
     m_Bits: 1
-  rayColor: {r: 0, g: 1, b: 0, a: 1}
   descriptionPanel: {fileID: 8387428313974788166}
   text: {fileID: 1357176388326170414}
   title: {fileID: 4440791865551731979}
   fireReference: {fileID: -5976510165261225158, guid: b72ab2a46d9094be38774d023beb4d34, type: 3}
+  curveResolution: 30
+  detectionRadius: 0.05
+  raycastDistance: 10
 --- !u!120 &1536638768015448648
 LineRenderer:
   serializedVersion: 2
