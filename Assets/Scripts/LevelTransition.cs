@@ -7,7 +7,7 @@ public class LevelTransition : MonoBehaviour
 {
     public int scene;
     
-    public void changeScene() {
+    public void ChangeScene() {
         SceneManager.LoadScene(scene);
     }
 }

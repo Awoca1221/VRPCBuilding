@@ -788,7 +788,7 @@ GameObject:
   - component: {fileID: 2095783225304503559}
   - component: {fileID: 8555603839662500241}
   m_Layer: 5
-  m_Name: FadeOutPanel
+  m_Name: StartFadePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5008,12 +5008,12 @@ GameObject:
   - component: {fileID: 2083940688428855509}
   - component: {fileID: 3553701481103260036}
   m_Layer: 5
-  m_Name: FadeInPanel
+  m_Name: ChangeSceneFadePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7475306646476088647
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5104,7 +5104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094954b2626282b47bbc4c54b9396cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: 0
+  scene: 1
 --- !u!1 &3049699234430762615
 GameObject:
   m_ObjectHideFlags: 0
@@ -9380,7 +9380,7 @@ MonoBehaviour:
   m_SnapTurn: {fileID: -8525429354371678379, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_Move: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_UIScroll: {fileID: -6756787485274679044, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  m_SmoothMotionEnabled: 0
+  m_SmoothMotionEnabled: 1
   m_SmoothTurnEnabled: 0
   m_UIScrollingEnabled: 1
   m_RayInteractorChanged:
