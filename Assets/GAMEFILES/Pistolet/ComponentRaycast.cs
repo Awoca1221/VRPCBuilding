@@ -29,6 +29,9 @@ public class ComponentRaycast : MonoBehaviour
 
     private Material rayMaterial;
 
+    private string defaultText = "Наведитесь на объект и нажимте триггер.";
+    private string defaultTitle = "Информация о комполектующих";
+
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -48,6 +51,9 @@ public class ComponentRaycast : MonoBehaviour
 
         rayMaterial = lineRenderer.material;
         fireReference.action.started += FireRay;
+
+        text.SetText(defaultText);
+        title.SetText(defaultTitle);
     }
 
     private void OnDestroy()
@@ -170,8 +176,8 @@ public class ComponentRaycast : MonoBehaviour
             }
             else
             {
-                text.SetText("");
-                title.SetText("");
+                text.SetText(defaultText);
+                title.SetText(defaultTitle);
             }
         }
     }
