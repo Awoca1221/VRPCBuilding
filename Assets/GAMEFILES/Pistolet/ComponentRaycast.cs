@@ -1,3 +1,4 @@
+﻿using System.Collections;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -90,6 +91,11 @@ public class ComponentRaycast : MonoBehaviour
         return closestHit;
     }
 
+    private string arrayToString(object arr)
+    {
+        return string.Join(", ", (arr as IEnumerable).Cast<object>().Select(x => x?.ToString() ?? "null"));
+    }
+
     private void FireRay(InputAction.CallbackContext context)
     {
         if (isGrabbed)
@@ -98,9 +104,69 @@ public class ComponentRaycast : MonoBehaviour
 
             if (closestValidHit.HasValue)
             {
-                var info = closestValidHit.Value.collider.GetComponent<ItemCommon>().GetInfo().ToDict();
-                text.SetText("{" + string.Join(", ", info.Select(kv => $"{kv.Key}: {kv.Value}")) + "}");
-                title.SetText("");
+                BaseInfo baseInfo = closestValidHit.Value.collider.GetComponent<ItemCommon>().GetInfo();
+                string newText = "";
+                string newTitle = "";
+                switch (baseInfo)
+                {
+                    case CoolerInfo:
+                        var coolerInfo = baseInfo as CoolerInfo;
+                        newText = @$"Тип комплектующего: Кулер
+Поддержка сокетов: {arrayToString(coolerInfo.SupportSockets)}
+Лимит TDP: {coolerInfo.TDPLimit}";
+                        newTitle = $"";
+                        break;
+                    case CPUInfo:
+                        var cpuInfo = baseInfo as CPUInfo;
+                        newText = @$"Тип комплектующего: Процессор
+Производитель: {cpuInfo.CPUManufacturer}
+Модель: {cpuInfo.Model}
+Тип сокета: {cpuInfo.SocketType}
+Производительность: {cpuInfo.Performance}";
+                        newTitle = $"";
+                        break;
+                    case GPUInfo:
+                        var gpuInfo = baseInfo as GPUInfo;
+                        newText = @$"Тип комплектующего: Видеокарта
+Производитель: {gpuInfo.GPUManufacturer}
+Модель: {gpuInfo.Model}
+Объем памяти: {gpuInfo.MemoryAmountGB} ГБ
+Поддержка PCI-E: {gpuInfo.PCIESupport}
+Производительность: {gpuInfo.Performance}";
+                        newTitle = $"";
+                        break;
+                    case MotherboardInfo:
+                        var motherboardInfo = baseInfo as MotherboardInfo;
+                        newText = @$"Тип комплектующего: Материнская плата
+Поддержка CPU: {motherboardInfo.CPUManufacturer}
+Тип сокета: {motherboardInfo.SocketType}
+Поддержка PCI-E: {motherboardInfo.PCIESupport}
+Тип памяти: {motherboardInfo.DDRType}";
+                        newTitle = $"";
+                        break;
+                    case RAMInfo:
+                        var ramInfo = baseInfo as RAMInfo;
+                        newText = @$"Тип комплектующего: Оперативная память
+Тип памяти: {ramInfo.DDRType}
+Объем памяти: {ramInfo.MemoryAmountGB} ГБ";
+                        newTitle = $"";
+                        break;
+                    case PowerSupplyInfo:
+                        var powerSupplyInfo = baseInfo as PowerSupplyInfo;
+                        newText = @$"Тип комплектующего: Блок питания
+Максимальная мощность: {powerSupplyInfo.PowerSupplyMaxPower} Вт";
+                        newTitle = $"";
+                        break;
+                    case StorageDeviceInfo:
+                        var storageDeviceInfo = baseInfo as StorageDeviceInfo;
+                        newText = @$"Тип комплектующего: Накопитель данных
+Тип накопителя: {storageDeviceInfo.StorageDeviceType}
+Объем памяти: {storageDeviceInfo.MemoryAmountGB} ГБ";
+                        newTitle = $"";
+                        break;
+                }
+                text.SetText(newText);
+                title.SetText(newTitle);
             }
             else
             {
