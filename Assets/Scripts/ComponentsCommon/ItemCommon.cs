@@ -107,6 +107,8 @@ public enum StorageDeviceType
 // Базовый класс для всех классов компонентов
 public class BaseInfo
 {
+    public string Name = "";
+
     public Dictionary<string, string> ToDict()
     {
         var dict = new Dictionary<string, string>();
@@ -133,10 +135,11 @@ public class CoolerInfo : BaseInfo
 {
     public CPUSocketType[] SupportSockets { get; } = new CPUSocketType[0];
     public uint TDPLimit { get; } = 0;
-    public CoolerInfo(CPUSocketType[] a, uint b)
+    public CoolerInfo(string a, CPUSocketType[] b, uint c)
     {
-        SupportSockets = a;
-        TDPLimit = b;
+        Name = a;
+        SupportSockets = b;
+        TDPLimit = c;
     }
 }
 
@@ -146,12 +149,13 @@ public class CPUInfo : BaseInfo
     public string Model { get; } = "";
     public CPUSocketType SocketType { get; } = CPUSocketType.NotSelected;
     public uint Performance { get; } = 0;
-    public CPUInfo(CPUManufacturer a, string b, CPUSocketType c, uint f)
+    public CPUInfo(string a, CPUManufacturer b, string c, CPUSocketType d, uint e)
     {
-        CPUManufacturer = a;
-        Model = b;
-        SocketType = c;
-        Performance = f;
+        Name = a;
+        CPUManufacturer = b;
+        Model = c;
+        SocketType = d;
+        Performance = e;
     }
 }
 
@@ -162,13 +166,14 @@ public class GPUInfo : BaseInfo
     public uint MemoryAmountGB { get; } = 0;
     public PCIEType PCIESupport { get; } = PCIEType.NotSelected;
     public uint Performance { get; } = 0;
-    public GPUInfo(GPUManufacturer a, string b, uint c, PCIEType d, uint e)
+    public GPUInfo(string a, GPUManufacturer b, string c, uint d, PCIEType e, uint f)
     {
-        GPUManufacturer = a;
-        Model = b;
-        MemoryAmountGB = c;
-        PCIESupport = d;
-        Performance = e;
+        Name = a;
+        GPUManufacturer = b;
+        Model = c;
+        MemoryAmountGB = d;
+        PCIESupport = e;
+        Performance = f;
     }
 }
 
@@ -176,10 +181,11 @@ public class RAMInfo : BaseInfo
 {
     public MemoryType DDRType { get; } = MemoryType.NotSelected;
     public uint MemoryAmountGB { get; } = 0;
-    public RAMInfo(MemoryType a, uint b)
+    public RAMInfo(string a, MemoryType b, uint c)
     {
-        DDRType = a;
-        MemoryAmountGB = b;
+        Name = a;
+        DDRType = b;
+        MemoryAmountGB = c;
     }
 }
 
@@ -189,21 +195,23 @@ public class MotherboardInfo : BaseInfo
     public CPUSocketType SocketType { get; } = CPUSocketType.NotSelected;
     public PCIEType PCIESupport { get; } = PCIEType.NotSelected;
     public MemoryType DDRType { get; } = MemoryType.NotSelected;
-    public MotherboardInfo(CPUManufacturer a, CPUSocketType b, PCIEType c, MemoryType d)
+    public MotherboardInfo(string a, CPUManufacturer b, CPUSocketType c, PCIEType d, MemoryType e)
     {
-        CPUManufacturer = a;
-        SocketType = b;
-        PCIESupport = c;
-        DDRType = d;
+        Name = a;
+        CPUManufacturer = b;
+        SocketType = c;
+        PCIESupport = d;
+        DDRType = e;
     }
 }
 
 public class PowerSupplyInfo : BaseInfo
 {
     public uint PowerSupplyMaxPower { get; } = 0;
-    public PowerSupplyInfo(uint a)
+    public PowerSupplyInfo(string a, uint b)
     {
-        PowerSupplyMaxPower = a;
+        Name = a;
+        PowerSupplyMaxPower = b;
     }
 }
 
@@ -211,20 +219,21 @@ public class StorageDeviceInfo : BaseInfo
 {
     public StorageDeviceType StorageDeviceType { get; } = StorageDeviceType.NotSelected;
     public uint MemoryAmountGB { get; } = 0;
-    public StorageDeviceInfo(StorageDeviceType a, uint b)
+    public StorageDeviceInfo(string a, StorageDeviceType b, uint c)
     {
-        StorageDeviceType = a;
-        MemoryAmountGB = b;
+        Name = a;
+        StorageDeviceType = b;
+        MemoryAmountGB = c;
     }
 }
 
 public class ItemCommon : MonoBehaviour
 {
     // Общая информация
-    public string Name = "";
     public ComponentType ComponentType = ComponentType.NotSelected;
 
     // Характеристики
+    public string Name = "";
     public CPUSocketType SocketType = CPUSocketType.NotSelected;
     public CPUSocketType[] SupportSockets = new CPUSocketType[0];
     public StorageDeviceType StorageDeviceType = StorageDeviceType.NotSelected;
@@ -255,37 +264,37 @@ public class ItemCommon : MonoBehaviour
     }
     public CoolerInfo GetCoolerInfo()
     {
-        CoolerInfo data = new(SupportSockets, TDPLimit);
+        CoolerInfo data = new(Name, SupportSockets, TDPLimit);
         return data;
     }
     public CPUInfo GetCPUInfo()
     {
-        CPUInfo data = new(CPUManufacturer, Model, SocketType, Performance);
+        CPUInfo data = new(Name, CPUManufacturer, Model, SocketType, Performance);
         return data;
     }
     public GPUInfo GetGPUInfo()
     {
-        GPUInfo data = new(GPUManufacturer, Model, MemoryAmountGB, PCIESupport, Performance);
+        GPUInfo data = new(Name, GPUManufacturer, Model, MemoryAmountGB, PCIESupport, Performance);
         return data;
     }
     public RAMInfo GetRAMInfo()
     {
-        RAMInfo data = new(DDRType, MemoryAmountGB);
+        RAMInfo data = new(Name, DDRType, MemoryAmountGB);
         return data;
     }
     public MotherboardInfo GetMotherboardInfo()
     {
-        MotherboardInfo data = new(CPUManufacturer, SocketType, PCIESupport, DDRType);
+        MotherboardInfo data = new(Name, CPUManufacturer, SocketType, PCIESupport, DDRType);
         return data;
     }
     public PowerSupplyInfo GetPowerSupplyInfo()
     {
-        PowerSupplyInfo data = new(PowerSupplyMaxPower);
+        PowerSupplyInfo data = new(Name, PowerSupplyMaxPower);
         return data;
     }
     public StorageDeviceInfo GetStorageDeviceInfo()
     {
-        StorageDeviceInfo data = new(StorageDeviceType, MemoryAmountGB);
+        StorageDeviceInfo data = new(Name, StorageDeviceType, MemoryAmountGB);
         return data;
     }
 }
@@ -294,10 +303,9 @@ public class ItemCommon : MonoBehaviour
 [CustomEditor(typeof(ItemCommon))]
 public class ItemCommonEditor : Editor
 {
-    private SerializedProperty componentType, nameProp;
+    private SerializedProperty componentType;
     private void OnEnable()
     {
-        nameProp = serializedObject.FindProperty("Name");
         componentType = serializedObject.FindProperty("ComponentType");
     }
 
@@ -315,7 +323,6 @@ public class ItemCommonEditor : Editor
         EditorGUILayout.ObjectField("Script", MonoScript.FromMonoBehaviour((MonoBehaviour)target), typeof(MonoScript), false);
         EditorGUI.EndDisabledGroup();
         
-        EditorGUILayout.PropertyField(nameProp);
         EditorGUILayout.PropertyField(componentType);
 
         var type = (ComponentType)componentType.enumValueIndex;
@@ -326,11 +333,13 @@ public class ItemCommonEditor : Editor
                 break;
             
             case ComponentType.Cooler:
+                DrawProperty("Name");
                 DrawProperty("SupportSockets");
                 DrawProperty("TDPLimit");
                 break;
                 
             case ComponentType.CPU:
+                DrawProperty("Name");
                 DrawProperty("CPUManufacturer");
                 DrawProperty("Model");
                 DrawProperty("SocketType");
@@ -338,6 +347,7 @@ public class ItemCommonEditor : Editor
                 break;
 
             case ComponentType.GPU:
+                DrawProperty("Name");
                 DrawProperty("GPUManufacturer");
                 DrawProperty("Model");
                 DrawProperty("MemoryAmountGB");
@@ -346,11 +356,13 @@ public class ItemCommonEditor : Editor
                 break;
 
             case ComponentType.RAM:
+                DrawProperty("Name");
                 DrawProperty("DDRType");
                 DrawProperty("MemoryAmountGB");
                 break;
             
             case ComponentType.Motherboard:
+                DrawProperty("Name");
                 DrawProperty("CPUManufacturer");
                 DrawProperty("SocketType");
                 DrawProperty("PCIESupport");
@@ -358,10 +370,12 @@ public class ItemCommonEditor : Editor
                 break;
             
             case ComponentType.PowerSupply:
+                DrawProperty("Name");
                 DrawProperty("PowerSupplyMaxPower");
                 break;
             
             case ComponentType.StorageDevice:
+                DrawProperty("Name");
                 DrawProperty("StorageDeviceType");
                 DrawProperty("MemoryAmountGB");
                 break;
