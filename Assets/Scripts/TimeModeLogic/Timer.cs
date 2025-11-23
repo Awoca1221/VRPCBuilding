@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    private TMP_Text text;
+    public TMP_Text text;
     private bool isRunning = false;
+    public ResultsUIManager resultsManager;
     public float seconds = 0;
     public bool isIncrease = true;
 
@@ -24,7 +25,9 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        text = GetComponent<TMP_Text>();
+        if (text == null) {
+            text = GetComponent<TMP_Text>();
+        }
         setTimerText();
     }
     
@@ -38,6 +41,13 @@ public class Timer : MonoBehaviour
         isRunning = false;
     }
 
+    public void SaveResult()
+    {
+        if (resultsManager) {
+            resultsManager.AddResult(seconds);
+        }
+    }
+
     public void ClearTimer()
     {
         isRunning = false;
@@ -48,6 +58,12 @@ public class Timer : MonoBehaviour
     public void SetTimer(Timer obj)
     {
         seconds = obj.seconds;
+        setTimerText();
+    }
+
+    public void SetTimer(float timeInSeconds)
+    {
+        seconds = timeInSeconds;
         setTimerText();
     }
     
