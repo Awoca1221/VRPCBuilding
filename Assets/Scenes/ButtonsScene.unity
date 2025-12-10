@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1094,10 +1094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachPoint: {fileID: 1293156210}
   parent: {fileID: 0}
-  socket: {fileID: 0}
-  invis: {fileID: 2100000, guid: 11677ace67ab21e48a0563094ef2fa7d, type: 2}
   correct: {fileID: 2100000, guid: 599be0a7630ba0f479d4cd05f1b34197, type: 2}
-  show: {fileID: 0}
   wrong: {fileID: 0}
   <MultipleConnections>k__BackingField: {fileID: 0}
   <OnConnectEvents>k__BackingField:
@@ -2067,10 +2064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachPoint: {fileID: 1890447277}
   parent: {fileID: 0}
-  socket: {fileID: 0}
-  invis: {fileID: 2100000, guid: 11677ace67ab21e48a0563094ef2fa7d, type: 2}
   correct: {fileID: 2100000, guid: 599be0a7630ba0f479d4cd05f1b34197, type: 2}
-  show: {fileID: 0}
   wrong: {fileID: 0}
   <MultipleConnections>k__BackingField: {fileID: 0}
   <OnConnectEvents>k__BackingField:
@@ -2376,10 +2370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachPoint: {fileID: 1984152371}
   parent: {fileID: 0}
-  socket: {fileID: 0}
-  invis: {fileID: 2100000, guid: 11677ace67ab21e48a0563094ef2fa7d, type: 2}
   correct: {fileID: 2100000, guid: 599be0a7630ba0f479d4cd05f1b34197, type: 2}
-  show: {fileID: 0}
   wrong: {fileID: 0}
   <MultipleConnections>k__BackingField: {fileID: 0}
   <OnConnectEvents>k__BackingField:
