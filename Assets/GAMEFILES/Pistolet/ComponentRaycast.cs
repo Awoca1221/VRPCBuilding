@@ -68,7 +68,8 @@ public class ComponentRaycast : MonoBehaviour
 
     private void OnGrabbed(SelectEnterEventArgs args)
     {
-        isGrabbed = true;
+        if (args.interactorObject.transform.gameObject.name == "Direct Interactor")
+            isGrabbed = true;
     }
 
     private void OnReleased(SelectExitEventArgs args)
