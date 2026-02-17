@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 6932756285830814769}
   - component: {fileID: 3793340968236666879}
   - component: {fileID: 7010859985022585939}
+  - component: {fileID: 8083971720881923657}
   m_Layer: 0
   m_Name: RAM
-  m_TagString: +01.004.0001.0001
+  m_TagString: RAM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,8 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef2e788a137df34e99589c8b64e64cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Unknown RAM
   ComponentType: 4
+  Name: Unknown RAM
   SocketType: 0
   SupportSockets: 
   StorageDeviceType: 0
@@ -343,3 +344,21 @@ MonoBehaviour:
   <OnDisconnectEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8083971720881923657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2820866655547652883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

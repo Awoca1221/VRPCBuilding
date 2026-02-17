@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 8194144758269169315}
   - component: {fileID: 9013709181102261708}
   - component: {fileID: 2563423522014085102}
+  - component: {fileID: 7140685941011384896}
   m_Layer: 0
   m_Name: AMD fan
-  m_TagString: +01.007.0001.0001
+  m_TagString: Cooler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,8 +53,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef2e788a137df34e99589c8b64e64cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: AMD fan
   ComponentType: 1
+  Name: AMD fan
   SocketType: 0
   SupportSockets: 0200000003000000
   StorageDeviceType: 0
@@ -341,6 +342,24 @@ MonoBehaviour:
   <OnDisconnectEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7140685941011384896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331889544813508016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7156981917964226730
 GameObject:
   m_ObjectHideFlags: 0

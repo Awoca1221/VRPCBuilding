@@ -17,9 +17,10 @@ GameObject:
   - component: {fileID: 1340426388612404603}
   - component: {fileID: 6107423288866144926}
   - component: {fileID: 1390038166523918980}
+  - component: {fileID: 9204394448465560418}
   m_Layer: 0
   m_Name: Intel i5-13600k
-  m_TagString: +01.001.0001.0001
+  m_TagString: CPU
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,8 +54,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef2e788a137df34e99589c8b64e64cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Intel i5-13600k
   ComponentType: 2
+  Name: Intel i5-13600k
   SocketType: 6
   SupportSockets: 
   StorageDeviceType: 0
@@ -334,54 +335,6 @@ MonoBehaviour:
   parent: {fileID: 7638188000569914589}
   correct: {fileID: 0}
   wrong: {fileID: 0}
-  activateActionLeft:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Activate Action Left
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: ae455659-df59-4ff3-a285-fc3a30cce06c
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  activateActionLeftValue:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Activate Action Left Value
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 56633083-a4af-4be3-a4d3-d90e1ca0eb1d
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  activateActionRight:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Activate Action Right
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: f7c6c63d-cf3c-4d82-93d9-ef875a27e4c8
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  activateActionRightValue:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Activate Action Right Value
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: b1d88087-b7af-45c2-a57c-5a541c575b10
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
   <MultipleConnections>k__BackingField: {fileID: 0}
   <OnConnectEvents>k__BackingField:
     m_PersistentCalls:
@@ -405,6 +358,24 @@ MonoBehaviour:
   indexOfMaterial: -1
   pasteRend: {fileID: 8557248936818787387}
   changed: 0
+--- !u!114 &9204394448465560418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490997507286473292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1595917696838453731
 GameObject:
   m_ObjectHideFlags: 0

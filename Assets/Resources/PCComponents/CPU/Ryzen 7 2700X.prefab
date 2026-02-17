@@ -17,9 +17,10 @@ GameObject:
   - component: {fileID: 3290956025951593991}
   - component: {fileID: 3109527411701401208}
   - component: {fileID: 7989579412900640496}
+  - component: {fileID: 4674743229328752861}
   m_Layer: 0
   m_Name: Ryzen 7 2700X
-  m_TagString: +01.001.0001.0001
+  m_TagString: CPU
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,8 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef2e788a137df34e99589c8b64e64cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Ryzen r7 2700X
   ComponentType: 2
+  Name: Ryzen r7 2700X
   SocketType: 2
   SupportSockets: 
   StorageDeviceType: 0
@@ -356,4 +357,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 3e8d85f9df7f8c742b67d43c336ecc87, type: 2}
   indexOfMaterial: 0
+  pasteRend: {fileID: 0}
   changed: 0
+--- !u!114 &4674743229328752861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9061094376720691830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

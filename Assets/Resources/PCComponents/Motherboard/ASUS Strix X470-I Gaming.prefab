@@ -121,9 +121,10 @@ GameObject:
   - component: {fileID: 4968777008348543854}
   - component: {fileID: 4042594196305317602}
   - component: {fileID: 8307944643090924736}
+  - component: {fileID: 7093310350512431672}
   m_Layer: 0
   m_Name: ASUS Strix X470-I Gaming
-  m_TagString: +01.003.0001.0001
+  m_TagString: Motherboard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,8 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef2e788a137df34e99589c8b64e64cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: ASUS Strix X470-I Gaming
   ComponentType: 5
+  Name: ASUS Strix X470-I Gaming
   SocketType: 2
   SupportSockets: 
   StorageDeviceType: 0
@@ -492,6 +493,24 @@ MonoBehaviour:
   <OnDisconnectEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7093310350512431672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350114103717372983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &381833986959681579
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +734,7 @@ GameObject:
   - component: {fileID: 7789440017740753493}
   m_Layer: 0
   m_Name: RAM1
-  m_TagString: +01.004.0001.0001
+  m_TagString: RAM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1001,7 +1020,7 @@ GameObject:
   - component: {fileID: 5652048518598880821}
   m_Layer: 0
   m_Name: Cooler
-  m_TagString: +01.007.0001.0001
+  m_TagString: Cooler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1054,7 +1073,7 @@ GameObject:
   - component: {fileID: 2965079499811434144}
   m_Layer: 0
   m_Name: Videocard
-  m_TagString: +01.002.0001.0001
+  m_TagString: GPU
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1545,7 +1564,7 @@ GameObject:
   - component: {fileID: 6265021359833002555}
   m_Layer: 0
   m_Name: CPU
-  m_TagString: +01.001.0001.0001
+  m_TagString: CPU
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1809,7 +1828,7 @@ GameObject:
   - component: {fileID: 4348704248473140754}
   m_Layer: 0
   m_Name: RAM2
-  m_TagString: +01.004.0001.0001
+  m_TagString: RAM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2185,7 +2204,7 @@ GameObject:
   - component: {fileID: 6074949320207013657}
   m_Layer: 0
   m_Name: CPU power
-  m_TagString: +02.001.0001
+  m_TagString: CPU power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

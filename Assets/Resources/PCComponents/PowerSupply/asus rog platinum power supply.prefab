@@ -47,9 +47,10 @@ GameObject:
   - component: {fileID: 4711496099394640316}
   - component: {fileID: 2677860406913450301}
   - component: {fileID: 9068582744431158859}
+  - component: {fileID: 4092976498670646909}
   m_Layer: 0
   m_Name: asus rog platinum power supply
-  m_TagString: +01.006.0001.0001
+  m_TagString: Power supply ATX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,8 +87,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef2e788a137df34e99589c8b64e64cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: asus rog platinum 1200W
   ComponentType: 6
+  Name: asus rog platinum 1200W
   SocketType: 0
   SupportSockets: 
   StorageDeviceType: 0
@@ -374,6 +375,24 @@ MonoBehaviour:
   <OnDisconnectEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4092976498670646909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5161753219770465715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &5852021986557436577
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,7 +407,7 @@ GameObject:
   - component: {fileID: 4295065293943420646}
   m_Layer: 0
   m_Name: GPU power
-  m_TagString: +02.002.0001
+  m_TagString: GPU power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -493,7 +512,7 @@ GameObject:
   - component: {fileID: 7199123553076627537}
   m_Layer: 0
   m_Name: Motherboard power
-  m_TagString: +02.003.0001
+  m_TagString: Motherboard power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -598,7 +617,7 @@ GameObject:
   - component: {fileID: 2026997460078009596}
   m_Layer: 0
   m_Name: CPU power1
-  m_TagString: +02.001.0001
+  m_TagString: CPU power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -703,7 +722,7 @@ GameObject:
   - component: {fileID: 8442805406445567294}
   m_Layer: 0
   m_Name: CPU power2
-  m_TagString: +02.001.0001
+  m_TagString: CPU power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

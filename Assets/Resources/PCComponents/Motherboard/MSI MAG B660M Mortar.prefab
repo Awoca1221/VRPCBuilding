@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 992152490815381671}
   m_Layer: 0
   m_Name: RAM1
-  m_TagString: +01.004.0001.0001
+  m_TagString: RAM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 7583023627269617947}
   m_Layer: 0
   m_Name: RAM3
-  m_TagString: +01.004.0001.0001
+  m_TagString: RAM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 5484588203870392767}
   m_Layer: 0
   m_Name: Motherboard power
-  m_TagString: +02.004.0001
+  m_TagString: Motherboard power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 3370353843057415508}
   m_Layer: 0
   m_Name: RAM2
-  m_TagString: +01.004.0001.0001
+  m_TagString: RAM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,9 +283,10 @@ GameObject:
   - component: {fileID: 2340680328139915815}
   - component: {fileID: 6271646395514708575}
   - component: {fileID: 7788459590521633785}
+  - component: {fileID: 9079038516575867043}
   m_Layer: 0
   m_Name: MSI MAG B660M Mortar
-  m_TagString: +01.003.0001.0001
+  m_TagString: Motherboard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,8 +331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef2e788a137df34e99589c8b64e64cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: MSI MAG B660M Mortar
   ComponentType: 5
+  Name: MSI MAG B660M Mortar
   SocketType: 6
   SupportSockets: 
   StorageDeviceType: 0
@@ -684,6 +685,24 @@ MonoBehaviour:
   <OnDisconnectEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9079038516575867043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595792059045484358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4017927795359609155
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,7 +746,7 @@ GameObject:
   - component: {fileID: 8077414251919549016}
   m_Layer: 0
   m_Name: CPU
-  m_TagString: +01.001.0001.0001
+  m_TagString: CPU
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -782,7 +801,7 @@ GameObject:
   - component: {fileID: 3689081122439622996}
   m_Layer: 0
   m_Name: CPU power2
-  m_TagString: +02.001.0001
+  m_TagString: CPU power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -885,7 +904,7 @@ GameObject:
   - component: {fileID: 2862932386093566672}
   m_Layer: 0
   m_Name: Cooler
-  m_TagString: +01.007.0001.0001
+  m_TagString: Cooler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -938,7 +957,7 @@ GameObject:
   - component: {fileID: 437248512942193980}
   m_Layer: 0
   m_Name: Videocard
-  m_TagString: +01.002.0001.0001
+  m_TagString: GPU
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1201,7 +1220,7 @@ GameObject:
   - component: {fileID: 7902976268465649379}
   m_Layer: 0
   m_Name: RAM4
-  m_TagString: +01.004.0001.0001
+  m_TagString: RAM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1256,7 +1275,7 @@ GameObject:
   - component: {fileID: 8772017324961555264}
   m_Layer: 0
   m_Name: CPU power1
-  m_TagString: +02.001.0001
+  m_TagString: CPU power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

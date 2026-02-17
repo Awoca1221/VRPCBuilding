@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4441427168741047455}
   m_Layer: 0
   m_Name: RAM2
-  m_TagString: +01.004.0001.0001
+  m_TagString: RAM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 1522721955563491904}
   m_Layer: 0
   m_Name: Videocard
-  m_TagString: +01.002.0001.0001
+  m_TagString: GPU
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 4285544731384925364}
   m_Layer: 0
   m_Name: RAM4
-  m_TagString: +01.004.0001.0001
+  m_TagString: RAM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 4459904902827072901}
   m_Layer: 0
   m_Name: Motherboard power
-  m_TagString: +02.004.0001
+  m_TagString: Motherboard power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 3153722797933033663}
   m_Layer: 0
   m_Name: CPU power
-  m_TagString: +02.001.0001
+  m_TagString: CPU power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 6977802722406658327}
   m_Layer: 0
   m_Name: CPU
-  m_TagString: +01.001.0001.0001
+  m_TagString: CPU
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 2065536291040155225}
   m_Layer: 0
   m_Name: RAM3
-  m_TagString: +01.004.0001.0001
+  m_TagString: RAM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 6747691823612004711}
   m_Layer: 0
   m_Name: Cooler
-  m_TagString: +01.007.0001.0001
+  m_TagString: Cooler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -571,7 +571,7 @@ GameObject:
   - component: {fileID: 3369540385751619504}
   m_Layer: 0
   m_Name: RAM1
-  m_TagString: +01.004.0001.0001
+  m_TagString: RAM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -675,6 +675,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: eb109fcc74edf1a4889994e0c49815ac, type: 3}
       propertyPath: m_Name
       value: ASUS PRIME X370-PRO
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eb109fcc74edf1a4889994e0c49815ac, type: 3}
+      propertyPath: m_TagString
+      value: Motherboard
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

@@ -856,7 +856,7 @@ GameObject:
   - component: {fileID: 8024643280301157586}
   m_Layer: 0
   m_Name: Power supply
-  m_TagString: +01.006.0001.0001
+  m_TagString: Power supply ATX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1595,6 +1595,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1151261621367029900}
+  - component: {fileID: 8358650827831245433}
   m_Layer: 0
   m_Name: corpus
   m_TagString: Untagged
@@ -1615,6 +1616,7 @@ Transform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6621203960787866267}
   - {fileID: 242376566142789322}
   - {fileID: 1983245844967166571}
   - {fileID: 6521971829384366174}
@@ -1625,6 +1627,18 @@ Transform:
   - {fileID: 4807830114127234002}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8358650827831245433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3893902715410197650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb2f2c64ed735d49ac02b58a0960236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3923116144460373105
 GameObject:
   m_ObjectHideFlags: 0
@@ -3079,6 +3093,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &6956531035317031819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6621203960787866267}
+  - component: {fileID: 3948221380404410723}
+  m_Layer: 0
+  m_Name: MotherboardScrew1
+  m_TagString: Screw
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6621203960787866267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956531035317031819}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -6.176, y: 26.095, z: -10.225}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1151261621367029900}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!65 &3948221380404410723
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956531035317031819}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.030817732, y: 0.022128344, z: 0.022933116}
+  m_Center: {x: 0.010526091, y: 0.00023829937, z: 0.00040958013}
 --- !u!1 &7232249726209065513
 GameObject:
   m_ObjectHideFlags: 0
@@ -3513,7 +3580,7 @@ GameObject:
   - component: {fileID: 312274803516205372}
   m_Layer: 0
   m_Name: MotherboardAttach
-  m_TagString: +01.003.0001.0001
+  m_TagString: Motherboard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6744782093966412422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5644916907793601824}
+  - component: {fileID: 903838312096965514}
+  m_Layer: 0
+  m_Name: VideocardPower
+  m_TagString: GPU power
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5644916907793601824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744782093966412422}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.00208, y: 0.0001528, z: 0.000125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8685815268093464868}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &903838312096965514
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744782093966412422}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0002487813, y: 0.00020884119, z: 0.00028842193}
+  m_Center: {x: 0.000012916456, y: 0.000020473879, z: 0.00009036345}
 --- !u!1 &8876533502997915588
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,12 +136,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gigabyte GTX 1050Ti
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ae305e5412c256c478777dd2dfcf4d9f, type: 3}
+      propertyPath: m_TagString
+      value: GPU
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ae305e5412c256c478777dd2dfcf4d9f, type: 3}
       insertIndex: 0
       addedObject: {fileID: 887999226590474276}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: ae305e5412c256c478777dd2dfcf4d9f, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 5644916907793601824}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ae305e5412c256c478777dd2dfcf4d9f, type: 3}
       insertIndex: -1

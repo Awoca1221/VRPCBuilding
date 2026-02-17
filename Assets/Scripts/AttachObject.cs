@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using NaughtyAttributes.Test;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,33 +19,17 @@ public class AttachObject : MonoBehaviour
     public Material correct;
     public Material wrong;
 
-    private InputActionAsset inputActions;
     private XRInteractionManager interactionManager;
-    private InputAction activateActionLeft;
-    private InputAction activateActionRight;
     private IXRSelectInteractor interactor;
     private XRGrabInteractable interactable;
-    //private Rigidbody rb;
     private Collider checkCollider;
     private Vector3 saveScale;
-    private bool check = false;
-    private bool attachCheck = false;
+    private bool ObjIsAttached = false;
     private ItemCommon objectInfo;
     [field: NonSerialized] public GameObject cpuConnected;
     private HashSet<GameObject> _connectedParts = new();
     private GameObject _highlightParent = null;
     private Material _currentMatForHightlight = null;
-    //private Transform oldParent;
-    //private Transform newChild;
-
-
-    /*
-    private GameObject attachParent;
-    private MotherboardCommon attachMB;
-    private GameObject cpuObj;
-    private XRGrabInteractable test;
-    */
-
 
     [field: SerializeField] public CheckMultipleConnections MultipleConnections { get; set; } = null;
     [field: SerializeField] public UnityEvent OnConnectEvents { get; set; } = null;
@@ -65,13 +48,8 @@ public class AttachObject : MonoBehaviour
         StartCoroutine(CreateHighlight());
 
         // Отслеживание нажатия кнопки для подключения и отключения объекта
-        inputActions = GameObject.Find("Input Action Manager").GetComponent<InputActionManager>().actionAssets[0];
-        if (inputActions != null) {
-            activateActionLeft = inputActions.FindActionMap("XRI LeftHand Interaction").FindAction("Activate");
-            activateActionRight = inputActions.FindActionMap("XRI RightHand Interaction").FindAction("Activate");
-            interactable.selectEntered.AddListener(OnGrabEnter);
-            interactable.selectExited.AddListener(OnGrabExit);
-        }
+        interactable.selectEntered.AddListener(OnGrabEnter);
+        interactable.selectExited.AddListener(OnGrabExit);
 
         if (parent) 
             saveScale = parent.localScale;
@@ -105,6 +83,7 @@ public class AttachObject : MonoBehaviour
         }
     }
 
+    // Методы для отслеживания задач с множественным подключением (оперативная память)
     private void MultipleConOnConnect()
     {
         MultipleConnections.ConnectObject(gameObject);
@@ -114,7 +93,8 @@ public class AttachObject : MonoBehaviour
     {
         MultipleConnections.DisconnectObject(gameObject);
     }
-
+    
+    // Методы для игнорирования столкновений между подключёнными объектами
     private void AddConnectedPart(GameObject part)
     {
         Collider[] partCols = part.GetComponentsInChildren<Collider>();
@@ -149,39 +129,39 @@ public class AttachObject : MonoBehaviour
         }
     }
 
+    // Методы для настройки отслеживания подключения/отключения объекта через триггер
     private void OnGrabEnter(SelectEnterEventArgs args)
     {
         interactor = args.interactorObject;
-        if (args.interactorObject.transform.parent.gameObject.name == "Left Controller") {
-            activateActionLeft.performed += TryActivateAction;
-        } else {
-            activateActionRight.performed += TryActivateAction;
+        if (interactor.transform.TryGetComponent<HandInfo>(out var info))
+        {
+            info.activateAction.performed += TryActivateAction;
         }
+        
     }
 
     private void OnGrabExit(SelectExitEventArgs args)
     {
-        interactor = null;
-        if (args.interactorObject.transform.parent.gameObject.name == "Left Controller") {
-            activateActionLeft.performed -= TryActivateAction;
-        } else {
-            activateActionRight.performed -= TryActivateAction;
+        interactor = args.interactorObject;
+        if (interactor.transform.TryGetComponent<HandInfo>(out var info))
+        {
+            info.activateAction.performed -= TryActivateAction;
         }
     }
 
     // Активация кнопки подключения/отключения объекта
     private void TryActivateAction(InputAction.CallbackContext context)
     {
-        if (attachCheck)
-            CheckUnAttach();
+        if (ObjIsAttached)
+            TryUnattach();
         else
-            CheckAttach();
+            TryAttach();
     }
 
     // Подключение объекта
-    private void CheckAttach()
+    private void TryAttach()
     {
-        if (check && Quaternion.Angle(attachPoint.transform.rotation, checkCollider.gameObject.transform.rotation) <= 40)
+        if (checkCollider != null && Quaternion.Angle(attachPoint.transform.rotation, checkCollider.gameObject.transform.rotation) <= 40)
         {
             Transform oldPlace;
 
@@ -220,7 +200,7 @@ public class AttachObject : MonoBehaviour
                 attachPoint.GetComponent<FixedJoint>().connectedBody = checkCollider.GetComponentInParent<Rigidbody>();
             }
             checkCollider.tag = "Unavailable";
-            attachCheck = true;
+            ObjIsAttached = true;
             if (interactor != null)
                 interactionManager.SelectExit(interactor, interactable);
             // Необходимо для отключения столкновений коллайдеров
@@ -248,16 +228,16 @@ public class AttachObject : MonoBehaviour
     }
 
     // Отключение объекта
-    private void CheckUnAttach()
+    private void TryUnattach()
     {
-        if (attachCheck)
+        if (ObjIsAttached)
         {
             checkCollider.tag = tag;
             if (parent)
                 Destroy(parent.GetComponent<FixedJoint>());
             else
                 Destroy(attachPoint.GetComponent<FixedJoint>());
-            attachCheck = false;
+            ObjIsAttached = false;
             // Необходимо для включения столкновений коллайдеров
             RemoveConnectedPart(checkCollider.transform.parent.GameObject());
             // Необходимо для разблокировки процессора при отключении кулера
@@ -275,7 +255,7 @@ public class AttachObject : MonoBehaviour
         }
     }
 
-    // Используется для подсветки места подключения
+    // Методы для подсветки места подключения
     IEnumerator CreateHighlight()
     {
         yield return null;
@@ -336,36 +316,21 @@ public class AttachObject : MonoBehaviour
         _highlightParent.transform.SetParent(gameObject.transform);
     }
 
+    //Удаление подсветки вместе с самим объектом
     void OnDestroy()
     {
         Destroy(_highlightParent);
     }
 
+    // Метод проверки возможности подключения объекта к разъёму (нужный ли разъём и совместим ли объект с ним)
     void OnTriggerEnter(Collider collider)
     {
-        if (attachCheck)
+        if (ObjIsAttached)
             return;
 
         if (attachPoint != collider.gameObject)
         {
-            if (tag[0] == '+' && collider.gameObject.tag[0] == '+') // старая проверка
-            {
-                string[] tagParts = tag.Split('.');
-                string[] colliderTagParts = collider.gameObject.tag.Split('.');
-
-                if ((tagParts.Length < 3) || (colliderTagParts.Length < 3))
-                    return;
-                if (tagParts[0] != colliderTagParts[0])
-                    return;
-                if (tagParts[1] != colliderTagParts[1])
-                    return;
-                if (tagParts[2] != colliderTagParts[2])
-                {
-                    incompatibleInfo.SetActive(true);
-                    return;
-                }
-            }
-            else if (!collider.gameObject.CompareTag(tag)) // является ли разъём подходящим для подключения
+            if (!collider.gameObject.CompareTag(tag)) // является ли разъём подходящим для подключения
             {
                 return;
             }
@@ -405,38 +370,38 @@ public class AttachObject : MonoBehaviour
             // в случае прохождения проверки запоминаем объект и начинаем отслеживать положения нашего объекта для подсветки верености подключения компонента в разъём
             checkCollider = collider;
             StartHighlight();
-            check = true;
         }
     }
 
+    // Метод, управляющий подсветкой места подключения
     void OnTriggerStay(Collider collider)
     {
         if (_highlightParent == null)
             return;
         
-        if (attachCheck || interactor == null)
+        if (ObjIsAttached || interactor == null)
         {
             if (_currentMatForHightlight != invis)
                 ChangeHighlightColor(invis);
-        } else if (check && Quaternion.Angle(attachPoint.transform.rotation, checkCollider.gameObject.transform.rotation) <= 40)
+        } else if (checkCollider != null && Quaternion.Angle(attachPoint.transform.rotation, checkCollider.gameObject.transform.rotation) <= 40)
         {
             if (_currentMatForHightlight != correct)
                 ChangeHighlightColor(correct);
-        } else if (check)
+        } else if (checkCollider != null)
         {
             if (_currentMatForHightlight != wrong)
                 ChangeHighlightColor(wrong);
         }
     }
 
+    // Метод, останавливающий подсветку и отслеживание объекта для подключения
     void OnTriggerExit(Collider collider)
     {
         incompatibleInfo.SetActive(false);
-        if (checkCollider != null && !attachCheck && checkCollider.gameObject == collider.gameObject)
+        if (checkCollider != null && !ObjIsAttached && checkCollider.gameObject == collider.gameObject)
         {
             EndHighlight();
             checkCollider = null;
-            check = false;
         }
     }
 }

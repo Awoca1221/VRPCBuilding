@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4907585344534529010}
   m_Layer: 0
   m_Name: Motherboard power
-  m_TagString: +02.003.0001
+  m_TagString: Motherboard power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 8615504105496226524}
   m_Layer: 0
   m_Name: CPU power
-  m_TagString: +02.001.0001
+  m_TagString: CPU power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,9 +226,10 @@ GameObject:
   - component: {fileID: 5380052380849355938}
   - component: {fileID: 851360838188991210}
   - component: {fileID: 6635586941774689906}
+  - component: {fileID: 4208820344697730627}
   m_Layer: 0
   m_Name: Power supply
-  m_TagString: +01.006.0001.0001
+  m_TagString: Power supply ATX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,8 +265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef2e788a137df34e99589c8b64e64cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Unknown power supply
   ComponentType: 6
+  Name: Unknown power supply
   SocketType: 0
   SupportSockets: 
   StorageDeviceType: 0
@@ -587,6 +588,24 @@ MonoBehaviour:
   <OnDisconnectEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4208820344697730627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4546668234731157261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &5043108723088222802
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +620,7 @@ GameObject:
   - component: {fileID: 7040675402279301563}
   m_Layer: 0
   m_Name: GPU power
-  m_TagString: +02.002.0001
+  m_TagString: GPU power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
