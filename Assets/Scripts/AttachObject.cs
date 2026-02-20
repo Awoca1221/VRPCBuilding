@@ -14,11 +14,13 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 public class AttachObject : MonoBehaviour
 {
     public GameObject attachPoint;
+    [Header("Parent of attachPoint (empty if none)")]
     public Transform parent;
     private Material invis;
     public Material correct;
     public Material wrong;
 
+    private ScrewPoint[] screwPoints;
     private XRInteractionManager interactionManager;
     private IXRSelectInteractor interactor;
     private XRGrabInteractable interactable;
@@ -39,6 +41,8 @@ public class AttachObject : MonoBehaviour
     //Debug.Log("...");
     void Start()
     {
+        screwPoints = GetComponentsInChildren<ScrewPoint>();
+        foreach (var screw in screwPoints) screw.onStatusChanged += OnScrewChangeStatus;
         GetComponent<Outline>().enabled = false;
         interactable = GetComponent<XRGrabInteractable>();
         objectInfo = GetComponentInParent<ItemCommon>();
@@ -80,6 +84,18 @@ public class AttachObject : MonoBehaviour
         if (wrong == null)
         {
             wrong = Resources.Load<Material>("Materials/Wrong");
+        }
+    }
+
+    private void OnScrewChangeStatus()
+    {
+        if (screwPoints.Any(s => s.IsSecured))
+        {
+            interactable.enabled = false;
+        }
+        else
+        {
+            interactable.enabled = true;
         }
     }
 
@@ -176,9 +192,7 @@ public class AttachObject : MonoBehaviour
                 attachPoint.transform.SetParent(checkCollider.gameObject.transform, true);
             }
 
-            attachPoint.transform.localPosition = new Vector3(0f, 0f, 0f);
-            attachPoint.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
-
+            attachPoint.transform.SetLocalPositionAndRotation(new Vector3(0f, 0f, 0f), new Quaternion(0f, 0f, 0f, 0f));
             if (parent)
             {
                 parent.SetParent(oldPlace, true);
@@ -205,6 +219,19 @@ public class AttachObject : MonoBehaviour
                 interactionManager.SelectExit(interactor, interactable);
             // Необходимо для отключения столкновений коллайдеров
             AddConnectedPart(checkCollider.transform.parent.GameObject());
+
+            if (checkCollider.TryGetComponent<ConnectionPoint>(out var conPoint))
+            {
+                if (parent)
+                {
+                    conPoint.OnConnect(parent.gameObject);
+                }
+                else
+                {
+                    conPoint.OnConnect(gameObject);
+                }
+            }
+
             // Необходимо для блокировки процессора при подключении кулера
             AttachObject connectTo = checkCollider.GetComponentInParent<AttachObject>();
             if (connectTo == null)
@@ -240,6 +267,12 @@ public class AttachObject : MonoBehaviour
             ObjIsAttached = false;
             // Необходимо для включения столкновений коллайдеров
             RemoveConnectedPart(checkCollider.transform.parent.GameObject());
+
+            if (checkCollider.TryGetComponent<ConnectionPoint>(out var conPoint))
+            {
+                conPoint.OnDisconnect();
+            }
+
             // Необходимо для разблокировки процессора при отключении кулера
             AttachObject connectTo = checkCollider.GetComponentInParent<AttachObject>();
             if (objectInfo.ComponentType == ComponentType.CPU)
@@ -320,6 +353,7 @@ public class AttachObject : MonoBehaviour
     void OnDestroy()
     {
         Destroy(_highlightParent);
+        if (ObjIsAttached) TryUnattach();
     }
 
     // Метод проверки возможности подключения объекта к разъёму (нужный ли разъём и совместим ли объект с ним)
@@ -337,6 +371,8 @@ public class AttachObject : MonoBehaviour
             ItemCommon colliderInfo = collider.gameObject.GetComponentInParent<ItemCommon>(); // место, где хранится информация об комплектующем, к которому мы подключаемся
             if (colliderInfo == null)
             {
+                checkCollider = collider;
+                StartHighlight();
                 return;
             }
             switch (objectInfo.ComponentType) //тип комплектующего, который мы подключаем

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using Image = UnityEngine.UI.Image;
 
 public class ScrewdriverManager : MonoBehaviour
 {
@@ -14,7 +15,9 @@ public class ScrewdriverManager : MonoBehaviour
     public float movePerDegree = 1e-05f;
     public Transform screw;
     public Transform screwHighlight;
-
+    public Transform UIProgress;
+    public Image UIImageProgress;
+    
     private Transform usePlace;
     private Rigidbody rb;
     private bool isInUse = false;
@@ -31,11 +34,18 @@ public class ScrewdriverManager : MonoBehaviour
         interactable.selectExited.AddListener(OnGrabExit);
     }
 
+    void LateUpdate()
+    {
+        if (!isInUse) return;
+
+        UIProgress.transform.LookAt(Camera.main.transform);
+    }
+    
     // Отслеживает прогресс закручивания
     void Update()
     {
         if (!isInUse) return;
-
+        
         Vector3 localAngularVel = transform.InverseTransformDirection(rb.angularVelocity);
         float delta = localAngularVel.x * Mathf.Rad2Deg * Time.deltaTime;
         switch (direction)
@@ -45,7 +55,7 @@ public class ScrewdriverManager : MonoBehaviour
                 if (delta > 0.1f)
                 {
                     totalProgress += delta;
-                    transform.Translate(Mathf.Sign(delta) * delta * movePerDegree * Vector3.right);
+                    transform.Translate(delta * movePerDegree * Vector3.right);
                 }
                 break;
             
@@ -53,18 +63,27 @@ public class ScrewdriverManager : MonoBehaviour
                 if (delta > 0.1f)
                 {
                     totalProgress += delta;
-                    transform.Translate(Mathf.Sign(delta) * delta * movePerDegree * Vector3.left);
+                    transform.Translate(delta * movePerDegree * Vector3.left);
                 }
                 break;
         }
+
+        float fillAmount = Mathf.Clamp01(totalProgress / requiredDegress);
+        UIImageProgress.fillAmount = fillAmount;
+
         //Debug.Log($"totalProgress:{totalProgress}");
         if (totalProgress >= requiredDegress)
         {
+            ScrewPoint screwPoint = usePlace.GetComponent<ScrewPoint>();
             //Debug.Log("Процесс прошёл успешно");
             switch (direction)
             {
                 case TwistDirection.Clockwise:
                     Instantiate(screw.gameObject, usePlace, true);
+                    if (screwPoint != null)
+                    {
+                        screwPoint.SetScrewSecured();
+                    }
                     break;
                 
                 case TwistDirection.CClockwise:
@@ -72,6 +91,10 @@ public class ScrewdriverManager : MonoBehaviour
                     if (oldScrewClone != null)
                     {
                         Destroy(oldScrewClone.gameObject);
+                    }
+                    if (screwPoint != null)
+                    {
+                        screwPoint.SetScrewUnsecured();
                     }
                     break;
             }
@@ -82,7 +105,7 @@ public class ScrewdriverManager : MonoBehaviour
     // Подсветка места закручивания
     void StartHighlight()
     {
-        screwHighlight.parent = usePlace;
+        screwHighlight.SetParent(usePlace);
         screwHighlight.SetLocalPositionAndRotation(new Vector3(0f, 0f, 0f), new Quaternion(0f, 0f, 0f, 0f));
         screwHighlight.Translate(requiredDegress * movePerDegree * Vector3.right);
         screwHighlight.GetComponent<MeshRenderer>().enabled = true;
@@ -91,7 +114,7 @@ public class ScrewdriverManager : MonoBehaviour
     void EndHighlight()
     {
         screwHighlight.GetComponent<MeshRenderer>().enabled = false;
-        screwHighlight.transform.parent = transform;
+        screwHighlight.transform.SetParent(transform);
     }
 
     // Отслеживание нахождения в месте закручивания
@@ -142,9 +165,12 @@ public class ScrewdriverManager : MonoBehaviour
     private void SetInUseState()
     {
         rb.constraints = RigidbodyConstraints.FreezeAll & ~RigidbodyConstraints.FreezeRotationX;
-        //GetComponent<CapsuleCollider>().enabled = false;
         screw.GetComponent<MeshRenderer>().enabled = true;
         isInUse = true;
+        Vector3 abovePos = transform.position + Vector3.up * 0.005f;
+        UIProgress.SetParent(null);
+        UIProgress.transform.position = abovePos;
+        UIProgress.GetComponent<Canvas>().enabled = true;
         if (usePlace != null)
         {
             EndHighlight();
@@ -160,9 +186,10 @@ public class ScrewdriverManager : MonoBehaviour
     {
         totalProgress = 0f;
         rb.constraints = RigidbodyConstraints.None;
-        //GetComponent<CapsuleCollider>().enabled = true;
         screw.GetComponent<MeshRenderer>().enabled = false;
         isInUse = false;
+        UIProgress.GetComponent<Canvas>().enabled = false;
+        UIProgress.SetParent(transform);
         if (usePlace != null)
         {
             StartHighlight();
@@ -184,8 +211,8 @@ public class ScrewdriverManager : MonoBehaviour
                 RemoveInUseState();
             } else
             {
-                screw.parent = null;
-                transform.parent = screw;
+                screw.SetParent(null);
+                transform.SetParent(screw);
                 screw.SetPositionAndRotation(usePlace.position, usePlace.rotation);
                 if (usePlace.childCount == 1)
                 {
@@ -195,8 +222,8 @@ public class ScrewdriverManager : MonoBehaviour
                 {
                     direction = TwistDirection.CClockwise;
                 }
-                transform.parent = null;
-                screw.parent = transform;
+                transform.SetParent(null);
+                screw.SetParent(transform);
                 SetInUseState();
             }
         }
