@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebd64e1ad70c304f86210852b7a894a, type: 3}
+  m_Name: AudioPreset
+  m_EditorClassIdentifier: 
+  insertSounds:
+  - {fileID: 8300000, guid: d86e6b757d611f544a44245226850c21, type: 3}
+  ejectSounds:
+  - {fileID: 8300000, guid: a67113d5a626a6a4381cf3d05d4e6e39, type: 3}
+  insertVolMin: 1
+  insertVolMax: 1
+  ejectVolMin: 1
+  ejectVolMax: 1

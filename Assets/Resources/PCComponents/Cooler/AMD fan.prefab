@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1331889544813508016
+--- !u!1 &991427225083860791
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,81 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2820502860561510061}
-  - component: {fileID: -2074554247743371923}
-  - component: {fileID: 7604872806033646306}
-  - component: {fileID: 4275959436688674824}
-  - component: {fileID: 5160534083951501963}
-  - component: {fileID: 8194144758269169315}
-  - component: {fileID: 9013709181102261708}
-  - component: {fileID: 2563423522014085102}
-  - component: {fileID: 7140685941011384896}
+  - component: {fileID: 4815516433729356203}
+  - component: {fileID: 8579737776081923740}
+  - component: {fileID: 8603932551775843924}
+  - component: {fileID: 123869754573071431}
   m_Layer: 0
-  m_Name: AMD fan
-  m_TagString: Cooler
+  m_Name: Cooler
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2820502860561510061
+--- !u!4 &4815516433729356203
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331889544813508016}
+  m_GameObject: {fileID: 991427225083860791}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9047665310126357765}
   - {fileID: 878819817441096918}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2820502860561510061}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
---- !u!114 &-2074554247743371923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331889544813508016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ef2e788a137df34e99589c8b64e64cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ComponentType: 1
-  Name: AMD fan
-  SocketType: 0
-  SupportSockets: 0200000003000000
-  StorageDeviceType: 0
-  PCIESupport: 0
-  DDRType: 0
-  GPUManufacturer: 0
-  CPUManufacturer: 0
-  TDPLimit: 120
-  Performance: 0
-  Model: 
-  MemoryAmountGB: 0
-  CPUid: -1
-  PowerSupplyMaxPower: 0
---- !u!33 &7604872806033646306
+--- !u!33 &8579737776081923740
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331889544813508016}
+  m_GameObject: {fileID: 991427225083860791}
   m_Mesh: {fileID: 7762303641244181599, guid: be765b9ed420cc24cbaa4df6c5574778, type: 3}
---- !u!23 &4275959436688674824
+--- !u!23 &8603932551775843924
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331889544813508016}
+  m_GameObject: {fileID: 991427225083860791}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -119,13 +87,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5160534083951501963
+--- !u!65 &123869754573071431
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331889544813508016}
+  m_GameObject: {fileID: 991427225083860791}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -140,6 +108,43 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0009072447, y: 0.00019075663, z: 0.0010163885}
   m_Center: {x: 0.00000044508488, y: 0.00006777549, z: -0.00000084820186}
+--- !u!1 &1331889544813508016
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2820502860561510061}
+  - component: {fileID: 8194144758269169315}
+  - component: {fileID: 9013709181102261708}
+  - component: {fileID: 7140685941011384896}
+  - component: {fileID: -2074554247743371923}
+  - component: {fileID: 2563423522014085102}
+  m_Layer: 0
+  m_Name: AMD fan
+  m_TagString: Cooler
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2820502860561510061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331889544813508016}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4815516433729356203}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8194144758269169315
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -319,29 +324,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &2563423522014085102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331889544813508016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d2c6b1762adbe4488b60def89596357, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attachPoint: {fileID: 1331889544813508016}
-  parent: {fileID: 0}
-  correct: {fileID: 0}
-  wrong: {fileID: 0}
-  <MultipleConnections>k__BackingField: {fileID: 0}
-  <OnConnectEvents>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
-  <OnDisconnectEvents>k__BackingField:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &7140685941011384896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,6 +342,57 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &-2074554247743371923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331889544813508016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef2e788a137df34e99589c8b64e64cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ComponentType: 1
+  Name: AMD fan
+  SocketType: 0
+  SupportSockets: 0200000003000000
+  StorageDeviceType: 0
+  PCIESupport: 0
+  DDRType: 0
+  GPUManufacturer: 0
+  CPUManufacturer: 0
+  TDPLimit: 120
+  Performance: 0
+  Model: 
+  MemoryAmountGB: 0
+  CPUid: -1
+  PowerSupplyMaxPower: 0
+--- !u!114 &2563423522014085102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331889544813508016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d2c6b1762adbe4488b60def89596357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachPoint: {fileID: 991427225083860791}
+  parent: {fileID: 0}
+  correct: {fileID: 0}
+  wrong: {fileID: 0}
+  conPoints: []
+  <MultipleConnections>k__BackingField: {fileID: 0}
+  <OnConnectEvents>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnDisconnectEvents>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7156981917964226730
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +425,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2820502860561510061}
+  m_Father: {fileID: 4815516433729356203}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5672834126113726057
 MeshFilter:
@@ -498,7 +531,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2820502860561510061}
+  m_Father: {fileID: 4815516433729356203}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4419092729928001045
 MeshFilter:

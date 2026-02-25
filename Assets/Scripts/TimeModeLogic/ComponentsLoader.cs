@@ -151,10 +151,10 @@ public class ComponentsLoader : MonoBehaviour
         build.Add(componentPrefabs["GPU"][Random.Range(0, componentPrefabs["GPU"].Count)], "6");
 
         // Выбираем накопитель
-        // build.Add(componentPrefabs["StorageDevice"][Random.Range(0, componentPrefabs["StorageDevice"].Count)], "");
+        build.Add(componentPrefabs["StorageDevice"][Random.Range(0, componentPrefabs["StorageDevice"].Count)], "7");
 
         // Выбираем блок питания
-        build.Add(componentPrefabs["PowerSupply"][Random.Range(0, componentPrefabs["PowerSupply"].Count)], "7");
+        build.Add(componentPrefabs["PowerSupply"][Random.Range(0, componentPrefabs["PowerSupply"].Count)], "8");
 
         // Спавним комплектующие
         Renderer cubeRenderer = GetComponent<Renderer>();

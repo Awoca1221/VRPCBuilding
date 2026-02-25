@@ -29,7 +29,7 @@ public class MenuToggle : MonoBehaviour
         Transform menuTransform = GetComponent<Transform>();
 
         menuTransform.forward = mainCam.transform.forward;
-        UnityEngine.Vector3 pos = mainCam.ScreenToWorldPoint(new UnityEngine.Vector3(mainCam.pixelWidth / 2f, mainCam.pixelHeight / 2f, 1f));
+        UnityEngine.Vector3 pos = mainCam.ScreenToWorldPoint(new UnityEngine.Vector3(mainCam.pixelWidth / 2f, mainCam.pixelHeight / 2f, 0.6f));
         
         menuTransform.position = pos;
 

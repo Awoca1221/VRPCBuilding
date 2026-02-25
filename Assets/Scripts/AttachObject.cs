@@ -9,38 +9,49 @@ using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
+public enum ComponentStatus
+{
+    NotInserted,     // Не вставлен
+    InsertedLoose,   // Вставлен, но не закреплён
+    FullySecured     // Полностью подключён (все винты)
+}
+
 [RequireComponent(typeof(Rigidbody), typeof(XRGrabInteractable), typeof(ItemCommon))]
 [RequireComponent(typeof(Outline))]
 public class AttachObject : MonoBehaviour
 {
     public GameObject attachPoint;
-    [Header("Parent of attachPoint (empty if none)")]
-    public Transform parent;
     private Material invis;
     public Material correct;
+    public Material show;
     public Material wrong;
 
+    public ComponentStatus CompStatus { get; private set; } = ComponentStatus.NotInserted;
+    public PCBuildManager PCBuildRef { get; private set; } = null;
+
+    private ConnectionPoint[] conPoints;
     private ScrewPoint[] screwPoints;
     private XRInteractionManager interactionManager;
     private IXRSelectInteractor interactor;
     private XRGrabInteractable interactable;
     private Collider checkCollider;
     private Vector3 saveScale;
-    private bool ObjIsAttached = false;
+    private bool ObjIsAttached => CompStatus != ComponentStatus.NotInserted;
     private ItemCommon objectInfo;
     [field: NonSerialized] public GameObject cpuConnected;
     private HashSet<GameObject> _connectedParts = new();
     private GameObject _highlightParent = null;
     private Material _currentMatForHightlight = null;
+    private Collider _currentColliderForHighlight = null;
 
     [field: SerializeField] public CheckMultipleConnections MultipleConnections { get; set; } = null;
     [field: SerializeField] public UnityEvent OnConnectEvents { get; set; } = null;
     [field: SerializeField] public UnityEvent OnDisconnectEvents { get; set; } = null;
-    [field: NonSerialized] private GameObject incompatibleInfo { get; set; } = null;
 
     //Debug.Log("...");
     void Start()
     {
+        conPoints = GetComponentsInChildren<ConnectionPoint>();
         screwPoints = GetComponentsInChildren<ScrewPoint>();
         foreach (var screw in screwPoints) screw.onStatusChanged += OnScrewChangeStatus;
         GetComponent<Outline>().enabled = false;
@@ -55,31 +66,21 @@ public class AttachObject : MonoBehaviour
         interactable.selectEntered.AddListener(OnGrabEnter);
         interactable.selectExited.AddListener(OnGrabExit);
 
-        if (parent) 
-            saveScale = parent.localScale;
-        else
-            saveScale = attachPoint.transform.localScale;
+        saveScale = transform.localScale;
         if (MultipleConnections)
         {
             OnConnectEvents.AddListener(MultipleConOnConnect);
             OnDisconnectEvents.AddListener(MultipleConOnDisconnect);
         }
 
-        GameObject[] gameObjects;
-        gameObjects = GameObject.FindGameObjectsWithTag("incmp");
-
-        if (gameObjects.Length == 0)
-        {
-            Debug.Log("No GameObjects are tagged with 'incmp'");
-        } else
-        {
-            incompatibleInfo = gameObjects[0].transform.GetChild(0).gameObject;
-        }
-
         invis = Resources.Load<Material>("Materials/Invis");
         if (correct == null)
         {
             correct = Resources.Load<Material>("Materials/Correct");
+        }
+        if (show == null)
+        {
+            show = Resources.Load<Material>("Materials/Show");
         }
         if (wrong == null)
         {
@@ -179,56 +180,43 @@ public class AttachObject : MonoBehaviour
     {
         if (checkCollider != null && Quaternion.Angle(attachPoint.transform.rotation, checkCollider.gameObject.transform.rotation) <= 40)
         {
-            Transform oldPlace;
+            // Сохранение прошлой иерархии и смена на новую
+            Transform oldPlace = transform.parent;
+            attachPoint.transform.SetParent(checkCollider.gameObject.transform, true);
+            transform.SetParent(attachPoint.transform, true);
 
-            if (parent)
-            {
-                oldPlace = parent.parent;
-                attachPoint.transform.SetParent(checkCollider.gameObject.transform, true);
-                parent.SetParent(attachPoint.transform, true);
-            } else
-            {
-                oldPlace = attachPoint.transform.parent;
-                attachPoint.transform.SetParent(checkCollider.gameObject.transform, true);
-            }
-
+            // Сдвиг объекта на место подключения
             attachPoint.transform.SetLocalPositionAndRotation(new Vector3(0f, 0f, 0f), new Quaternion(0f, 0f, 0f, 0f));
-            if (parent)
-            {
-                parent.SetParent(oldPlace, true);
-                attachPoint.transform.SetParent(parent, true);
-                parent.localScale = saveScale;
-            } else
-            {
-                attachPoint.transform.SetParent(oldPlace, true);
-            }
-            attachPoint.transform.localScale = saveScale;
 
-            if (parent)
-            {
-                parent.AddComponent<FixedJoint>();
-                parent.GetComponent<FixedJoint>().connectedBody = checkCollider.GetComponentInParent<Rigidbody>();
-            } else
-            {
-                attachPoint.AddComponent<FixedJoint>();
-                attachPoint.GetComponent<FixedJoint>().connectedBody = checkCollider.GetComponentInParent<Rigidbody>();
-            }
+            // Возврат к прошлой иерархии и восстановление размера объекта
+            transform.SetParent(oldPlace, true);
+            attachPoint.transform.SetParent(transform, true);
+            transform.localScale = saveScale;
+
+            // Скрепление объекта с разъёмом через FixedJoint
+            transform.AddComponent<FixedJoint>();
+            transform.GetComponent<FixedJoint>().connectedBody = checkCollider.GetComponentInParent<Rigidbody>();
+
             checkCollider.tag = "Unavailable";
-            ObjIsAttached = true;
+            CompStatus = ComponentStatus.InsertedLoose;
             if (interactor != null)
                 interactionManager.SelectExit(interactor, interactable);
+            
             // Необходимо для отключения столкновений коллайдеров
             AddConnectedPart(checkCollider.transform.parent.GameObject());
 
+            foreach (var screw in screwPoints) screw.SetAvailable();
             if (checkCollider.TryGetComponent<ConnectionPoint>(out var conPoint))
             {
-                if (parent)
+                conPoint.OnConnect(gameObject);
+                Transform conPointParent = conPoint.transform.parent;
+                if (conPointParent.TryGetComponent<PCBuildManager>(out var pcBuildRef))
                 {
-                    conPoint.OnConnect(parent.gameObject);
+                    SetPCBuildRef(pcBuildRef);
                 }
-                else
+                else if (conPointParent.TryGetComponent<AttachObject>(out var attachDevice))
                 {
-                    conPoint.OnConnect(gameObject);
+                    SetPCBuildRef(attachDevice.PCBuildRef);
                 }
             }
 
@@ -241,10 +229,7 @@ public class AttachObject : MonoBehaviour
             }
             if (objectInfo.ComponentType == ComponentType.CPU)
             {
-                if (parent)
-                    connectTo.cpuConnected = parent.GameObject();
-                else
-                    connectTo.cpuConnected = attachPoint.GameObject();
+                connectTo.cpuConnected = gameObject;
             }
             if (objectInfo.ComponentType == ComponentType.Cooler && connectTo.cpuConnected)
             {
@@ -260,17 +245,17 @@ public class AttachObject : MonoBehaviour
         if (ObjIsAttached)
         {
             checkCollider.tag = tag;
-            if (parent)
-                Destroy(parent.GetComponent<FixedJoint>());
-            else
-                Destroy(attachPoint.GetComponent<FixedJoint>());
-            ObjIsAttached = false;
+            Destroy(GetComponent<FixedJoint>());
+            CompStatus = ComponentStatus.NotInserted;
+
             // Необходимо для включения столкновений коллайдеров
             RemoveConnectedPart(checkCollider.transform.parent.GameObject());
 
+            foreach (var screw in screwPoints) screw.SetUnavailable();
             if (checkCollider.TryGetComponent<ConnectionPoint>(out var conPoint))
             {
                 conPoint.OnDisconnect();
+                SetPCBuildRef(null);
             }
 
             // Необходимо для разблокировки процессора при отключении кулера
@@ -288,45 +273,91 @@ public class AttachObject : MonoBehaviour
         }
     }
 
+    public void SetPCBuildRef(PCBuildManager refObj)
+    {
+        if (refObj != null)
+        {
+            PCBuildRef = refObj;
+            PCBuildRef.OnDeviceConnected(gameObject);
+            foreach (var point in conPoints)
+            {
+                if (point.ConnectedDevice != null)
+                {
+                    point.ConnectedDevice.GetComponent<AttachObject>().SetPCBuildRef(refObj);
+                }
+            }
+        }
+        else if (PCBuildRef != null)
+        {
+            PCBuildRef.OnDeviceDisconnected(gameObject);
+            PCBuildRef = null;
+            foreach (var point in conPoints)
+            {
+                if (point.ConnectedDevice != null)
+                {
+                    point.ConnectedDevice.GetComponent<AttachObject>().SetPCBuildRef(null);
+                }
+            }
+        }
+    }
+
     // Методы для подсветки места подключения
     IEnumerator CreateHighlight()
     {
         yield return null;
-        _highlightParent = new(name + "_highlight");
+        
+        _highlightParent = new GameObject(name + "_highlight");
         _currentMatForHightlight = invis;
-        _highlightParent.SetActive(false);
+        
         _highlightParent.transform.SetParent(attachPoint.transform);
-        _highlightParent.transform.localPosition = new Vector3(0f, 0f, 0f);
-        _highlightParent.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
+        _highlightParent.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        _highlightParent.transform.localScale = Vector3.one;
+        
+        _highlightParent.SetActive(false);
+        
         foreach (MeshFilter meshFilter in GetComponentsInChildren<MeshFilter>())
         {
             if (meshFilter.sharedMesh == null) continue;
 
             GameObject newObj = new(meshFilter.name + "_highlight");
-            newObj.transform.SetPositionAndRotation(meshFilter.transform.position, meshFilter.transform.rotation);
-            newObj.transform.localScale = meshFilter.transform.lossyScale;
+
+            Vector3 worldScale = meshFilter.transform.lossyScale;
             newObj.transform.SetParent(_highlightParent.transform);
+            newObj.transform.SetPositionAndRotation(
+                meshFilter.transform.position, 
+                meshFilter.transform.rotation
+            );
+
+            Vector3 parentScale = _highlightParent.transform.lossyScale;
+            newObj.transform.localScale = new Vector3(
+                worldScale.x / parentScale.x,
+                worldScale.y / parentScale.y,
+                worldScale.z / parentScale.z
+            );
 
             MeshFilter newFilter = newObj.AddComponent<MeshFilter>();
             newFilter.sharedMesh = meshFilter.sharedMesh;
+            
             MeshRenderer newRenderer = newObj.AddComponent<MeshRenderer>();
-            int materialsCount = newFilter.mesh.subMeshCount;
+            int materialsCount = newFilter.sharedMesh.subMeshCount;
             Material[] materials = new Material[materialsCount];
             for (int i = 0; i < materialsCount; i++)
             {
                 materials[i] = invis;
             }
             newRenderer.materials = materials;
+            
             yield return null;
         }
     }
 
-    void StartHighlight()
+    void StartHighlight(Collider collider)
     {
-        _highlightParent.transform.SetParent(checkCollider.transform);
+        _highlightParent.transform.SetParent(collider.transform);
         _highlightParent.transform.localPosition = new Vector3(0f, 0f, 0f);
         _highlightParent.transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
         _highlightParent.SetActive(true);
+        _currentColliderForHighlight = collider;
     }
 
     void ChangeHighlightColor(Material mat)
@@ -347,6 +378,7 @@ public class AttachObject : MonoBehaviour
     {
         _highlightParent.SetActive(false);
         _highlightParent.transform.SetParent(gameObject.transform);
+        _currentColliderForHighlight = null;
     }
 
     //Удаление подсветки вместе с самим объектом
@@ -368,13 +400,16 @@ public class AttachObject : MonoBehaviour
             {
                 return;
             }
+
+            StartHighlight(collider);
+            checkCollider = null;
             ItemCommon colliderInfo = collider.gameObject.GetComponentInParent<ItemCommon>(); // место, где хранится информация об комплектующем, к которому мы подключаемся
             if (colliderInfo == null)
             {
                 checkCollider = collider;
-                StartHighlight();
                 return;
             }
+
             switch (objectInfo.ComponentType) //тип комплектующего, который мы подключаем
             {
                 case ComponentType.NotSelected:
@@ -382,21 +417,21 @@ public class AttachObject : MonoBehaviour
                 case ComponentType.CPU:
                     if (objectInfo.GetCPUInfo().SocketType != colliderInfo.GetMotherboardInfo().SocketType) // берём соответствующую информацию об объектах и сравниваем
                     {
-                        incompatibleInfo.SetActive(true); // показываем знак несовместимости
+                        ChangeHighlightColor(wrong); // показываем знак несовместимости
                         return;
                     }
                     break;
                 case ComponentType.RAM:
                     if (objectInfo.GetRAMInfo().DDRType != colliderInfo.GetMotherboardInfo().DDRType)
                     {
-                        incompatibleInfo.SetActive(true);
+                        ChangeHighlightColor(wrong);
                         return;
                     }
                     break;
                 case ComponentType.Cooler:
                     if (!objectInfo.GetCoolerInfo().SupportSockets.Contains(colliderInfo.GetMotherboardInfo().SocketType))
                     {
-                        incompatibleInfo.SetActive(true);
+                        ChangeHighlightColor(wrong);
                         return;
                     }
                     break;
@@ -405,14 +440,13 @@ public class AttachObject : MonoBehaviour
             }
             // в случае прохождения проверки запоминаем объект и начинаем отслеживать положения нашего объекта для подсветки верености подключения компонента в разъём
             checkCollider = collider;
-            StartHighlight();
         }
     }
 
     // Метод, управляющий подсветкой места подключения
     void OnTriggerStay(Collider collider)
     {
-        if (_highlightParent == null)
+        if (_highlightParent == null || _currentMatForHightlight == wrong)
             return;
         
         if (ObjIsAttached || interactor == null)
@@ -425,18 +459,18 @@ public class AttachObject : MonoBehaviour
                 ChangeHighlightColor(correct);
         } else if (checkCollider != null)
         {
-            if (_currentMatForHightlight != wrong)
-                ChangeHighlightColor(wrong);
+            if (_currentMatForHightlight != show)
+                ChangeHighlightColor(show);
         }
     }
 
     // Метод, останавливающий подсветку и отслеживание объекта для подключения
     void OnTriggerExit(Collider collider)
     {
-        incompatibleInfo.SetActive(false);
+        if (collider == _currentColliderForHighlight) EndHighlight();
+
         if (checkCollider != null && !ObjIsAttached && checkCollider.gameObject == collider.gameObject)
         {
-            EndHighlight();
             checkCollider = null;
         }
     }

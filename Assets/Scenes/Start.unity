@@ -535,6 +535,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 353577069926394473, guid: f5b2a787bb0188649a5e37870a76ac0b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1723798091179398072, guid: f5b2a787bb0188649a5e37870a76ac0b, type: 3}
       propertyPath: playerManagerEvents
       value: 
@@ -586,6 +590,10 @@ PrefabInstance:
     - target: {fileID: 3906373477176866196, guid: f5b2a787bb0188649a5e37870a76ac0b, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004772592846929669, guid: f5b2a787bb0188649a5e37870a76ac0b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8143768566965001176, guid: f5b2a787bb0188649a5e37870a76ac0b, type: 3}
       propertyPath: m_IsActive

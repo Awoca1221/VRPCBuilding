@@ -82,7 +82,7 @@ public class ScrewdriverManager : MonoBehaviour
                     Instantiate(screw.gameObject, usePlace, true);
                     if (screwPoint != null)
                     {
-                        screwPoint.SetScrewSecured();
+                        screwPoint.SetSecured();
                     }
                     break;
                 
@@ -94,7 +94,7 @@ public class ScrewdriverManager : MonoBehaviour
                     }
                     if (screwPoint != null)
                     {
-                        screwPoint.SetScrewUnsecured();
+                        screwPoint.SetUnsecured();
                     }
                     break;
             }
