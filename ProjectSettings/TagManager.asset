@@ -22,6 +22,10 @@ TagManager:
   - Undefined
   - GPU
   - Screw
+  - +02.004.0001
+  - +01.003.0001.0001
+  - +01.005.0001.0001
+  - +01.006.0001.0001
   layers:
   - Default
   - TransparentFX
@@ -33,7 +37,7 @@ TagManager:
   - Right Hand Physics
   - Non Physics Hand
   - Wire
-  - 
+  - Outline
   - 
   - 
   - 
@@ -58,4 +62,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Outline
+    uniqueID: 3237941085
     locked: 0

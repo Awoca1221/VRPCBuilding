@@ -13,6 +13,7 @@ public class ScrewdriverManager : MonoBehaviour
     public float requiredDegress = 720f;
     //[Range(0f, 0.001f)]
     public float movePerDegree = 1e-05f;
+    public Transform instrumentModel;
     public Transform screw;
     public Transform screwHighlight;
     public Transform UIProgress;
@@ -55,7 +56,10 @@ public class ScrewdriverManager : MonoBehaviour
                 if (delta > 0.1f)
                 {
                     totalProgress += delta;
-                    transform.Translate(delta * movePerDegree * Vector3.right);
+                    Vector3 moveDistance = delta * movePerDegree * Vector3.right;
+                    transform.Translate(moveDistance);
+                    instrumentModel.Translate(moveDistance);
+                    instrumentModel.Rotate(delta * Vector3.left);
                 }
                 break;
             
@@ -63,7 +67,10 @@ public class ScrewdriverManager : MonoBehaviour
                 if (delta > 0.1f)
                 {
                     totalProgress += delta;
-                    transform.Translate(delta * movePerDegree * Vector3.left);
+                    Vector3 moveDistance = delta * movePerDegree * Vector3.left;
+                    transform.Translate(moveDistance);
+                    instrumentModel.Translate(moveDistance);
+                    instrumentModel.Rotate(delta * Vector3.right);
                 }
                 break;
         }
@@ -74,7 +81,7 @@ public class ScrewdriverManager : MonoBehaviour
         //Debug.Log($"totalProgress:{totalProgress}");
         if (totalProgress >= requiredDegress)
         {
-            ScrewPoint screwPoint = usePlace.GetComponent<ScrewPoint>();
+            SetupPoint screwPoint = usePlace.GetComponent<SetupPoint>();
             //Debug.Log("Процесс прошёл успешно");
             switch (direction)
             {
@@ -120,12 +127,11 @@ public class ScrewdriverManager : MonoBehaviour
     // Отслеживание нахождения в месте закручивания
     void OnTriggerEnter(Collider collider)
     {
-        if (!collider.gameObject.CompareTag(tag))
+        if (collider.gameObject.CompareTag(tag) && !isInUse)
         {
-            return;
+            usePlace = collider.transform;
+            StartHighlight();
         }
-        usePlace = collider.transform;
-        StartHighlight();
     }
 
     void OnTriggerExit(Collider collider)
@@ -165,20 +171,37 @@ public class ScrewdriverManager : MonoBehaviour
     private void SetInUseState()
     {
         rb.constraints = RigidbodyConstraints.FreezeAll & ~RigidbodyConstraints.FreezeRotationX;
+        
+        screw.SetParent(null);
+        transform.SetParent(screw);
+        screw.SetPositionAndRotation(usePlace.position, usePlace.rotation);
+        if (usePlace.childCount == 1)
+        {
+            direction = TwistDirection.Clockwise;
+            screw.Translate(requiredDegress * movePerDegree * Vector3.right);
+        }
+        else
+        {
+            direction = TwistDirection.CClockwise;
+        }
+        transform.SetParent(null);
+        screw.SetParent(instrumentModel);
+
         screw.GetComponent<MeshRenderer>().enabled = true;
-        isInUse = true;
-        Vector3 abovePos = transform.position + Vector3.up * 0.005f;
-        UIProgress.SetParent(null);
+        Vector3 abovePos = transform.position + Vector3.up * 0.025f;
+        UIProgress.SetParent(usePlace);
         UIProgress.transform.position = abovePos;
         UIProgress.GetComponent<Canvas>().enabled = true;
-        if (usePlace != null)
+
+        //transform.SetParent(usePlace);
+        instrumentModel.SetParent(usePlace);
+
+        EndHighlight();
+        isInUse = true;
+        Transform oldScrewClone = usePlace.Find($"{screw.name}(Clone)");
+        if (oldScrewClone != null)
         {
-            EndHighlight();
-            Transform oldScrewClone = usePlace.Find($"{screw.name}(Clone)");
-            if (oldScrewClone != null)
-            {
-                oldScrewClone.GetComponent<MeshRenderer>().enabled = false;
-            }
+            oldScrewClone.GetComponent<MeshRenderer>().enabled = false;
         }
     }
 
@@ -187,45 +210,32 @@ public class ScrewdriverManager : MonoBehaviour
         totalProgress = 0f;
         rb.constraints = RigidbodyConstraints.None;
         screw.GetComponent<MeshRenderer>().enabled = false;
-        isInUse = false;
         UIProgress.GetComponent<Canvas>().enabled = false;
         UIProgress.SetParent(transform);
-        if (usePlace != null)
+
+        //transform.SetParent(null);
+        instrumentModel.SetParent(transform);
+        instrumentModel.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+        StartHighlight();
+        isInUse = false;
+        Transform oldScrewClone = usePlace.Find($"{screw.name}(Clone)");
+        if (oldScrewClone != null)
         {
-            StartHighlight();
-            Transform oldScrewClone = usePlace.Find($"{screw.name}(Clone)");
-            if (oldScrewClone != null)
-            {
-                oldScrewClone.GetComponent<MeshRenderer>().enabled = true;
-            }
+            oldScrewClone.GetComponent<MeshRenderer>().enabled = true;
         }
     }
 
     // Активация кнопки подключения/отключения объекта
     private void TryActivateAction(InputAction.CallbackContext context)
     {
-        if (usePlace != null || isInUse)
+        if (isInUse)
         {
-            if (isInUse)
-            {
-                RemoveInUseState();
-            } else
-            {
-                screw.SetParent(null);
-                transform.SetParent(screw);
-                screw.SetPositionAndRotation(usePlace.position, usePlace.rotation);
-                if (usePlace.childCount == 1)
-                {
-                    direction = TwistDirection.Clockwise;
-                    screw.Translate(requiredDegress * movePerDegree * Vector3.right);
-                } else
-                {
-                    direction = TwistDirection.CClockwise;
-                }
-                transform.SetParent(null);
-                screw.SetParent(transform);
-                SetInUseState();
-            }
+            RemoveInUseState();
+        }
+        else if (usePlace != null)
+        {
+            SetInUseState();
         }
     }
 }

@@ -183,7 +183,6 @@ GameObject:
   - component: {fileID: 8012537951670363172}
   - component: {fileID: 2007322161886465291}
   - component: {fileID: -5133058785279203989}
-  - component: {fileID: 3644978628586019366}
   m_Layer: 0
   m_Name: PCCooler Paladin ex400
   m_TagString: Cooler
@@ -521,8 +520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachPoint: {fileID: 8640729682644859901}
-  parent: {fileID: 4825738238159526320}
   correct: {fileID: 0}
+  show: {fileID: 0}
   wrong: {fileID: 0}
   <MultipleConnections>k__BackingField: {fileID: 0}
   <OnConnectEvents>k__BackingField:
@@ -531,24 +530,6 @@ MonoBehaviour:
   <OnDisconnectEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3644978628586019366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7868011268727592285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &8640729682644859901
 GameObject:
   m_ObjectHideFlags: 0

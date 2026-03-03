@@ -2,19 +2,18 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum PCStatus
-{
-    NotWorking, // Не проходит минимальные требования к работоспособности
-    Working // ПК в рабочем состоянии
-}
-
 public class PCBuildManager : MonoBehaviour
 {
-    public PCStatus Status => currentStatus;
+    public enum Status
+    {
+        NotWorking, // Не проходит минимальные требования к работоспособности
+        Working // ПК в рабочем состоянии
+    }
+    public Status PCStatus => currentStatus;
     public IReadOnlyCollection<GameObject> ConnectedDevices => connectedDevices;
 
     private HashSet<GameObject> connectedDevices = new();
-    private PCStatus currentStatus = PCStatus.NotWorking;
+    private Status currentStatus = Status.NotWorking;
 
     public void OnDeviceConnected(GameObject device)
     {
@@ -41,8 +40,8 @@ public class PCBuildManager : MonoBehaviour
         
         foreach (var device in connectedDevices)
         {
-            ComponentStatus deviceStatus = device.GetComponent<AttachObject>().CompStatus;
-            if (deviceStatus == ComponentStatus.FullySecured)
+            AttachObjectDevice.Status deviceStatus = device.GetComponent<AttachObjectDevice>().DeviceStatus;
+            if (deviceStatus == AttachObjectDevice.Status.FullySecured)
             {
                 ComponentType deviceType = device.GetComponent<ItemCommon>().ComponentType;
                 allSecuredPoints.Add(deviceType);
@@ -50,6 +49,6 @@ public class PCBuildManager : MonoBehaviour
         }
 
         bool allTypesCovered = requiredTypes.All(reqType => allSecuredPoints.Contains(reqType));
-        currentStatus = allTypesCovered ? PCStatus.Working : PCStatus.NotWorking;
+        currentStatus = allTypesCovered ? Status.Working : Status.NotWorking;
     }
 }

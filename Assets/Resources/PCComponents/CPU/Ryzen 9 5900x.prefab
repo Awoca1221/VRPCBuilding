@@ -117,9 +117,6 @@ PrefabInstance:
       addedObject: {fileID: 6694098714656292792}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dfe5c59e66b121e4a9a0c68ee713ada9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6003729351826812673}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dfe5c59e66b121e4a9a0c68ee713ada9, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2488464199064627095}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: dfe5c59e66b121e4a9a0c68ee713ada9, type: 3}
       insertIndex: -1
@@ -344,24 +341,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &6003729351826812673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1048712615515695609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!114 &2488464199064627095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,8 +354,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachPoint: {fileID: 1156194561956874205}
-  parent: {fileID: 416044470551245635}
   correct: {fileID: 0}
+  show: {fileID: 0}
   wrong: {fileID: 0}
   <MultipleConnections>k__BackingField: {fileID: 0}
   <OnConnectEvents>k__BackingField:

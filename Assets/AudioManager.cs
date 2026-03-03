@@ -1,18 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using System;
-using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(AudioSource))]
-public class ConnectionPoint : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
     [Tooltip("Ссылка на пресет звуков (default if null)")]
     public AudioPreset audioPreset;
-    [Tooltip("Ссылка на миксер (обычно пусто)")]
+    [Tooltip("Ссылка на миксер (default if null)")]
     public AudioMixer audioMixer;
-    
+
     private AudioSource audioSource;
-    public GameObject ConnectedDevice { get; private set; } = null;
 
     void Start()
     {
@@ -22,18 +21,6 @@ public class ConnectionPoint : MonoBehaviour
             audioMixer = Resources.Load<AudioMixer>("Audio/AudioMixer");
         audioSource = GetComponent<AudioSource>();
         SetupAudioSource();
-    }
-    
-    public void OnConnect(GameObject PCComponent)
-    {
-        ConnectedDevice = PCComponent;
-        PlayInsertSound();
-    }
-    
-    public void OnDisconnect()
-    {
-        ConnectedDevice = null;
-        PlayEjectSound();
     }
 
     private void SetupAudioSource()
@@ -48,32 +35,40 @@ public class ConnectionPoint : MonoBehaviour
         audioSource.maxDistance = 5f;
         //audioSource.rolloffMode = AudioRolloffMode.Linear; // Линейное затухание
     }
-    
-    public void PlayInsertSound()
+
+    private void PlaySound(AudioClip[] audios)
     {
-        if (audioPreset?.insertSounds == null || audioPreset.insertSounds.Length == 0) return;
-        
         // Случайный клип
-        AudioClip randomClip = audioPreset.insertSounds[Random.Range(0, audioPreset.insertSounds.Length)];
+        AudioClip randomClip = audios[Random.Range(0, audios.Length)];
         
         // Случайная громкость
-        float randomVolume = Random.Range(audioPreset.insertVolMin, audioPreset.insertVolMax);
+        float randomVolume = Random.Range(audioPreset.volMin, audioPreset.volMax);
         
         // Воспроизведение
         audioSource.PlayOneShot(randomClip, randomVolume);
     }
-    
+
+    public void PlayInsertSound()
+    {
+        if (audioPreset?.insertSounds == null || audioPreset.insertSounds.Length == 0) return;
+        PlaySound(audioPreset.insertSounds);
+    }
+
     public void PlayEjectSound()
     {
         if (audioPreset?.ejectSounds == null || audioPreset.ejectSounds.Length == 0) return;
-        
-        // Случайный клип
-        AudioClip randomClip = audioPreset.ejectSounds[Random.Range(0, audioPreset.ejectSounds.Length)];
-        
-        // Случайная громкость (чуть тише)
-        float randomVolume = Random.Range(audioPreset.ejectVolMin, audioPreset.ejectVolMax);
-        
-        // Воспроизведение
-        audioSource.PlayOneShot(randomClip, randomVolume);
+        PlaySound(audioPreset.ejectSounds);
+    }
+
+    public void PlayOpenDoorSound()
+    {
+        if (audioPreset?.openDoorSounds == null || audioPreset.openDoorSounds.Length == 0) return;
+        PlaySound(audioPreset.openDoorSounds);
+    }
+
+    public void PlayCloseDoorSound()
+    {
+        if (audioPreset?.closeDoorSounds == null || audioPreset.closeDoorSounds.Length == 0) return;
+        PlaySound(audioPreset.closeDoorSounds);
     }
 }

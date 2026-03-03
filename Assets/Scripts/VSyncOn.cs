@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class VSyncOn : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void LockFPS()
     {
-        Application.targetFrameRate = 300;
+        Application.targetFrameRate = 140;
     }
-
 }

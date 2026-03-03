@@ -2920,7 +2920,6 @@ GameObject:
   - component: {fileID: 8271968839209251626}
   - component: {fileID: 8251236830021763008}
   - component: {fileID: 1097241175687272248}
-  - component: {fileID: 3231438595285601290}
   - component: {fileID: 6962198969983544408}
   - component: {fileID: 2322873275434344611}
   m_Layer: 0
@@ -3001,24 +3000,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &3231438595285601290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5208371522473995121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!114 &6962198969983544408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3184,10 +3165,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachPoint: {fileID: 6971484676240598878}
-  parent: {fileID: 0}
   correct: {fileID: 0}
+  show: {fileID: 0}
   wrong: {fileID: 0}
-  conPoints: []
   <MultipleConnections>k__BackingField: {fileID: 0}
   <OnConnectEvents>k__BackingField:
     m_PersistentCalls:
@@ -4436,6 +4416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1355844896871189649}
   - component: {fileID: 150860183870672987}
+  - component: {fileID: 6005340008482290201}
   m_Layer: 0
   m_Name: GPU power
   m_TagString: GPU power
@@ -4479,6 +4460,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0002487813, y: 0.00020884119, z: 0.00028842193}
   m_Center: {x: 0.000012916456, y: 0.000020473879, z: 0.00009036345}
+--- !u!114 &6005340008482290201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8722634470072230385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd5234072caaf6e418745f2cced6d2b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointType: 2
 --- !u!1 &8848950072678160597
 GameObject:
   m_ObjectHideFlags: 0

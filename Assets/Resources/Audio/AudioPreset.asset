@@ -16,7 +16,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d86e6b757d611f544a44245226850c21, type: 3}
   ejectSounds:
   - {fileID: 8300000, guid: a67113d5a626a6a4381cf3d05d4e6e39, type: 3}
-  insertVolMin: 1
-  insertVolMax: 1
-  ejectVolMin: 1
-  ejectVolMax: 1
+  openDoorSounds:
+  - {fileID: 8300000, guid: dd2e16322a047f44fa004cf98e3776b5, type: 3}
+  closeDoorSounds:
+  - {fileID: 8300000, guid: 3547e118e85097a429d8a3f614ded70b, type: 3}
+  volMin: 0.6
+  volMax: 1.1

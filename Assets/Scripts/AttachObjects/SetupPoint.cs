@@ -1,12 +1,29 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ScrewPoint : MonoBehaviour
+public class SetupPoint : MonoBehaviour
 {
-    public UnityAction onStatusChanged;
+    public enum Type
+    {
+        NotSelected,
+        Screw,
+        PowerSocket
+    }
+
+    public Type pointType = Type.NotSelected;
+    public bool isRequired = true;
     public bool IsSecured { get; private set; } = false;
     public bool IsAvailable { get; private set; } = false;
+    public UnityAction onStatusChanged;
     
+    void Start()
+    {
+        if (pointType == Type.PowerSocket)
+        {
+            IsAvailable = true;
+        }
+    }
+
     public void SetSecured()
     {
         IsSecured = true;

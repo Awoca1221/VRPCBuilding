@@ -854,6 +854,7 @@ GameObject:
   - component: {fileID: 5232664280702579607}
   - component: {fileID: 8780946196566827635}
   - component: {fileID: 8796479550275956142}
+  - component: {fileID: 4134112403431465923}
   m_Layer: 0
   m_Name: Power supply
   m_TagString: Power supply ATX
@@ -1003,6 +1004,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c72167f0effef948a33ea2b12909e7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4134112403431465923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3561314897535046230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5daddf62ad1c4c48813c1958621af89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioPreset: {fileID: 0}
@@ -1656,6 +1669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1151261621367029900}
   - component: {fileID: 8358650827831245433}
+  - component: {fileID: 5505156216832130}
   m_Layer: 0
   m_Name: corpus
   m_TagString: Untagged
@@ -1699,6 +1713,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb2f2c64ed735d49ac02b58a0960236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &5505156216832130
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3893902715410197650}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3923116144460373105
 GameObject:
   m_ObjectHideFlags: 0
@@ -2977,6 +3018,7 @@ GameObject:
   - component: {fileID: 2358608160168595980}
   - component: {fileID: 8030065451363197656}
   - component: {fileID: 598372478392063781}
+  - component: {fileID: 2078438351715903970}
   m_Layer: 0
   m_Name: HDD/SSD
   m_TagString: Untagged
@@ -3126,6 +3168,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c72167f0effef948a33ea2b12909e7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2078438351715903970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735923700857438371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5daddf62ad1c4c48813c1958621af89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   audioPreset: {fileID: 0}
@@ -3750,6 +3804,7 @@ GameObject:
   - component: {fileID: 6986343160533963495}
   - component: {fileID: 4399627065967006064}
   - component: {fileID: 2486960054083186337}
+  - component: {fileID: 7970445400761923086}
   m_Layer: 0
   m_Name: MotherboardAttach
   m_TagString: Motherboard
@@ -3805,8 +3860,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c72167f0effef948a33ea2b12909e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioPreset: {fileID: 0}
-  audioMixer: {fileID: 0}
 --- !u!82 &2486960054083186337
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3903,6 +3956,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7970445400761923086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8250185112249504142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5daddf62ad1c4c48813c1958621af89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPreset: {fileID: 0}
+  audioMixer: {fileID: 0}
 --- !u!1 &8353671735199954403
 GameObject:
   m_ObjectHideFlags: 0

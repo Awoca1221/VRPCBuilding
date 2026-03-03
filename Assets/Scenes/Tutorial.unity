@@ -12374,18 +12374,6 @@ PrefabInstance:
       value: RAM
       objectReference: {fileID: 0}
     - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.812401
       objectReference: {fileID: 0}
@@ -17580,18 +17568,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1397657346}
     m_Modifications:
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.40909082
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.045454543
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.40909082
-      objectReference: {fileID: 0}
     - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -23276,144 +23252,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 432747977}
   m_Mesh: {fileID: -4524404230070636372, guid: be765b9ed420cc24cbaa4df6c5574778, type: 3}
---- !u!1001 &433059638
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1415738673}
-    m_Modifications:
-    - target: {fileID: 1589896025844494058, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589896025844494058, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589896025844494058, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589896025844494058, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.184998
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589896025844494058, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.133
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589896025844494058, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.84610003
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589896025844494058, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589896025844494058, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589896025844494058, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589896025844494058, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589896025844494058, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589896025844494058, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1589896025844494058, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4546668234731157261, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: m_Name
-      value: Power supply
-      objectReference: {fileID: 0}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1300490187}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1300490187}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CompleteTask
-      objectReference: {fileID: 0}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UncompleteTask
-      objectReference: {fileID: 0}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TaskManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TaskManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6635586941774689906, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
---- !u!4 &433059639 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1589896025844494058, guid: 139fc2dc55b28fa40b1ca411fa2094f2, type: 3}
-  m_PrefabInstance: {fileID: 433059638}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &434942713
 GameObject:
   m_ObjectHideFlags: 0
@@ -25083,18 +24921,6 @@ PrefabInstance:
     - target: {fileID: 4674743229328752861, guid: c4cbf5ea2b0e1c94fb2f6220a2dbe608, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7290208531695032121, guid: c4cbf5ea2b0e1c94fb2f6220a2dbe608, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100.000046
-      objectReference: {fileID: 0}
-    - target: {fileID: 7290208531695032121, guid: c4cbf5ea2b0e1c94fb2f6220a2dbe608, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7290208531695032121, guid: c4cbf5ea2b0e1c94fb2f6220a2dbe608, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7290208531695032121, guid: c4cbf5ea2b0e1c94fb2f6220a2dbe608, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28598,18 +28424,6 @@ PrefabInstance:
       value: RAM (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.4609985
       objectReference: {fileID: 0}
@@ -31319,18 +31133,6 @@ PrefabInstance:
     - target: {fileID: 2563423522014085102, guid: b8fc09292bbb92845ad7cb3a853dbd10, type: 3}
       propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2820502860561510061, guid: b8fc09292bbb92845ad7cb3a853dbd10, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100.00006
-      objectReference: {fileID: 0}
-    - target: {fileID: 2820502860561510061, guid: b8fc09292bbb92845ad7cb3a853dbd10, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2820502860561510061, guid: b8fc09292bbb92845ad7cb3a853dbd10, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2820502860561510061, guid: b8fc09292bbb92845ad7cb3a853dbd10, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36844,18 +36646,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 150620396}
     m_Modifications:
     - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.40909082
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.045454543
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.40909082
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -38093,24 +37883,12 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2820502860561510061, guid: b8fc09292bbb92845ad7cb3a853dbd10, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100.000046
-      objectReference: {fileID: 0}
-    - target: {fileID: 2820502860561510061, guid: b8fc09292bbb92845ad7cb3a853dbd10, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2820502860561510061, guid: b8fc09292bbb92845ad7cb3a853dbd10, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2820502860561510061, guid: b8fc09292bbb92845ad7cb3a853dbd10, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.930801
       objectReference: {fileID: 0}
     - target: {fileID: 2820502860561510061, guid: b8fc09292bbb92845ad7cb3a853dbd10, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.103
+      value: 1.1411
       objectReference: {fileID: 0}
     - target: {fileID: 2820502860561510061, guid: b8fc09292bbb92845ad7cb3a853dbd10, type: 3}
       propertyPath: m_LocalPosition.z
@@ -48990,18 +48768,6 @@ PrefabInstance:
       value: Videocard
       objectReference: {fileID: 0}
     - target: {fileID: 8271968839209251626, guid: 6311c28ef1f7f8043ac315782c4c83d0, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8271968839209251626, guid: 6311c28ef1f7f8043ac315782c4c83d0, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8271968839209251626, guid: 6311c28ef1f7f8043ac315782c4c83d0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8271968839209251626, guid: 6311c28ef1f7f8043ac315782c4c83d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.559803
       objectReference: {fileID: 0}
@@ -49338,18 +49104,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7290208531695032121, guid: c4cbf5ea2b0e1c94fb2f6220a2dbe608, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100.00009
-      objectReference: {fileID: 0}
-    - target: {fileID: 7290208531695032121, guid: c4cbf5ea2b0e1c94fb2f6220a2dbe608, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100.00006
-      objectReference: {fileID: 0}
-    - target: {fileID: 7290208531695032121, guid: c4cbf5ea2b0e1c94fb2f6220a2dbe608, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100.000046
-      objectReference: {fileID: 0}
-    - target: {fileID: 7290208531695032121, guid: c4cbf5ea2b0e1c94fb2f6220a2dbe608, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.731
       objectReference: {fileID: 0}
@@ -49414,18 +49168,6 @@ PrefabInstance:
     - target: {fileID: 350114103717372983, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
       propertyPath: m_Name
       value: ASUS Strix X470-I Gaming
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
       propertyPath: m_LocalPosition.x
@@ -49602,18 +49344,6 @@ PrefabInstance:
     - target: {fileID: 2820866655547652883, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
       propertyPath: m_Name
       value: RAM (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55983,18 +55713,6 @@ PrefabInstance:
       value: ASUS Strix X470-I Gaming
       objectReference: {fileID: 0}
     - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.6364326
       objectReference: {fileID: 0}
@@ -62018,18 +61736,6 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3692192210611529590, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100.000046
-      objectReference: {fileID: 0}
-    - target: {fileID: 3692192210611529590, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3692192210611529590, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3692192210611529590, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.103001
       objectReference: {fileID: 0}
@@ -66076,18 +65782,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1482608075}
     m_Modifications:
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.40909082
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.045454543
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.40909082
-      objectReference: {fileID: 0}
     - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -75458,18 +75152,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 1347791319}
     m_Modifications:
     - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.40909082
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.045454543
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.40909082
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -80039,7 +79721,7 @@ Transform:
   - {fileID: 250764338}
   - {fileID: 884161180}
   - {fileID: 881158528}
-  - {fileID: 433059639}
+  - {fileID: 1813253503}
   - {fileID: 1124997677}
   - {fileID: 1340009362}
   - {fileID: 690696509}
@@ -83785,18 +83467,6 @@ PrefabInstance:
     - target: {fileID: 350114103717372983, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
       propertyPath: m_Name
       value: ASUS Strix X470-I Gaming
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
       propertyPath: m_LocalPosition.x
@@ -100660,6 +100330,132 @@ Transform:
   - {fileID: 543450653559322781}
   m_Father: {fileID: 1179295747}
   m_LocalEulerAnglesHint: {x: 0, y: -27.227, z: 0}
+--- !u!1001 &1813253502
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1415738673}
+    m_Modifications:
+    - target: {fileID: 7210158351524972227, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.293001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7210158351524972227, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1084
+      objectReference: {fileID: 0}
+    - target: {fileID: 7210158351524972227, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.798
+      objectReference: {fileID: 0}
+    - target: {fileID: 7210158351524972227, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7210158351524972227, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7210158351524972227, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7210158351524972227, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7210158351524972227, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7210158351524972227, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7210158351524972227, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1300490187}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1300490187}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CompleteTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UncompleteTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TaskManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TaskManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnConnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: <OnDisconnectEvents>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017656920112766073, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+      propertyPath: m_Name
+      value: Thermaltake Toughpower 1550W
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+--- !u!4 &1813253503 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7210158351524972227, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+  m_PrefabInstance: {fileID: 1813253502}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1815820776
 GameObject:
   m_ObjectHideFlags: 0
@@ -107338,18 +107134,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 1717287311}
     m_Modifications:
     - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.40909082
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.045454543
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.40909082
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -107414,18 +107198,6 @@ PrefabInstance:
     - target: {fileID: 2820866655547652883, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
       propertyPath: m_Name
       value: RAM
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4889485684049741798, guid: 29272c0fa7fe73f469979936e5011ab3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -110363,18 +110135,6 @@ PrefabInstance:
     - target: {fileID: 4674743229328752861, guid: c4cbf5ea2b0e1c94fb2f6220a2dbe608, type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7290208531695032121, guid: c4cbf5ea2b0e1c94fb2f6220a2dbe608, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100.000046
-      objectReference: {fileID: 0}
-    - target: {fileID: 7290208531695032121, guid: c4cbf5ea2b0e1c94fb2f6220a2dbe608, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7290208531695032121, guid: c4cbf5ea2b0e1c94fb2f6220a2dbe608, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7290208531695032121, guid: c4cbf5ea2b0e1c94fb2f6220a2dbe608, type: 3}
       propertyPath: m_LocalPosition.x
@@ -114933,18 +114693,6 @@ PrefabInstance:
       value: ASUS Strix X470-I Gaming
       objectReference: {fileID: 0}
     - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.212997
       objectReference: {fileID: 0}
@@ -115442,18 +115190,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 817938302}
     m_Modifications:
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.40909082
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.045454543
-      objectReference: {fileID: 0}
-    - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.40909082
-      objectReference: {fileID: 0}
     - target: {fileID: 700618048541476516, guid: 25f420dec585a0e4aaf58cb21197691b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

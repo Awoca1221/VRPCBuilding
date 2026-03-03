@@ -1,24 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
-using UnityEngine.XR.Interaction.Toolkit;
 
+[RequireComponent(typeof(AudioManager))]
 public class ActivateDoor : MonoBehaviour
 {
     public Stage stage;
     public InputActionReference test;
-    private Animator animator;
-    private bool open = false;
 
-    // Start is called before the first frame update
+    private AudioManager audioManager;
+    private Animator animator;
+    private bool isOpen = false;
+
     void Start()
     {
+        audioManager = GetComponent<AudioManager>();
         animator = GetComponent<Animator>();
         if (stage)
             stage.completeTask.AddListener(onCompleteTask);
@@ -28,19 +27,35 @@ public class ActivateDoor : MonoBehaviour
     
     private void onCompleteTask()
     {
-        if (!open && stage.AreAllTasksCompleted())
+        if (!isOpen && stage.AreAllTasksCompleted())
         {
-            Activate();
-            open = true;
+            OpenDoor();
         }
     }
 
-    private void ActivateTest(InputAction.CallbackContext context) {
+    private void ActivateTest(InputAction.CallbackContext context)
+    {
         animator.SetTrigger("Activate");
     }
 
-    public void Activate() {
-        animator.SetTrigger("Activate");
+    public void OpenDoor()
+    {
+        if (!isOpen)
+        {
+            animator.SetTrigger("Activate");
+            audioManager.PlayOpenDoorSound();
+            isOpen = true;
+        }
+    }
+
+    public void CloseDoor()
+    {
+        if (isOpen)
+        {
+            animator.SetTrigger("Activate");
+            audioManager.PlayCloseDoorSound();
+            isOpen = false;
+        }
     }
 
     void OnDestroy()

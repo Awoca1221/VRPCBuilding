@@ -1,0 +1,229 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
+
+[RequireComponent(typeof(Rigidbody), typeof(XRGrabInteractable))]
+public abstract class AttachObject : MonoBehaviour
+{
+    public GameObject attachPoint;
+    public Material correct;
+    public Material show;
+    public Material wrong;
+
+    protected Material invis;
+    protected XRInteractionManager interactionManager;
+    protected IXRSelectInteractor interactor;
+    protected XRGrabInteractable interactable;
+    protected Collider checkCollider;
+    protected bool objIsAttached;
+    protected GameObject _highlightParent = null;
+    protected Material _currentMatForHightlight = null;
+    protected Collider _currentColliderForHighlight = null;
+
+    [field: SerializeField] public CheckMultipleConnections MultipleConnections { get; set; } = null;
+    [field: SerializeField] public UnityEvent OnConnectEvents { get; set; } = null;
+    [field: SerializeField] public UnityEvent OnDisconnectEvents { get; set; } = null;
+
+    protected virtual void Start()
+    {
+        //GetComponent<Outline>().enabled = false;
+        interactable = GetComponent<XRGrabInteractable>();
+        interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
+
+        // Создать модель для выделения места подключения
+        StartCoroutine(CreateHighlight());
+
+        // Отслеживание нажатия кнопки для подключения и отключения объекта
+        interactable.selectEntered.AddListener(OnGrabEnter);
+        interactable.selectExited.AddListener(OnGrabExit);
+
+        if (MultipleConnections)
+        {
+            OnConnectEvents.AddListener(MultipleConOnConnect);
+            OnDisconnectEvents.AddListener(MultipleConOnDisconnect);
+        }
+
+        invis = Resources.Load<Material>("Materials/Invis");
+        if (correct == null)
+        {
+            correct = Resources.Load<Material>("Materials/Correct");
+        }
+        if (show == null)
+        {
+            show = Resources.Load<Material>("Materials/Show");
+        }
+        if (wrong == null)
+        {
+            wrong = Resources.Load<Material>("Materials/Wrong");
+        }
+    }
+
+    // Методы для отслеживания задач с множественным подключением (оперативная память)
+    protected void MultipleConOnConnect()
+    {
+        MultipleConnections.ConnectObject(gameObject);
+    }
+
+    protected void MultipleConOnDisconnect()
+    {
+        MultipleConnections.DisconnectObject(gameObject);
+    }
+
+    // Методы для настройки отслеживания подключения/отключения объекта через триггер
+    protected void OnGrabEnter(SelectEnterEventArgs args)
+    {
+        interactor = args.interactorObject;
+        if (interactor.transform.TryGetComponent<HandInfo>(out var info))
+        {
+            info.activateAction.performed += TryActivateAction;
+        }
+    }
+
+    protected void OnGrabExit(SelectExitEventArgs args)
+    {
+        if (interactor.transform.TryGetComponent<HandInfo>(out var info))
+        {
+            info.activateAction.performed -= TryActivateAction;
+        }
+        interactor = null;
+    }
+
+    // Активация кнопки подключения/отключения объекта
+    protected void TryActivateAction(InputAction.CallbackContext context)
+    {
+        if (objIsAttached)
+            TryUnattach();
+        else
+            TryAttach();
+    }
+
+    protected virtual void TryAttach()
+    {
+        // метод для override
+    }
+
+    public virtual void TryUnattach()
+    {
+        // метод для override
+    }
+
+    // Методы для подсветки места подключения
+    protected IEnumerator CreateHighlight()
+    {
+        yield return null;
+        
+        _highlightParent = new GameObject(name + "_highlight");
+        _currentMatForHightlight = invis;
+        
+        _highlightParent.transform.SetParent(attachPoint.transform);
+        _highlightParent.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        _highlightParent.transform.localScale = Vector3.one;
+        
+        _highlightParent.SetActive(false);
+        
+        foreach (MeshFilter meshFilter in GetComponentsInChildren<MeshFilter>())
+        {
+            if (meshFilter.sharedMesh == null) continue;
+
+            GameObject newObj = new(meshFilter.name + "_highlight");
+
+            Vector3 worldScale = meshFilter.transform.lossyScale;
+            newObj.transform.SetParent(_highlightParent.transform);
+            newObj.transform.SetPositionAndRotation(
+                meshFilter.transform.position, 
+                meshFilter.transform.rotation
+            );
+
+            Vector3 parentScale = _highlightParent.transform.lossyScale;
+            newObj.transform.localScale = new Vector3(
+                worldScale.x / parentScale.x,
+                worldScale.y / parentScale.y,
+                worldScale.z / parentScale.z
+            );
+
+            MeshFilter newFilter = newObj.AddComponent<MeshFilter>();
+            newFilter.sharedMesh = meshFilter.sharedMesh;
+            
+            MeshRenderer newRenderer = newObj.AddComponent<MeshRenderer>();
+            int materialsCount = newFilter.sharedMesh.subMeshCount;
+            Material[] materials = new Material[materialsCount];
+            for (int i = 0; i < materialsCount; i++)
+            {
+                materials[i] = invis;
+            }
+            newRenderer.materials = materials;
+            
+            yield return null;
+        }
+    }
+
+    protected void StartHighlight(Collider collider)
+    {
+        if (_highlightParent == null)
+        {
+            Debug.Log("_highlightParent не успел инициализироваться");
+            return;
+        }
+        _highlightParent.transform.SetParent(collider.transform);
+        _highlightParent.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        _highlightParent.SetActive(true);
+        _currentColliderForHighlight = collider;
+    }
+
+    protected void ChangeHighlightColor(Material mat)
+    {
+        if (_highlightParent == null)
+        {
+            Debug.Log("_highlightParent не успел инициализироваться");
+            return;
+        }
+        foreach(MeshRenderer highlightMesh in _highlightParent.GetComponentsInChildren<MeshRenderer>())
+        {
+            Material[] materials = highlightMesh.materials;
+            for (int i = 0; i < materials.Length; i++)
+            {
+                materials[i] = mat;
+            }
+            highlightMesh.materials = materials;
+        }
+        _currentMatForHightlight = mat;
+    }
+
+    protected void EndHighlight()
+    {
+        if (_highlightParent == null)
+        {
+            Debug.Log("_highlightParent не успел инициализироваться");
+            return;
+        }
+        _highlightParent.SetActive(false);
+        _highlightParent.transform.SetParent(gameObject.transform);
+        _currentColliderForHighlight = null;
+    }
+
+    //Удаление подсветки вместе с самим объектом
+    protected virtual void OnDestroy()
+    {
+        Destroy(_highlightParent);
+        if (objIsAttached) TryUnattach();
+    }
+
+    protected virtual void OnTriggerEnter(Collider collider)
+    {
+        // Метод для override
+    }
+
+    protected virtual void OnTriggerStay(Collider collider)
+    {
+        // Метод для override
+    }
+
+    protected virtual void OnTriggerExit(Collider collider)
+    {
+        // Метод для override
+    }
+}

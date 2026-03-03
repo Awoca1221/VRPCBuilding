@@ -25,6 +25,8 @@ public class ComponentsLoader : MonoBehaviour
     private List<GameObject> spawnedObjs = new();
     public TaskManager taskManager;
     public CheckMultipleConnections ramCheck;
+    public bool loadOnStart = true;
+
     void Start()
     {
         LoadAllComponents();
@@ -77,10 +79,10 @@ public class ComponentsLoader : MonoBehaviour
     private void SpawnRandomComponents()
     {
         Renderer cubeRenderer = GetComponent<Renderer>();
-        Vector3 cubeCenter = cubeRenderer.bounds.center;
-        Vector3 cubeSize = cubeRenderer.bounds.size;
+        Vector3 spawnAreaCenter = cubeRenderer.bounds.center;
+        Vector3 SpawnAreaSize = cubeRenderer.bounds.size;
         float spacing = 0.25f; // расстояние между компонентами
-        Vector3 currentPosition = cubeCenter - cubeSize / 2 + Vector3.one * spacing;
+        Vector3 currentPosition = spawnAreaCenter - SpawnAreaSize / 2 + Vector3.one * spacing;
         foreach (var category in componentPrefabs)
         {
             if (category.Value.Count > 0)
@@ -92,9 +94,9 @@ public class ComponentsLoader : MonoBehaviour
                 Instantiate(randomPrefab, currentPosition, Quaternion.identity);
 
                 currentPosition.x += spacing;
-                if (currentPosition.x > cubeCenter.x + cubeSize.x / 2)
+                if (currentPosition.x > spawnAreaCenter.x + SpawnAreaSize.x / 2)
                 {
-                    currentPosition.x = cubeCenter.x - cubeSize.x / 2 + spacing;
+                    currentPosition.x = spawnAreaCenter.x - SpawnAreaSize.x / 2 + spacing;
                     currentPosition.z -= spacing;
                 }
             }
@@ -108,8 +110,9 @@ public class ComponentsLoader : MonoBehaviour
 
     private IEnumerator SpawnFullBuild()
     {
-        Dictionary<GameObject, String> build = new();
+        Dictionary<GameObject, string> build = new();
         List<GameObject> uncomp = new();
+
         // Берём за основу случайную материнскую плату
         GameObject motherboard = componentPrefabs["Motherboard"][Random.Range(0, componentPrefabs["Motherboard"].Count)];
         MotherboardInfo motherboardInfo = motherboard.GetComponent<ItemCommon>().GetMotherboardInfo();
@@ -129,6 +132,7 @@ public class ComponentsLoader : MonoBehaviour
             else
                 uncompatibleObjs.Add(obj);
         }
+
         if (compatibleObjs.Count > 0)
             build.Add(compatibleObjs[Random.Range(0, compatibleObjs.Count)], "1");
         if (uncompatibleObjs.Count > 0)
@@ -158,10 +162,10 @@ public class ComponentsLoader : MonoBehaviour
 
         // Спавним комплектующие
         Renderer cubeRenderer = GetComponent<Renderer>();
-        Vector3 cubeCenter = cubeRenderer.bounds.center;
-        Vector3 cubeSize = cubeRenderer.bounds.size;
+        Vector3 spawnAreaCenter = cubeRenderer.bounds.center;
+        Vector3 SpawnAreaSize = cubeRenderer.bounds.size;
         float spacing = 0.2f; // расстояние между компонентами
-        Vector3 currentPosition = cubeCenter - cubeSize / 2 + Vector3.one * spacing;
+        Vector3 currentPosition = spawnAreaCenter - SpawnAreaSize / 2 + Vector3.one * spacing;
         GameObject createdObj;
 
         foreach (var component in build)
@@ -170,15 +174,14 @@ public class ComponentsLoader : MonoBehaviour
             if (uncomp.Count != 0 && Random.Range(0f, 1f) < 0.25f)
             {
                 GameObject uncompObj = uncomp[0];
-                yield return null;
                 createdObj = Instantiate(uncompObj, currentPosition, Quaternion.identity);
                 yield return null;
                 spawnedObjs.Add(createdObj);
                 uncomp.Remove(uncompObj);
                 currentPosition.x += spacing;
-                if (currentPosition.x > cubeCenter.x + cubeSize.x / 2)
+                if (currentPosition.x > spawnAreaCenter.x + SpawnAreaSize.x / 2)
                 {
-                    currentPosition.x = cubeCenter.x - cubeSize.x / 2 + spacing;
+                    currentPosition.x = spawnAreaCenter.x - SpawnAreaSize.x / 2 + spacing;
                     currentPosition.z -= spacing;
                 }
             }
@@ -189,17 +192,16 @@ public class ComponentsLoader : MonoBehaviour
                 ramCheck.Objects.Clear();
                 for (int i = 0; i < 2; i++)
                 {
-                    yield return null;
                     createdObj = Instantiate(component.Key, currentPosition, Quaternion.identity);
                     yield return null;
-                    createdObj.GetComponent<AttachObject>().MultipleConnections = ramCheck;
+                    createdObj.GetComponent<AttachObjectDevice>().MultipleConnections = ramCheck;
                     ramCheck.Objects.Add(createdObj);
                     spawnedObjs.Add(createdObj);
 
                     currentPosition.x += spacing;
-                    if (currentPosition.x > cubeCenter.x + cubeSize.x / 2)
+                    if (currentPosition.x > spawnAreaCenter.x + SpawnAreaSize.x / 2)
                     {
-                        currentPosition.x = cubeCenter.x - cubeSize.x / 2 + spacing;
+                        currentPosition.x = spawnAreaCenter.x - SpawnAreaSize.x / 2 + spacing;
                         currentPosition.z -= spacing;
                     }
                 }
@@ -207,17 +209,16 @@ public class ComponentsLoader : MonoBehaviour
             }
             else if (component.Value != "")
             {
-                yield return null;
                 createdObj = Instantiate(component.Key, currentPosition, Quaternion.identity);
                 yield return null;
-                createdObj.GetComponent<AttachObject>().OnConnectEvents.AddListener(() => {taskManager.CompleteTask(component.Value);});
-                createdObj.GetComponent<AttachObject>().OnDisconnectEvents.AddListener(() => {taskManager.UncompleteTask(component.Value);});
+                createdObj.GetComponent<AttachObjectDevice>().OnConnectEvents.AddListener(() => {taskManager.CompleteTask(component.Value);});
+                createdObj.GetComponent<AttachObjectDevice>().OnDisconnectEvents.AddListener(() => {taskManager.UncompleteTask(component.Value);});
                 spawnedObjs.Add(createdObj);
                 
                 currentPosition.x += spacing;
-                if (currentPosition.x > cubeCenter.x + cubeSize.x / 2)
+                if (currentPosition.x > spawnAreaCenter.x + SpawnAreaSize.x / 2)
                 {
-                    currentPosition.x = cubeCenter.x - cubeSize.x / 2 + spacing;
+                    currentPosition.x = spawnAreaCenter.x - SpawnAreaSize.x / 2 + spacing;
                     currentPosition.z -= spacing;
                 }
             }
@@ -229,7 +230,7 @@ public class ComponentsLoader : MonoBehaviour
         ramCheck.Objects.Clear();
         foreach(var obj in spawnedObjs)
         {
-            obj.GetComponent<AttachObject>().OnDisconnectEvents.Invoke();
+            obj.GetComponent<AttachObjectDevice>().OnDisconnectEvents.Invoke();
             Destroy(obj);
         }
         for (int i = 0; i < 10; i++)

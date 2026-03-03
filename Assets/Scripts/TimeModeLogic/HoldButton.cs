@@ -8,38 +8,50 @@ using Image = UnityEngine.UI.Image;
 
 public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    [Tooltip("Время до вызова onFinishEvent (0 для бесконечного зажатия кнопки)")]
     public float targetTime = 0.6f;
+    [Tooltip("Заполнение прогресса (работает только при выставлении targetTime)")]
     public Image fillImage;
     public UnityEvent onFinishEvent;
+    public bool IsHolding { get; private set; } = false;
 
+    private bool IsProgressButton => targetTime > 0;
     private float holdTime = 0;
-    private bool isHolding = false;
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        isHolding = true;
-        holdTime = 0;
-        fillImage.fillAmount = 0;
+        IsHolding = true;
+        if (IsProgressButton)
+        {
+            fillImage.fillAmount = 0;
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        isHolding = false;
-        fillImage.fillAmount = 0;
+        IsHolding = false;
+        holdTime = 0;
+        if (IsProgressButton)
+        {
+            fillImage.fillAmount = 0;
+        }
     }
 
     void Update()
     {
-        if (isHolding)
+        if (IsHolding)
         {
             holdTime += Time.deltaTime;
-            float fillAmount = Mathf.Clamp01(holdTime / targetTime);
-            fillImage.fillAmount = fillAmount;
-            if (holdTime >= targetTime)
+            if (IsProgressButton)
             {
-                onFinishEvent.Invoke();
-                isHolding = false;
-                fillImage.fillAmount = 0;
+                float fillAmount = Mathf.Clamp01(holdTime / targetTime);
+                fillImage.fillAmount = fillAmount;
+                if (holdTime >= targetTime)
+                {
+                    onFinishEvent.Invoke();
+                    IsHolding = false;
+                    fillImage.fillAmount = 0;
+                }
             }
         }
     }

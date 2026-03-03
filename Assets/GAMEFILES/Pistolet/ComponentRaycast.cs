@@ -21,13 +21,12 @@ public class ComponentRaycast : MonoBehaviour
     private XRGrabInteractable grabInteractable;
     private bool isGrabbed = false;
 
-    public InputActionReference fireReference = null;
-
     public int curveResolution = 30;
     public float detectionRadius = 0.05f;
     public float raycastDistance = 10f;
 
     private Material rayMaterial;
+    private IXRSelectInteractor interactor;
 
     private string defaultText = "Наведитесь на объект и нажимте триггер.";
     private string defaultTitle = "Информация о комполектующих";
@@ -42,15 +41,13 @@ public class ComponentRaycast : MonoBehaviour
         lineRenderer.endWidth = 0.005f;
         lineRenderer.enabled = false;
 
-        grabInteractable = GetComponent<XRGrabInteractable>();
-        if (grabInteractable != null)
+        if (TryGetComponent<XRGrabInteractable>(out grabInteractable))
         {
             grabInteractable.selectEntered.AddListener(OnGrabbed);
             grabInteractable.selectExited.AddListener(OnReleased);
         }
 
         rayMaterial = lineRenderer.material;
-        fireReference.action.started += FireRay;
 
         text.SetText(defaultText);
         title.SetText(defaultTitle);
@@ -63,31 +60,55 @@ public class ComponentRaycast : MonoBehaviour
             grabInteractable.selectEntered.RemoveListener(OnGrabbed);
             grabInteractable.selectExited.RemoveListener(OnReleased);
         }
-        fireReference.action.started -= FireRay;
+        if (interactor != null)
+        {
+            if (interactor.transform.TryGetComponent<HandInfo>(out var info))
+            {
+                info.activateAction.performed += FireRay;
+            }
+        }
     }
 
     private void OnGrabbed(SelectEnterEventArgs args)
     {
         if (args.interactorObject.transform.gameObject.name == "Direct Interactor")
+        {
             isGrabbed = true;
+            interactor = args.interactorObject;
+            if (interactor.transform.TryGetComponent<HandInfo>(out var info))
+            {
+                info.activateAction.performed += FireRay;
+            }
+        }
     }
 
     private void OnReleased(SelectExitEventArgs args)
     {
         isGrabbed = false;
+        if (interactor != null)
+        {
+            if (interactor.transform.TryGetComponent<HandInfo>(out var info))
+            {
+                info.activateAction.performed += FireRay;
+            }
+            interactor = null;
+        }
     }
 
     private RaycastHit? GetClosestHit()
     {
         Vector3 origin = transform.position;
         Vector3 direction = transform.forward;
-        RaycastHit[] hits = Physics.SphereCastAll(origin, detectionRadius, direction, raycastDistance, interactableLayer);
+        RaycastHit[] hits = Physics.SphereCastAll(origin, detectionRadius, direction, raycastDistance, interactableLayer, QueryTriggerInteraction.Ignore);
         RaycastHit? closestHit = null;
         float closestDist = float.MaxValue;
 
         foreach (var hit in hits)
         {
-            ItemCommon itemCommon = hit.collider.GetComponent<ItemCommon>();
+            if (!hit.collider.TryGetComponent<ItemCommon>(out var itemCommon))
+            {
+                itemCommon = hit.collider.GetComponentInParent<ItemCommon>();
+            }
             if (itemCommon != null && hit.distance < closestDist)
             {
                 closestHit = hit;
@@ -111,7 +132,11 @@ public class ComponentRaycast : MonoBehaviour
 
             if (closestValidHit.HasValue)
             {
-                BaseInfo baseInfo = closestValidHit.Value.collider.GetComponent<ItemCommon>().GetInfo();
+                if (!closestValidHit.Value.collider.TryGetComponent<ItemCommon>(out var itemCommon))
+                {
+                    itemCommon = closestValidHit.Value.collider.GetComponentInParent<ItemCommon>();
+                }
+                BaseInfo baseInfo = itemCommon.GetInfo();
                 string newText = "";
                 string newTitle = "";
                 switch (baseInfo)
