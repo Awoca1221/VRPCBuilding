@@ -11,7 +11,6 @@ TagManager:
   - Unavailable
   - Cooler
   - HDD 3.5
-  - Power supply ATX
   - CPU power
   - GPU power
   - Pliers
@@ -22,10 +21,7 @@ TagManager:
   - Undefined
   - GPU
   - Screw
-  - +02.004.0001
-  - +01.003.0001.0001
-  - +01.005.0001.0001
-  - +01.006.0001.0001
+  - Power supply
   layers:
   - Default
   - TransparentFX

@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 9068582744431158859}
   m_Layer: 0
   m_Name: asus rog platinum power supply
-  m_TagString: Power supply ATX
+  m_TagString: Power supply
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

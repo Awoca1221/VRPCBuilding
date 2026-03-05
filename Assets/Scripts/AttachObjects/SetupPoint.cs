@@ -15,14 +15,6 @@ public class SetupPoint : MonoBehaviour
     public bool IsSecured { get; private set; } = false;
     public bool IsAvailable { get; private set; } = false;
     public UnityAction onStatusChanged;
-    
-    void Start()
-    {
-        if (pointType == Type.PowerSocket)
-        {
-            IsAvailable = true;
-        }
-    }
 
     public void SetSecured()
     {

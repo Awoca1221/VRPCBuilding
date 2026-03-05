@@ -18,6 +18,7 @@ public class ScrewdriverManager : MonoBehaviour
     public Transform screwHighlight;
     public Transform UIProgress;
     public Image UIImageProgress;
+    public AudioManager soundPoint;
     
     private Transform usePlace;
     private Rigidbody rb;
@@ -60,6 +61,12 @@ public class ScrewdriverManager : MonoBehaviour
                     transform.Translate(moveDistance);
                     instrumentModel.Translate(moveDistance);
                     instrumentModel.Rotate(delta * Vector3.left);
+                    float audVolume = Mathf.Clamp01(delta / 7f);
+                    soundPoint.SetVolume(audVolume);
+                }
+                else
+                {
+                    soundPoint.SetVolume(0f);
                 }
                 break;
             
@@ -71,6 +78,12 @@ public class ScrewdriverManager : MonoBehaviour
                     transform.Translate(moveDistance);
                     instrumentModel.Translate(moveDistance);
                     instrumentModel.Rotate(delta * Vector3.right);
+                    float audVolume = Mathf.Clamp01(delta / 7f);
+                    soundPoint.SetVolume(audVolume);
+                }
+                else
+                {
+                    soundPoint.SetVolume(0f);
                 }
                 break;
         }
@@ -195,6 +208,8 @@ public class ScrewdriverManager : MonoBehaviour
 
         //transform.SetParent(usePlace);
         instrumentModel.SetParent(usePlace);
+        soundPoint.SetVolume(0f);
+        soundPoint.StartScrewLoopSound();
 
         EndHighlight();
         isInUse = true;
@@ -216,6 +231,7 @@ public class ScrewdriverManager : MonoBehaviour
         //transform.SetParent(null);
         instrumentModel.SetParent(transform);
         instrumentModel.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        soundPoint.StopSound();
 
         StartHighlight();
         isInUse = false;

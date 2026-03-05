@@ -752,6 +752,8 @@ GameObject:
   - component: {fileID: 2185306632335529620}
   - component: {fileID: 3135632403801062398}
   - component: {fileID: 3500512791714067104}
+  - component: {fileID: 6647351037474276641}
+  - component: {fileID: 5341979836125219350}
   m_Layer: 0
   m_Name: RAM1
   m_TagString: RAM
@@ -806,7 +808,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -917,6 +919,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioPreset: {fileID: 0}
   audioMixer: {fileID: 0}
+--- !u!169 &6647351037474276641
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421350533133742902}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.22727273
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!165 &5341979836125219350
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421350533133742902}
+  m_Enabled: 1
+  m_CutoffFrequency: 5000
+  m_HighpassResonanceQ: 1
 --- !u!1 &1558443350224231108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,6 +1200,8 @@ GameObject:
   - component: {fileID: 6227517346486542031}
   - component: {fileID: 5921280170909762156}
   - component: {fileID: 4890902593647071901}
+  - component: {fileID: 6776760095374760009}
+  - component: {fileID: 1818009348936485768}
   m_Layer: 0
   m_Name: Cooler
   m_TagString: Cooler
@@ -1217,7 +1256,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1328,6 +1367,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioPreset: {fileID: 0}
   audioMixer: {fileID: 0}
+--- !u!169 &6776760095374760009
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987820528790419726}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.22727273
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!165 &1818009348936485768
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987820528790419726}
+  m_Enabled: 1
+  m_CutoffFrequency: 5000
+  m_HighpassResonanceQ: 1
 --- !u!1 &2141950781800542606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1341,6 +1415,8 @@ GameObject:
   - component: {fileID: 1049151681044985570}
   - component: {fileID: 1136899306925637244}
   - component: {fileID: 4607450605129219926}
+  - component: {fileID: 6717790618264569161}
+  - component: {fileID: 2714699134522295469}
   m_Layer: 0
   m_Name: Videocard
   m_TagString: GPU
@@ -1395,7 +1471,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1506,6 +1582,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioPreset: {fileID: 0}
   audioMixer: {fileID: 0}
+--- !u!169 &6717790618264569161
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141950781800542606}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.22727273
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!165 &2714699134522295469
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141950781800542606}
+  m_Enabled: 1
+  m_CutoffFrequency: 5000
+  m_HighpassResonanceQ: 1
 --- !u!1 &3129164689866085468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,6 +1794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  isRequired: 1
 --- !u!1 &3367166819488674924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1973,6 +2085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  isRequired: 1
 --- !u!1 &3850267705267034830
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,6 +2153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  isRequired: 1
 --- !u!1 &3954439706276201936
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,6 +2272,8 @@ GameObject:
   - component: {fileID: 3465647909227133400}
   - component: {fileID: 6651079027304790679}
   - component: {fileID: 5274476543244063818}
+  - component: {fileID: 7440317633816773410}
+  - component: {fileID: 5392432418669457004}
   m_Layer: 0
   m_Name: CPU
   m_TagString: CPU
@@ -2212,7 +2328,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2323,6 +2439,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioPreset: {fileID: 0}
   audioMixer: {fileID: 0}
+--- !u!169 &7440317633816773410
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4411827438451819703}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.22727273
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!165 &5392432418669457004
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4411827438451819703}
+  m_Enabled: 1
+  m_CutoffFrequency: 5000
+  m_HighpassResonanceQ: 1
 --- !u!1 &4418804506319436116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,6 +2698,8 @@ GameObject:
   - component: {fileID: 8571273331418723114}
   - component: {fileID: 2791109495963312522}
   - component: {fileID: 7006554309404238275}
+  - component: {fileID: 8275758742971638069}
+  - component: {fileID: 360333734322243637}
   m_Layer: 0
   m_Name: RAM2
   m_TagString: RAM
@@ -2601,7 +2754,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2712,6 +2865,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioPreset: {fileID: 0}
   audioMixer: {fileID: 0}
+--- !u!169 &8275758742971638069
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898143789893347185}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.22727273
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!165 &360333734322243637
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4898143789893347185}
+  m_Enabled: 1
+  m_CutoffFrequency: 5000
+  m_HighpassResonanceQ: 1
 --- !u!1 &5615838929403781192
 GameObject:
   m_ObjectHideFlags: 0
@@ -3152,6 +3340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 2
+  isRequired: 1
 --- !u!1 &6717072310022217045
 GameObject:
   m_ObjectHideFlags: 0
@@ -3437,6 +3626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+  isRequired: 1
 --- !u!1 &8565881639222106663
 GameObject:
   m_ObjectHideFlags: 0
@@ -3452,7 +3642,7 @@ GameObject:
   - component: {fileID: 6914315861167133992}
   m_Layer: 0
   m_Name: Motherboard power
-  m_TagString: +02.004.0001
+  m_TagString: Motherboard power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3556,6 +3746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 2
+  isRequired: 1
 --- !u!1 &8591367495819557555
 GameObject:
   m_ObjectHideFlags: 0

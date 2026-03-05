@@ -119,7 +119,14 @@ public class AttachObjectDevice : AttachObject
             transform.GetComponent<FixedJoint>().connectedBody = checkCollider.GetComponentInParent<Rigidbody>();
 
             checkCollider.tag = "Unavailable";
-            DeviceStatus = Status.InsertedLoose;
+            if (setupPoints.Count() == 0)
+            {
+                DeviceStatus = Status.FullySecured;
+            }
+            else
+            {
+                DeviceStatus = Status.InsertedLoose;
+            }
             objIsAttached = true;
             if (interactor != null)
                 interactionManager.SelectExit(interactor, interactable);
@@ -129,7 +136,7 @@ public class AttachObjectDevice : AttachObject
 
             foreach (var point in setupPoints)
             {
-                if (point.pointType == SetupPoint.Type.Screw) point.SetAvailable();
+                point.SetAvailable();
             }
             if (checkCollider.TryGetComponent<ConnectionPoint>(out var conPoint))
             {
@@ -179,7 +186,7 @@ public class AttachObjectDevice : AttachObject
 
             foreach (var point in setupPoints)
             {
-                if (point.pointType == SetupPoint.Type.Screw) point.SetUnavailable();
+                point.SetUnavailable();
             }
             if (checkCollider.TryGetComponent<ConnectionPoint>(out var conPoint))
             {

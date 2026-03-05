@@ -1,9 +1,13 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class AttachObjectCable : AttachObject
 {
+    public AttachObjectCable secondSocket;
+    public bool IsPowered { get; private set; } = false;
+
     [System.Obsolete]
     void FixedUpdate()
     {
@@ -41,7 +45,14 @@ public class AttachObjectCable : AttachObject
             
             checkCollider.tag = "Unavailable";
             objIsAttached = true;
-            checkCollider.GetComponent<SetupPoint>().SetSecured();
+            if (checkCollider.transform.parent.CompareTag("Power supply"))
+            {
+                IsPowered = true;
+            }
+            if (secondSocket.IsPowered)
+            {
+                checkCollider.GetComponent<SetupPoint>().SetSecured();
+            }
 
             if (interactor != null)
                 interactionManager.SelectExit(interactor, interactable);
@@ -57,6 +68,7 @@ public class AttachObjectCable : AttachObject
             if (checkCollider != null) checkCollider.tag = tag;
             Destroy(attachPoint.GetComponent<FixedJoint>());
             objIsAttached = false;
+            IsPowered = false;
             checkCollider.GetComponent<SetupPoint>().SetUnsecured();
             OnDisconnectEvents.Invoke();
         }

@@ -20,5 +20,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dd2e16322a047f44fa004cf98e3776b5, type: 3}
   closeDoorSounds:
   - {fileID: 8300000, guid: 3547e118e85097a429d8a3f614ded70b, type: 3}
-  volMin: 0.6
-  volMax: 1.1
+  screwSounds:
+  - {fileID: 8300000, guid: 53ddd181ddbf45949a98fe42a5f8d5fe, type: 3}
+  volMin: 0.8
+  volMax: 1

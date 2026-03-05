@@ -403,10 +403,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachPoint: {fileID: 424604679683274633}
-  socket: {fileID: 0}
-  invis: {fileID: 2100000, guid: 11677ace67ab21e48a0563094ef2fa7d, type: 2}
   correct: {fileID: 2100000, guid: 599be0a7630ba0f479d4cd05f1b34197, type: 2}
   show: {fileID: 0}
+  wrong: {fileID: 0}
   <MultipleConnections>k__BackingField: {fileID: 0}
   <OnConnectEvents>k__BackingField:
     m_PersistentCalls:
@@ -414,6 +413,7 @@ MonoBehaviour:
   <OnDisconnectEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+  secondSocket: {fileID: 7250875087801214672}
 --- !u!1 &479242567113306691
 GameObject:
   m_ObjectHideFlags: 0
@@ -11933,10 +11933,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachPoint: {fileID: 7276469037654605683}
-  socket: {fileID: 0}
-  invis: {fileID: 2100000, guid: 11677ace67ab21e48a0563094ef2fa7d, type: 2}
   correct: {fileID: 2100000, guid: 599be0a7630ba0f479d4cd05f1b34197, type: 2}
   show: {fileID: 0}
+  wrong: {fileID: 0}
   <MultipleConnections>k__BackingField: {fileID: 0}
   <OnConnectEvents>k__BackingField:
     m_PersistentCalls:
@@ -11944,6 +11943,7 @@ MonoBehaviour:
   <OnDisconnectEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+  secondSocket: {fileID: 7112454690376316778}
 --- !u!1 &7373644334580844130
 GameObject:
   m_ObjectHideFlags: 0

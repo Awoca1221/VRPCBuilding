@@ -729,7 +729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5d72f8f2e726e104ea0b6c52e90d1ae6, type: 3}
       propertyPath: m_TagString
-      value: Power supply ATX
+      value: Power supply
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

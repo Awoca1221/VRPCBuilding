@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PCBuildManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PCBuildManager : MonoBehaviour
     }
     public Status PCStatus => currentStatus;
     public IReadOnlyCollection<GameObject> ConnectedDevices => connectedDevices;
+    public UnityAction OnOverallStatusUpdated;
 
     private HashSet<GameObject> connectedDevices = new();
     private Status currentStatus = Status.NotWorking;
@@ -50,5 +52,7 @@ public class PCBuildManager : MonoBehaviour
 
         bool allTypesCovered = requiredTypes.All(reqType => allSecuredPoints.Contains(reqType));
         currentStatus = allTypesCovered ? Status.Working : Status.NotWorking;
+
+        OnOverallStatusUpdated.Invoke();
     }
 }

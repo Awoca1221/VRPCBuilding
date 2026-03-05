@@ -7,8 +7,9 @@ public class AudioPreset : ScriptableObject
     public AudioClip[] ejectSounds;
     public AudioClip[] openDoorSounds;
     public AudioClip[] closeDoorSounds;
+    public AudioClip[] screwSounds;
 
     [Header("Volume Range")]
-    [Range(0.5f, 1.5f)] public float volMin = 0.6f;
-    [Range(0.5f, 1.5f)] public float volMax = 1.1f;
+    [Range(0.5f, 1.5f)] public float volMin = 0.8f;
+    [Range(0.5f, 1.5f)] public float volMax = 1f;
 }
