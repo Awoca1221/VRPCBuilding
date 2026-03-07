@@ -15,15 +15,15 @@ public class ConnectionPoint : MonoBehaviour
         audioManager = GetComponent<AudioManager>();
     }
     
-    public void OnConnect(GameObject PCComponent)
+    public void OnConnect(GameObject PCComponent, bool playSound = true)
     {
         ConnectedDevice = PCComponent;
-        audioManager.PlayInsertSound();
+        if (playSound) audioManager.PlayInsertSound();
     }
     
-    public void OnDisconnect()
+    public void OnDisconnect(bool playSound = true)
     {
         ConnectedDevice = null;
-        audioManager.PlayEjectSound();
+        if (playSound) audioManager.PlayEjectSound();
     }
 }

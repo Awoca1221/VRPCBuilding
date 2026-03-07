@@ -18,12 +18,18 @@ public class AttachObjectDevice : AttachObject
     }
     public Status DeviceStatus { get; private set; } = Status.NotInserted;
     public PCBuildManager PCBuildRef { get; private set; } = null;
+    [Space]
+    [Tooltip("Точка для установки объекта при появлении объекта (необязательна)")]
+    public Collider ConPointAttachToOnStart;
 
     private ConnectionPoint[] conPoints;
     private SetupPoint[] setupPoints;
     private ItemCommon objectInfo;
     [field: NonSerialized] public GameObject cpuConnected;
     private HashSet<GameObject> _connectedParts = new();
+
+    [field: SerializeField] public UnityEvent OnSecuredEvents { get; set; } = null;
+    [field: SerializeField] public UnityEvent OnUnsecuredEvents { get; set; } = null;
 
     //Debug.Log("...");
     protected override void Start()
@@ -35,6 +41,11 @@ public class AttachObjectDevice : AttachObject
         foreach (var point in setupPoints) point.onStatusChanged += OnPointsChangeStatus;
         objectInfo = GetComponentInParent<ItemCommon>();
         interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
+
+        if (ConPointAttachToOnStart != null)
+        {
+            ForceAttach(ConPointAttachToOnStart);
+        }
     }
 
     private void OnPointsChangeStatus()
@@ -55,10 +66,12 @@ public class AttachObjectDevice : AttachObject
         if (reqPoints.All(r => r.IsSecured))
         {
             DeviceStatus = Status.FullySecured;
+            OnSecuredEvents?.Invoke();
         }
-        else
+        else if (DeviceStatus == Status.FullySecured)
         {
             DeviceStatus = Status.InsertedLoose;
+            OnUnsecuredEvents?.Invoke();
         }
     }
     
@@ -95,6 +108,25 @@ public class AttachObjectDevice : AttachObject
                 }
             }
         }
+    }
+
+    // Телепортирует объект к месту подключения и пытается подключить объект
+    public void ForceAttach(Collider conPointCol)
+    {
+        // Сохранение прошлой иерархии и смена на новую
+        Transform oldPlace = transform.parent;
+        attachPoint.transform.SetParent(conPointCol.gameObject.transform);
+        transform.SetParent(attachPoint.transform);
+
+        // Сдвиг объекта на место подключения
+        attachPoint.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+        // Возврат к прошлой иерархии
+        transform.SetParent(oldPlace);
+        attachPoint.transform.SetParent(transform);
+
+        DoCompatibleTest(conPointCol);
+        TryAttach();
     }
 
     // Подключение объекта
@@ -140,7 +172,14 @@ public class AttachObjectDevice : AttachObject
             }
             if (checkCollider.TryGetComponent<ConnectionPoint>(out var conPoint))
             {
-                conPoint.OnConnect(gameObject);
+                if (checkCollider == ConPointAttachToOnStart)
+                {
+                    conPoint.OnConnect(gameObject, false);
+                }
+                else
+                {
+                    conPoint.OnConnect(gameObject);
+                }
                 Transform conPointParent = conPoint.transform.parent;
                 if (conPointParent.TryGetComponent<PCBuildManager>(out var pcBuildRef))
                 {
@@ -156,7 +195,7 @@ public class AttachObjectDevice : AttachObject
             AttachObjectDevice connectTo = checkCollider.GetComponentInParent<AttachObjectDevice>();
             if (connectTo == null)
             {
-                OnConnectEvents.Invoke();
+                OnConnectEvents?.Invoke();
                 return;
             }
             if (objectInfo.ComponentType == ComponentType.CPU)
@@ -167,7 +206,7 @@ public class AttachObjectDevice : AttachObject
             {
                 connectTo.cpuConnected.GetComponent<XRGrabInteractable>().enabled = false;
             }
-            OnConnectEvents.Invoke();
+            OnConnectEvents?.Invoke();
         }
     }
 
@@ -198,7 +237,7 @@ public class AttachObjectDevice : AttachObject
             AttachObjectDevice connectTo = checkCollider.GetComponentInParent<AttachObjectDevice>();
             if (connectTo == null)
             {
-                OnDisconnectEvents.Invoke();
+                OnDisconnectEvents?.Invoke();
                 return;
             }
             if (objectInfo.ComponentType == ComponentType.CPU)
@@ -210,7 +249,7 @@ public class AttachObjectDevice : AttachObject
                 connectTo.cpuConnected.GetComponent<XRGrabInteractable>().enabled = true;
             }
 
-            OnDisconnectEvents.Invoke();
+            OnDisconnectEvents?.Invoke();
         }
     }
 
@@ -258,17 +297,8 @@ public class AttachObjectDevice : AttachObject
         }
     }
 
-    // Метод проверки возможности подключения объекта к разъёму (нужный ли разъём и совместим ли объект с ним)
-    protected override void OnTriggerEnter(Collider collider)
+    private void DoCompatibleTest(Collider collider)
     {
-        if (objIsAttached) return;
-
-        if (!collider.gameObject.CompareTag(tag)) // является ли разъём подходящим для подключения
-        {
-            return;
-        }
-
-        StartHighlight(collider);
         checkCollider = null;
         ItemCommon colliderInfo = collider.gameObject.GetComponentInParent<ItemCommon>(); // место, где хранится информация об комплектующем, к которому мы подключаемся
         if (colliderInfo == null)
@@ -309,10 +339,24 @@ public class AttachObjectDevice : AttachObject
         checkCollider = collider;
     }
 
+    // Метод проверки возможности подключения объекта к разъёму (нужный ли разъём и совместим ли объект с ним)
+    protected override void OnTriggerEnter(Collider collider)
+    {
+        if (objIsAttached || interactor == null) return;
+
+        if (!collider.gameObject.CompareTag(tag)) // является ли разъём подходящим для подключения
+        {
+            return;
+        }
+
+        StartHighlight(collider);
+        DoCompatibleTest(collider);
+    }
+
     // Метод, управляющий подсветкой места подключения
     protected override void OnTriggerStay(Collider collider)
     {
-        if (_highlightParent == null || _currentMatForHightlight == wrong)
+        if (_currentColliderForHighlight == null || _currentMatForHightlight == wrong)
             return;
         
         if (objIsAttached || interactor == null)

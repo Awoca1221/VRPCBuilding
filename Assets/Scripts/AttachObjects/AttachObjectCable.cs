@@ -57,7 +57,7 @@ public class AttachObjectCable : AttachObject
             if (interactor != null)
                 interactionManager.SelectExit(interactor, interactable);
 
-            OnConnectEvents.Invoke();
+            OnConnectEvents?.Invoke();
         }
     }
 
@@ -70,13 +70,13 @@ public class AttachObjectCable : AttachObject
             objIsAttached = false;
             IsPowered = false;
             checkCollider.GetComponent<SetupPoint>().SetUnsecured();
-            OnDisconnectEvents.Invoke();
+            OnDisconnectEvents?.Invoke();
         }
     }
 
     protected override void OnTriggerEnter(Collider collider)
     {
-        if (objIsAttached) return;
+        if (objIsAttached || interactor == null) return;
 
         if (!collider.gameObject.CompareTag(tag))
         {
@@ -89,7 +89,7 @@ public class AttachObjectCable : AttachObject
 
     protected override void OnTriggerStay(Collider collider)
     {
-        if (_highlightParent == null || _currentMatForHightlight == wrong)
+        if (_currentColliderForHighlight == null || _currentMatForHightlight == wrong)
             return;
         
         if (objIsAttached || interactor == null)

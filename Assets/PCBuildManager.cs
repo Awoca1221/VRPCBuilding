@@ -21,14 +21,14 @@ public class PCBuildManager : MonoBehaviour
     {
         connectedDevices.Add(device);
         UpdateOverallStatus();
-        Debug.Log($"Подключено устройство: {device.name}. Всего: {connectedDevices.Count}");
+        //Debug.Log($"Подключено устройство: {device.name}. Всего: {connectedDevices.Count}");
     }
 
     public void OnDeviceDisconnected(GameObject device)
     {
         connectedDevices.Remove(device);
         UpdateOverallStatus();
-        Debug.Log($"Отключено устройство: {device.name}. Всего: {connectedDevices.Count}");
+        //Debug.Log($"Отключено устройство: {device.name}. Всего: {connectedDevices.Count}");
     }
 
     private void UpdateOverallStatus()
@@ -53,6 +53,6 @@ public class PCBuildManager : MonoBehaviour
         bool allTypesCovered = requiredTypes.All(reqType => allSecuredPoints.Contains(reqType));
         currentStatus = allTypesCovered ? Status.Working : Status.NotWorking;
 
-        OnOverallStatusUpdated.Invoke();
+        OnOverallStatusUpdated?.Invoke();
     }
 }

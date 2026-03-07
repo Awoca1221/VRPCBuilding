@@ -19,13 +19,13 @@ public class SetupPoint : MonoBehaviour
     public void SetSecured()
     {
         IsSecured = true;
-        onStatusChanged.Invoke();
+        onStatusChanged?.Invoke();
     }
 
     public void SetUnsecured()
     {
         IsSecured = false;
-        onStatusChanged.Invoke();
+        onStatusChanged?.Invoke();
     }
 
     public void SetAvailable()

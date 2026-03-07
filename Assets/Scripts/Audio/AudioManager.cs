@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
         audioSource.loop = true;
         audioSource.spatialBlend = 1f; // Полностью 3D звук
         audioSource.volume = 1f; // Базовая громкость
-        audioSource.minDistance = 0.5f;
+        audioSource.minDistance = 1f;
         audioSource.maxDistance = 5f;
         
         lowPassFilter.cutoffFrequency = 22000f;

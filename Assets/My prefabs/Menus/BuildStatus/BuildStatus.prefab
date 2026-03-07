@@ -1108,7 +1108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 0
-    m_Right: 10
+    m_Right: 0
     m_Top: 5
     m_Bottom: 5
   m_ChildAlignment: 1
@@ -1152,19 +1152,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1117687037173396673, guid: 1f8400fa1b882084cbf0780320e7efd9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 43.16
+      value: 35.97
       objectReference: {fileID: 0}
     - target: {fileID: 1117687037173396673, guid: 1f8400fa1b882084cbf0780320e7efd9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 26.82
+      value: 22.35
       objectReference: {fileID: 0}
     - target: {fileID: 1117687037173396673, guid: 1f8400fa1b882084cbf0780320e7efd9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 26.58
+      value: 22.985
       objectReference: {fileID: 0}
     - target: {fileID: 1117687037173396673, guid: 1f8400fa1b882084cbf0780320e7efd9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -18.41
+      value: -16.175
       objectReference: {fileID: 0}
     - target: {fileID: 4158576648758557842, guid: 1f8400fa1b882084cbf0780320e7efd9, type: 3}
       propertyPath: m_Pivot.x
@@ -1196,7 +1196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4158576648758557842, guid: 1f8400fa1b882084cbf0780320e7efd9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 36.82
+      value: 32.35
       objectReference: {fileID: 0}
     - target: {fileID: 4158576648758557842, guid: 1f8400fa1b882084cbf0780320e7efd9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1228,11 +1228,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4158576648758557842, guid: 1f8400fa1b882084cbf0780320e7efd9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 105
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 4158576648758557842, guid: 1f8400fa1b882084cbf0780320e7efd9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -14.205
+      value: -13.0875
       objectReference: {fileID: 0}
     - target: {fileID: 4158576648758557842, guid: 1f8400fa1b882084cbf0780320e7efd9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

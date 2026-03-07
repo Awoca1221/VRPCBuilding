@@ -34,7 +34,6 @@ public class BuildStatusView : MonoBehaviour
     public GameObject elementPrefab;
 
     private readonly List<GameObject> elements = new();
-    private readonly float offset = 20f;
     
     // Start is called before the first frame update
     void Start()

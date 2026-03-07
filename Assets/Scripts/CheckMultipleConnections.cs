@@ -34,14 +34,14 @@ public class CheckMultipleConnections : MonoBehaviour
         Connections[obj] = true;
         if (AreAllConnected())
         {
-            OnAllConnectEvents.Invoke();
+            OnAllConnectEvents?.Invoke();
         }
     }
 
     public void DisconnectObject(GameObject obj)
     {
         Connections[obj] = false;
-        OnDisconnectEvents.Invoke();
+        OnDisconnectEvents?.Invoke();
     }
 
     public bool AreAllConnected()
