@@ -13,7 +13,7 @@ public class ItemCatalog : MonoBehaviour
 {
     public TMP_Dropdown dropdown = null;
     public ItemWrapper[] itemWrappers = null;
-    private GameObject[] components = null;
+    private GameObject[] components = new GameObject[0];
     private int currentPage = 1;
     public TextMeshProUGUI pageText = null;
     private ComponentType componentType = ComponentType.NotSelected;
@@ -45,7 +45,13 @@ public class ItemCatalog : MonoBehaviour
             UpdatePage();
         }
         );
-        components = ComponentsLoader.GetComponentsPrefabs();
+        foreach (var componentList in ComponentsService.Instance.Components)
+        {
+            if (componentList.Value.Count > 0)
+            {
+                components = components.Concat(componentList.Value).ToArray();
+            }
+        }
         UpdatePage();
     }
 

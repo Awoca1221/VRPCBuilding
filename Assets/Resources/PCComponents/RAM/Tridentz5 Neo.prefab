@@ -91,10 +91,12 @@ MonoBehaviour:
   DDRType: 1
   GPUManufacturer: 0
   CPUManufacturer: 0
+  TDP: 0
   TDPLimit: 0
   Performance: 0
   Model: 
   MemoryAmountGB: 16
+  FrequencyMhz: 6000
   CPUid: -1
   PowerSupplyMaxPower: 0
 --- !u!33 &7527229605128792492
@@ -368,5 +370,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   <OnDisconnectEvents>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  ConPointAttachToOnStart: {fileID: 0}
+  <OnSecuredEvents>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnUnsecuredEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []

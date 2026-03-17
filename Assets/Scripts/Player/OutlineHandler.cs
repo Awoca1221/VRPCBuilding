@@ -8,6 +8,7 @@ public class OutlineHandler : MonoBehaviour
     private XRBaseInteractor baseInteractor;
     private XRInteractionManager interactionManager;
     private XRBaseInteractable target;
+    private int oldLayer;
     private bool hover = false;
     private bool lineRendererWasDisabled = false;
 
@@ -37,7 +38,10 @@ public class OutlineHandler : MonoBehaviour
         target = targets[0] as XRBaseInteractable;
         TryGetComponent(out LineRenderer line);
         if (!target.isSelected)
+        {
+            oldLayer = target.gameObject.layer;
             SetLayerRecursively(target.gameObject, 10);
+        }
         
         while (true)
         {
@@ -48,7 +52,7 @@ public class OutlineHandler : MonoBehaviour
             {
                 if (!line.enabled && !lineRendererWasDisabled)
                 {
-                    SetLayerRecursively(target.gameObject, 0);
+                    SetLayerRecursively(target.gameObject, oldLayer);
                     lineRendererWasDisabled = true;
                     continue;
                 }
@@ -70,8 +74,9 @@ public class OutlineHandler : MonoBehaviour
             }
             if (target.transform.gameObject != targets[0].transform.gameObject)
             {
-                SetLayerRecursively(target.gameObject, 0);
+                SetLayerRecursively(target.gameObject, oldLayer);
                 target = targets[0] as XRBaseInteractable;
+                oldLayer = target.gameObject.layer;
             }
             if (!target.isSelected)
                 SetLayerRecursively(target.gameObject, 10);
@@ -81,7 +86,8 @@ public class OutlineHandler : MonoBehaviour
 
     void SetLayerRecursively(GameObject obj, int layer)
     {
-        if (obj == null || obj.name.Contains("_highlight")) return;
+        // подсветку и слой Instrument пропускаем
+        if (obj == null || obj.name.Contains("_highlight") || oldLayer == 6) return;
         
         obj.layer = layer;
         
@@ -94,7 +100,7 @@ public class OutlineHandler : MonoBehaviour
     private void SelectEnter(SelectEnterEventArgs args)
     {
         IXRSelectInteractable obj = args.interactableObject;
-        SetLayerRecursively(obj.transform.gameObject, 0);
+        SetLayerRecursively(obj.transform.gameObject, oldLayer);
     }
 
     private void SelectExit(SelectExitEventArgs args)

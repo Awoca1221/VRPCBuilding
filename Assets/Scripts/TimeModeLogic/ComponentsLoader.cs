@@ -3,25 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
-using static UnityEngine.Rendering.DebugUI;
 using Random = UnityEngine.Random;
 
 public class ComponentsLoader : MonoBehaviour
 {
-    public static readonly string[] componentFolders = {
-        "Cooler",
-        "CPU",
-        "GPU",
-        "Motherboard",
-        "PowerSupply",
-        "RAM",
-        "StorageDevice"
-    };
-
-    private Dictionary<string, List<GameObject>> componentPrefabs = new();
+    private IReadOnlyDictionary<string, List<GameObject>> componentPrefabs;
     private List<GameObject> spawnedObjs = new();
     public TaskManager taskManager;
     public CheckMultipleConnections ramCheck;
@@ -29,50 +16,7 @@ public class ComponentsLoader : MonoBehaviour
 
     void Start()
     {
-        LoadAllComponents();
-    }
-
-    static public GameObject[] GetComponentsPrefabs()
-    {
-        GameObject[] allPrefabs = new GameObject[0];
-
-        foreach (string folder in componentFolders)
-        {
-            // Загружаем все префабы из папки Resources/PCComponents/[folder]
-            GameObject[] prefabs = Resources.LoadAll<GameObject>($"PCComponents/{folder}");
-
-            if (prefabs.Length > 0)
-            {
-                allPrefabs = allPrefabs.Concat(prefabs).ToArray();
-                // Debug.Log($"Loaded {prefabs.Length} prefabs from {folder}");
-            }
-            else
-            {
-                // Debug.LogWarning($"No prefabs found in {folder}");
-            }
-        }
-
-        return allPrefabs;
-    }
-
-    // Загрузка всех префабов из указанных папок
-    private void LoadAllComponents()
-    {
-        foreach (string folder in componentFolders)
-        {
-            // Загружаем все префабы из папки Resources/PCComponents/[folder]
-            GameObject[] prefabs = Resources.LoadAll<GameObject>($"PCComponents/{folder}");
-            
-            if (prefabs.Length > 0)
-            {
-                componentPrefabs[folder] = new List<GameObject>(prefabs);
-                // Debug.Log($"Loaded {prefabs.Length} prefabs from {folder}");
-            }
-            else
-            {
-                // Debug.LogWarning($"No prefabs found in {folder}");
-            }
-        }
+        componentPrefabs = ComponentsService.Instance.Components;
     }
 
     // Спавн случайных компонентов в заданной области

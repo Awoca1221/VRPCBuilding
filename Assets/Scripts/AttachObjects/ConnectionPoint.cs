@@ -1,12 +1,12 @@
 using UnityEngine;
-using UnityEngine.Audio;
 using System;
-using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(AudioManager))]
 public class ConnectionPoint : MonoBehaviour
 {
     public GameObject ConnectedDevice { get; private set; } = null;
+    [Tooltip("id слота (уникальное значение между разъёмами одинакогово вида)")]
+    public uint slotID = 1;
 
     private AudioManager audioManager;
 

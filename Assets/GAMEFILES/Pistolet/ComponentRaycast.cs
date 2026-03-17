@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -17,6 +18,9 @@ public class ComponentRaycast : MonoBehaviour
     public GameObject descriptionPanel;
     public TextMeshProUGUI text;
     public TextMeshProUGUI title;
+    public HoldButton deleteButton;
+
+    private GameObject deviceObject;
 
     private XRGrabInteractable grabInteractable;
     private bool isGrabbed = false;
@@ -41,6 +45,8 @@ public class ComponentRaycast : MonoBehaviour
         lineRenderer.endWidth = 0.005f;
         lineRenderer.enabled = false;
 
+        descriptionPanel.SetActive(false);
+
         if (TryGetComponent<XRGrabInteractable>(out grabInteractable))
         {
             grabInteractable.selectEntered.AddListener(OnGrabbed);
@@ -51,6 +57,18 @@ public class ComponentRaycast : MonoBehaviour
 
         text.SetText(defaultText);
         title.SetText(defaultTitle);
+
+        DisableDeleteButton();
+    }
+
+    public void EnableDeleteButton()
+    {
+        deleteButton.gameObject.SetActive(true);
+    }
+
+    public void DisableDeleteButton()
+    {
+        deleteButton.gameObject.SetActive(false);
     }
 
     private void OnDestroy()
@@ -74,6 +92,8 @@ public class ComponentRaycast : MonoBehaviour
         if (args.interactorObject.transform.gameObject.name == "Direct Interactor")
         {
             isGrabbed = true;
+            descriptionPanel.SetActive(true);
+            lineRenderer.enabled = true;
             interactor = args.interactorObject;
             if (interactor.transform.TryGetComponent<HandInfo>(out var info))
             {
@@ -85,11 +105,13 @@ public class ComponentRaycast : MonoBehaviour
     private void OnReleased(SelectExitEventArgs args)
     {
         isGrabbed = false;
+        descriptionPanel.SetActive(false);
+        lineRenderer.enabled = false;
         if (interactor != null)
         {
             if (interactor.transform.TryGetComponent<HandInfo>(out var info))
             {
-                info.activateAction.performed += FireRay;
+                info.activateAction.performed -= FireRay;
             }
             interactor = null;
         }
@@ -124,6 +146,26 @@ public class ComponentRaycast : MonoBehaviour
         return string.Join(", ", (arr as IEnumerable).Cast<object>().Select(x => x?.ToString() ?? "null"));
     }
 
+    private void SetDeviceObject(GameObject device)
+    {
+        deviceObject = device;
+        if (deleteButton.enabled)
+            deleteButton.SetIsDisabled(false);
+    }
+
+    public void DeleteObject()
+    {
+        if (deviceObject == null) return;
+
+        AttachObjectDevice deviceInfo = deviceObject.GetComponent<AttachObjectDevice>();
+        if (!deviceInfo.objIsAttached && !deviceInfo.IsAnyDeviceIsAttached)
+        {
+            Destroy(deviceObject);
+            text.SetText(defaultText);
+            title.SetText(defaultTitle);
+        }
+    }
+
     private void FireRay(InputAction.CallbackContext context)
     {
         if (isGrabbed)
@@ -136,6 +178,7 @@ public class ComponentRaycast : MonoBehaviour
                 {
                     itemCommon = closestValidHit.Value.collider.GetComponentInParent<ItemCommon>();
                 }
+                SetDeviceObject(itemCommon.gameObject);
                 BaseInfo baseInfo = itemCommon.GetInfo();
                 string newText = "";
                 string newTitle = "";
@@ -156,7 +199,8 @@ public class ComponentRaycast : MonoBehaviour
 Производитель: {cpuInfo.CPUManufacturer}
 Модель: {cpuInfo.Model}
 Тип сокета: {cpuInfo.SocketType}
-Производительность: {cpuInfo.Performance}";
+Производительность: {cpuInfo.Performance}
+TDP: {cpuInfo.TDP}";
                         newTitle = $"{baseInfo.Name}";
                         break;
                     case GPUInfo:
@@ -167,7 +211,8 @@ public class ComponentRaycast : MonoBehaviour
 Модель: {gpuInfo.Model}
 Объем памяти: {gpuInfo.MemoryAmountGB} ГБ
 Поддержка PCI-E: {gpuInfo.PCIESupport}
-Производительность: {gpuInfo.Performance}";
+Производительность: {gpuInfo.Performance}
+TDP: {gpuInfo.TDP}";
                         newTitle = $"{baseInfo.Name}";
                         break;
                     case MotherboardInfo:
@@ -185,7 +230,8 @@ public class ComponentRaycast : MonoBehaviour
                         newText = @$"Тип комплектующего: Оперативная память
 Название: {baseInfo.Name}
 Тип памяти: {ramInfo.DDRType}
-Объем памяти: {ramInfo.MemoryAmountGB} ГБ";
+Объем памяти: {ramInfo.MemoryAmountGB} ГБ
+Частота памяти: {ramInfo.FrequencyMhz} Мгц";
                         newTitle = $"{baseInfo.Name}";
                         break;
                     case PowerSupplyInfo:
@@ -211,6 +257,8 @@ public class ComponentRaycast : MonoBehaviour
             {
                 text.SetText(defaultText);
                 title.SetText(defaultTitle);
+                if (deleteButton.enabled)
+                    deleteButton.SetIsDisabled(true);
             }
         }
     }
@@ -223,9 +271,6 @@ public class ComponentRaycast : MonoBehaviour
 
         if (isGrabbed)
         {
-            descriptionPanel.SetActive(true);
-            lineRenderer.enabled = true;
-
             var closestHit = GetClosestHit();
 
             Vector3 startPoint = origin;
@@ -254,11 +299,6 @@ public class ComponentRaycast : MonoBehaviour
 
             lineRenderer.positionCount = curveResolution;
             lineRenderer.SetPositions(points);
-        }
-        else
-        {
-            descriptionPanel.SetActive(false);
-            lineRenderer.enabled = false;
         }
     }
 

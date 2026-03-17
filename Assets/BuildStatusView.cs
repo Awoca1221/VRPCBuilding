@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildStatusView : MonoBehaviour
 {
@@ -30,38 +31,63 @@ public class BuildStatusView : MonoBehaviour
     public PCBuildManager PCBuild;
     [Space]
     public TextMeshProUGUI totalStatusText;
+    public TextMeshProUGUI CPUPerfText;
+    public TextMeshProUGUI GPUPerfText;
+    public TextMeshProUGUI PCPerfText;
     public Transform contentTransform;
     public GameObject elementPrefab;
 
-    private readonly List<GameObject> elements = new();
+    private readonly List<GameObject> errorElems = new();
+    private readonly List<GameObject> buildElems = new();
     
     // Start is called before the first frame update
     void Start()
     {
-        UpdateInfo();
-        PCBuild.OnOverallStatusUpdated += UpdateInfo;
+        UpdateStatus();
+        UpdatePlayerBuilds();
+        PCBuild.OnOverallStatusUpdated += UpdateStatus;
     }
 
-    private void UpdateInfo()
+    private void UpdateStatus()
     {
         // Удаление всех элементов в списке
-        foreach (var elem in elements)
+        foreach (var elem in errorElems)
         {
             Destroy(elem);
         }
-        elements.Clear();
+        errorElems.Clear();
 
         // Определение статуса компьютера
-        if (PCBuild.PCStatus == PCBuildManager.Status.NotWorking)
+        switch (PCBuild.PCStatus)
         {
-            totalStatusText.text = "Статус компьютера: не работает";
+            case PCBuildManager.Status.NotWorking:
+                totalStatusText.text = "Статус компьютера: не работает";
+                break;
+            case PCBuildManager.Status.Unstable:
+                totalStatusText.text = "Статус компьютера: нестабилен";
+                AddNotEnoughPowerElement();
+                break;
+            case PCBuildManager.Status.Working:
+                totalStatusText.text = "Статус компьютера: работает";
+                break;
+        }
+
+        // Определение производительности сборки
+        if (PCBuild.PCStatus == PCBuildManager.Status.Working)
+        {
+            CPUPerfText.text = "Оценка процессора: " + PCBuild.GetCPUPerformance() + " баллов";
+            GPUPerfText.text = "Оценка видеокарты: " + PCBuild.GetGPUPerformance() + " баллов";
+            PCPerfText.text = "Общая оценка производительности: " + PCBuild.GetOverallPerformance() + " баллов";
         }
         else
         {
-            totalStatusText.text = "Статус компьютера: работает";
-            return;
+            CPUPerfText.text = "Невозможно оценить производительность не собранной сборки";
+            GPUPerfText.text = "";
+            PCPerfText.text = "";
         }
 
+        if (PCBuild.PCStatus == PCBuildManager.Status.Working || PCBuild.PCStatus == PCBuildManager.Status.Unstable) return;
+        
         // Определение проблем в сборке
         var requiredTypes = System.Enum.GetValues(typeof(ComponentType))
             .Cast<ComponentType>()
@@ -93,6 +119,35 @@ public class BuildStatusView : MonoBehaviour
         GameObject createdElement = Instantiate(elementPrefab, contentTransform);
         BuildStatusElement elemStatus = createdElement.GetComponent<BuildStatusElement>();
         elemStatus.SetText(errorMessage);
-        elements.Add(createdElement);
+        errorElems.Add(createdElement);
+    }
+
+    private void AddNotEnoughPowerElement()
+    {
+        string errorMessage = "Критическое потребление питания сборкой. Требуется блок питания с большей мощностью";
+        GameObject createdElement = Instantiate(elementPrefab, contentTransform);
+        BuildStatusElement elemStatus = createdElement.GetComponent<BuildStatusElement>();
+        elemStatus.SetText(errorMessage);
+        errorElems.Add(createdElement);
+    }
+
+    public void UpdatePlayerBuilds()
+    {
+        // Удаление всех элементов в списке
+        foreach (var elem in buildElems)
+        {
+            Destroy(elem);
+        }
+        buildElems.Clear();
+
+        var savedData = SaveService.Load<PlayerBuildsList>("player_builds");
+
+        // заполнение префабов информацией
+    }
+
+    public void SaveBuild()
+    {
+        PCBuild.SaveBuild();
+        UpdatePlayerBuilds();
     }
 }

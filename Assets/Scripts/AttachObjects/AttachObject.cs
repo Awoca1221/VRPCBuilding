@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -19,7 +18,7 @@ public abstract class AttachObject : MonoBehaviour
     protected IXRSelectInteractor interactor;
     protected XRGrabInteractable interactable;
     protected Collider checkCollider;
-    protected bool objIsAttached;
+    public bool objIsAttached { get; protected set; }
     protected GameObject _highlightParent = null;
     protected Material _currentMatForHightlight = null;
     protected Collider _currentColliderForHighlight = null;
@@ -30,7 +29,6 @@ public abstract class AttachObject : MonoBehaviour
 
     protected virtual void Start()
     {
-        //GetComponent<Outline>().enabled = false;
         interactable = GetComponent<XRGrabInteractable>();
         interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
 

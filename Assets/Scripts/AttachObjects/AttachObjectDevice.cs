@@ -19,11 +19,17 @@ public class AttachObjectDevice : AttachObject
     public Status DeviceStatus { get; private set; } = Status.NotInserted;
     public PCBuildManager PCBuildRef { get; private set; } = null;
     [Space]
-    [Tooltip("Точка для установки объекта при появлении объекта (необязательна)")]
-    public Collider ConPointAttachToOnStart;
+    [Tooltip("Устройство для установки объекта при появлении объекта (не conPoint)")]
+    public GameObject DeviceAttachToOnStart;
+    [Tooltip("ID слота для установки объекта при появлении объекта (0 если неважно)")]
+    public uint slotIDAttachToOnStart = 0;
+
+    public uint SlotID => checkCollider != null ? checkCollider.GetComponent<ConnectionPoint>().slotID : 0;
+    public bool IsAnyDeviceIsAttached => conPoints.Any(c => c.ConnectedDevice != null);
 
     private ConnectionPoint[] conPoints;
     private SetupPoint[] setupPoints;
+    private bool IsAnySetupPointsSecured => setupPoints.Any(s => s.IsSecured);
     private ItemCommon objectInfo;
     [field: NonSerialized] public GameObject cpuConnected;
     private HashSet<GameObject> _connectedParts = new();
@@ -42,16 +48,15 @@ public class AttachObjectDevice : AttachObject
         objectInfo = GetComponentInParent<ItemCommon>();
         interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
 
-        if (ConPointAttachToOnStart != null)
+        if (DeviceAttachToOnStart != null)
         {
-            ForceAttach(ConPointAttachToOnStart);
+            ForceAttach(DeviceAttachToOnStart, slotIDAttachToOnStart);
         }
     }
 
     private void OnPointsChangeStatus()
     {
-        SetupPoint[] screwPoints = setupPoints.Where(point => point.pointType == SetupPoint.Type.Screw).ToArray();
-        if (screwPoints.Any(s => s.IsSecured))
+        if (IsAnySetupPointsSecured)
         {
             interactable.enabled = false;
         }
@@ -111,8 +116,29 @@ public class AttachObjectDevice : AttachObject
     }
 
     // Телепортирует объект к месту подключения и пытается подключить объект
-    public void ForceAttach(Collider conPointCol)
+    public void ForceAttach(GameObject device, uint slotID = 0)
     {
+        ConnectionPoint[] deviceConPoints = device.GetComponentsInChildren<ConnectionPoint>();
+        ConnectionPoint correctPoint = null;
+        foreach (var point in deviceConPoints)
+        {   
+            if (point.CompareTag(tag))
+            {
+                if (slotID == 0)
+                {
+                    correctPoint = point;
+                    break;
+                }
+                else if (slotID == point.slotID)
+                {
+                    correctPoint = point;
+                    break;
+                }
+            }
+        }
+        if (correctPoint == null) return;
+
+        Collider conPointCol = correctPoint.GetComponent<Collider>();
         // Сохранение прошлой иерархии и смена на новую
         Transform oldPlace = transform.parent;
         attachPoint.transform.SetParent(conPointCol.gameObject.transform);
@@ -127,6 +153,43 @@ public class AttachObjectDevice : AttachObject
 
         DoCompatibleTest(conPointCol);
         TryAttach();
+    }
+
+    // Автоматическая полная установка комплектующего (пока только винты)
+    public void ForceSetup()
+    {
+        if (!objIsAttached) return;
+
+        SetupPoint[] screwPoints = setupPoints.Where(point => point.pointType == SetupPoint.Type.Screw).ToArray();
+        foreach (var point in screwPoints)
+        {
+            if (point.IsSecured) continue;
+
+            point.SetSecured();
+            point.GetComponentInChildren<MeshRenderer>().enabled = true;
+        }
+    }
+
+    public void ForceUnsetup()
+    {
+        if (!objIsAttached) return;
+
+        SetupPoint[] screwPoints = setupPoints.Where(point => point.pointType == SetupPoint.Type.Screw).ToArray();
+        foreach (var point in screwPoints)
+        {
+            if (!point.IsSecured) continue;
+
+            point.SetUnsecured();
+            point.GetComponentInChildren<MeshRenderer>().enabled = false;
+        }
+    }
+
+    public void ForceUnattach()
+    {
+        if (!objIsAttached) return;
+
+        ForceUnsetup();
+        TryUnattach();
     }
 
     // Подключение объекта
@@ -172,9 +235,10 @@ public class AttachObjectDevice : AttachObject
             }
             if (checkCollider.TryGetComponent<ConnectionPoint>(out var conPoint))
             {
-                if (checkCollider == ConPointAttachToOnStart)
+                if (DeviceAttachToOnStart != null)
                 {
                     conPoint.OnConnect(gameObject, false);
+                    DeviceAttachToOnStart = null;
                 }
                 else
                 {
@@ -213,7 +277,7 @@ public class AttachObjectDevice : AttachObject
     // Отключение объекта
     public override void TryUnattach()
     {
-        if (objIsAttached)
+        if (objIsAttached && !IsAnySetupPointsSecured)
         {
             if (checkCollider != null) checkCollider.tag = tag;
             Destroy(GetComponent<FixedJoint>());
@@ -344,7 +408,12 @@ public class AttachObjectDevice : AttachObject
     {
         if (objIsAttached || interactor == null) return;
 
-        if (!collider.gameObject.CompareTag(tag)) // является ли разъём подходящим для подключения
+        if (CompareTag("Untagged"))
+        {
+            Debug.Log($"У {name} не настроен tag");
+            return;
+        }
+        if (!collider.CompareTag(tag)) // является ли разъём подходящим для подключения
         {
             return;
         }

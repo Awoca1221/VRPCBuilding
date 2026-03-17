@@ -2647,7 +2647,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 23
   m_InteractionLayers:
-    m_Bits: 1025
+    m_Bits: 1089
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
@@ -2718,7 +2718,7 @@ MonoBehaviour:
   m_ImproveAccuracyWithSphereCollider: 1
   m_PhysicsLayerMask:
     serializedVersion: 2
-    m_Bits: 1025
+    m_Bits: 1089
   m_PhysicsTriggerInteraction: 1
 --- !u!135 &4582808292336140043
 SphereCollider:
@@ -13991,7 +13991,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 23
   m_InteractionLayers:
-    m_Bits: 1025
+    m_Bits: 1089
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
@@ -14062,7 +14062,7 @@ MonoBehaviour:
   m_ImproveAccuracyWithSphereCollider: 1
   m_PhysicsLayerMask:
     serializedVersion: 2
-    m_Bits: 1025
+    m_Bits: 1089
   m_PhysicsTriggerInteraction: 1
 --- !u!135 &396209014532047355
 SphereCollider:

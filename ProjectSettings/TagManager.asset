@@ -22,6 +22,12 @@ TagManager:
   - GPU
   - Screw
   - Power supply
+  - +01.003.0001.0001
+  - +01.005.0001.0001
+  - +01.006.0001.0001
+  - Motherboard2 power
+  - Motherboard1 power
+  - Power supply ATX
   layers:
   - Default
   - TransparentFX
@@ -29,9 +35,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Left Hand Physics
-  - Right Hand Physics
-  - Non Physics Hand
+  - Instrument
+  - 
+  - 
   - Wire
   - Outline
   - 

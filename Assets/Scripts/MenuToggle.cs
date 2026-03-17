@@ -23,7 +23,7 @@ public class MenuToggle : MonoBehaviour
 
     private void OnMenuButtonPressed(InputAction.CallbackContext context)
     {
-        if (!gameObject.active) {
+        if (!gameObject.activeInHierarchy) {
             return;
         }
         Transform menuTransform = GetComponent<Transform>();

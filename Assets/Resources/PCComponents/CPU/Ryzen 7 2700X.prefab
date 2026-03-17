@@ -361,10 +361,12 @@ MonoBehaviour:
   DDRType: 0
   GPUManufacturer: 0
   CPUManufacturer: 1
+  TDP: 105
   TDPLimit: 0
-  Performance: 5000
+  Performance: 17441
   Model: r7 2700X
   MemoryAmountGB: 0
+  FrequencyMhz: 0
   CPUid: -1
   PowerSupplyMaxPower: 0
 --- !u!114 &3109527411701401208
@@ -388,5 +390,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   <OnDisconnectEvents>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  ConPointAttachToOnStart: {fileID: 0}
+  <OnSecuredEvents>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnUnsecuredEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []

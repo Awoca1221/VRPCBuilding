@@ -46,20 +46,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   XROrigin: {fileID: 0}
   bodySockets:
-  - gameObject: {fileID: 0}
-    heightRatio: 0.8
+  - heightRatio: 0.8
     positionX: -0.3
     positionZ: 0.1
-  - gameObject: {fileID: 0}
-    heightRatio: 0.8
+  - heightRatio: 0.8
     positionX: -0.1
     positionZ: 0.15
-  - gameObject: {fileID: 0}
-    heightRatio: 0.8
+  - heightRatio: 0.8
     positionX: 0.1
     positionZ: 0.15
-  - gameObject: {fileID: 0}
-    heightRatio: 0.8
+  - heightRatio: 0.8
     positionX: 0.3
     positionZ: 0.1
+  pistolet:
+    heightRatio: 0.8
+    positionX: 0.35
+    positionZ: 0
   defaultPrefab: {fileID: 8432764523262332779, guid: f52322c04fa15bf42ab5ff1027bbcc12, type: 3}
+  pistoletPrefab: {fileID: 8904293902152303592, guid: 9c144ced033558443b68cbe43f1faf6b, type: 3}

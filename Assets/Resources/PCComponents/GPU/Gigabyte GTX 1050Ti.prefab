@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 2
+  isRequired: 1
 --- !u!1 &8876533502997915588
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,10 +207,12 @@ MonoBehaviour:
   DDRType: 0
   GPUManufacturer: 1
   CPUManufacturer: 0
+  TDP: 75
   TDPLimit: 0
-  Performance: 3000
+  Performance: 6359
   Model: GTX 1050Ti
   MemoryAmountGB: 4
+  FrequencyMhz: 0
   CPUid: -1
   PowerSupplyMaxPower: 0
 --- !u!54 &1972665197324729516
@@ -412,6 +415,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   <OnDisconnectEvents>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  ConPointAttachToOnStart: {fileID: 0}
+  <OnSecuredEvents>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnUnsecuredEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &1868934713390314330

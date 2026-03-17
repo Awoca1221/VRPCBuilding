@@ -31,21 +31,22 @@ public class ResultsUIManager : MonoBehaviour {
     private void OnDestroy()
     {
         #if UNITY_EDITOR
-        ClearResults();
+        //ClearResults();
         #endif
     }
 
     private void ClearResults()
     {
-        PlayerPrefs.DeleteKey("timeResults");
-        PlayerPrefs.Save();
+        //PlayerPrefs.DeleteKey("timeResults");
+        //PlayerPrefs.Save();
+        SaveService.Save("timebuild_results", null);
         timeResults = new ResultsList();
         RefreshUI();
         Debug.Log("Результаты очищены при закрытии сцены.");
     }
 
     private void LoadAndDisplayResults() {
-        timeResults = LoadResults();
+        LoadResults();
         RefreshUI();
     }
 
@@ -65,32 +66,48 @@ public class ResultsUIManager : MonoBehaviour {
     }
 
     public void AddResult(float timeSeconds) {
-        timeResults = LoadResults();
+        LoadResults();
         timeResults.results.Add(new ResultEntry(timeSeconds, DateTime.Now));
-        SaveResults(timeResults);
+        //SaveResults(timeResults);
+        SaveService.Save("timebuild_results", timeResults);
         RefreshUI();
     }
 
     public void DeleteResultAtIndex(int index) {
         if (index >= 0 && index < timeResults.results.Count) {
             timeResults.results.RemoveAt(index);
-            SaveResults(timeResults);
+            //SaveResults(timeResults);
+            SaveService.Save("timebuild_results", timeResults);
             RefreshUI();
         }
     }
 
-    public ResultsList LoadResults() {
+    public void LoadResults() {
+        /*
         if (!PlayerPrefs.HasKey("timeResults")) {
             return new ResultsList();
         }
         string json = PlayerPrefs.GetString("timeResults");
         var loadedResults = JsonUtility.FromJson<ResultsList>(json);
         return loadedResults;
+        */
+        var results = SaveService.Load<ResultsList>("timebuild_results");
+        if (results == null)
+        {
+            timeResults = new();
+        }
+        else
+        {
+            timeResults = results;
+        }
     }
 
     private void SaveResults(ResultsList results) {
+        /*
         string json = JsonUtility.ToJson(results);
         PlayerPrefs.SetString("timeResults", json);
         PlayerPrefs.Save();
+        */
+        SaveService.Save("timebuild_results", results);
     }
 }

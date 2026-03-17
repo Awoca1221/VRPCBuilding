@@ -136,10 +136,12 @@ MonoBehaviour:
   DDRType: 2
   GPUManufacturer: 0
   CPUManufacturer: 0
+  TDP: 0
   TDPLimit: 0
   Performance: 0
   Model: 
   MemoryAmountGB: 8
+  FrequencyMhz: 3600
   CPUid: -1
   PowerSupplyMaxPower: 0
 --- !u!65 &8989519783362102801
@@ -363,6 +365,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   <OnDisconnectEvents>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  ConPointAttachToOnStart: {fileID: 0}
+  <OnSecuredEvents>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnUnsecuredEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &5404539639779086546 stripped

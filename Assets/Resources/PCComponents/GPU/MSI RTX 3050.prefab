@@ -264,6 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 2
+  isRequired: 1
 --- !u!1 &8032813720850625494
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,10 +328,12 @@ MonoBehaviour:
   DDRType: 0
   GPUManufacturer: 1
   CPUManufacturer: 0
+  TDP: 130
   TDPLimit: 0
-  Performance: 7000
+  Performance: 12507
   Model: RTX 3050
-  MemoryAmountGB: 4
+  MemoryAmountGB: 8
+  FrequencyMhz: 0
   CPUid: -1
   PowerSupplyMaxPower: 0
 --- !u!33 &8514618343783442631
@@ -604,5 +607,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   <OnDisconnectEvents>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  ConPointAttachToOnStart: {fileID: 0}
+  <OnSecuredEvents>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnUnsecuredEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []

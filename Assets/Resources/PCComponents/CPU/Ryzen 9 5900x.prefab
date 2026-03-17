@@ -156,10 +156,12 @@ MonoBehaviour:
   DDRType: 0
   GPUManufacturer: 0
   CPUManufacturer: 1
+  TDP: 105
   TDPLimit: 0
-  Performance: 10000
+  Performance: 38937
   Model: r9 5900x
   MemoryAmountGB: 0
+  FrequencyMhz: 0
   CPUid: -1
   PowerSupplyMaxPower: 0
 --- !u!54 &641250920033489195
@@ -362,6 +364,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   <OnDisconnectEvents>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  ConPointAttachToOnStart: {fileID: 0}
+  <OnSecuredEvents>k__BackingField:
+    m_PersistentCalls:
+      m_Calls: []
+  <OnUnsecuredEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &8271128923288345489

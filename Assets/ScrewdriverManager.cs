@@ -99,23 +99,12 @@ public class ScrewdriverManager : MonoBehaviour
             switch (direction)
             {
                 case TwistDirection.Clockwise:
-                    Instantiate(screw.gameObject, usePlace, true);
-                    if (screwPoint != null)
-                    {
-                        screwPoint.SetSecured();
-                    }
+                    usePlace.GetComponentInChildren<MeshRenderer>().enabled = true;
+                    screwPoint.SetSecured();
                     break;
                 
                 case TwistDirection.CClockwise:
-                    Transform oldScrewClone = usePlace.Find($"{screw.name}(Clone)");
-                    if (oldScrewClone != null)
-                    {
-                        Destroy(oldScrewClone.gameObject);
-                    }
-                    if (screwPoint != null)
-                    {
-                        screwPoint.SetUnsecured();
-                    }
+                    screwPoint.SetUnsecured();
                     break;
             }
             RemoveInUseState();
@@ -188,14 +177,15 @@ public class ScrewdriverManager : MonoBehaviour
         screw.SetParent(null);
         transform.SetParent(screw);
         screw.SetPositionAndRotation(usePlace.position, usePlace.rotation);
-        if (usePlace.childCount == 1)
+        if (usePlace.GetComponent<SetupPoint>().IsSecured)
         {
-            direction = TwistDirection.Clockwise;
-            screw.Translate(requiredDegress * movePerDegree * Vector3.right);
+            direction = TwistDirection.CClockwise;
+            usePlace.GetComponentInChildren<MeshRenderer>().enabled = false;
         }
         else
         {
-            direction = TwistDirection.CClockwise;
+            direction = TwistDirection.Clockwise;
+            screw.Translate(requiredDegress * movePerDegree * Vector3.right);
         }
         transform.SetParent(null);
         screw.SetParent(instrumentModel);
@@ -235,10 +225,9 @@ public class ScrewdriverManager : MonoBehaviour
 
         StartHighlight();
         isInUse = false;
-        Transform oldScrewClone = usePlace.Find($"{screw.name}(Clone)");
-        if (oldScrewClone != null)
+        if (usePlace.GetComponent<SetupPoint>().IsSecured)
         {
-            oldScrewClone.GetComponent<MeshRenderer>().enabled = true;
+            usePlace.GetComponentInChildren<MeshRenderer>().enabled = true;
         }
     }
 
