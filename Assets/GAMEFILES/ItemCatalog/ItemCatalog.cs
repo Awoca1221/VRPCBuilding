@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.ConstrainedExecution;
 using UnityEngine;
-using UnityEngine.Windows;
 using TMPro;
-using NaughtyAttributes;
 using System.Linq;
 
 
@@ -13,7 +10,7 @@ public class ItemCatalog : MonoBehaviour
 {
     public TMP_Dropdown dropdown = null;
     public ItemWrapper[] itemWrappers = null;
-    private GameObject[] components = new GameObject[0];
+    private DeviceInfo[] components = new DeviceInfo[0];
     private int currentPage = 1;
     public TextMeshProUGUI pageText = null;
     private ComponentType componentType = ComponentType.NotSelected;
@@ -57,11 +54,11 @@ public class ItemCatalog : MonoBehaviour
 
     private void UpdatePage()
     {
-        List<GameObject> _cmpFilt = new List<GameObject>();
+        List<DeviceInfo> _cmpFilt = new List<DeviceInfo>();
 
-        foreach (GameObject c in components)
+        foreach (DeviceInfo c in components)
         {
-            if (c.GetComponent<ItemCommon>().ComponentType == componentType)
+            if (c.ComponentType == componentType)
                 _cmpFilt.Add(c);
         }
 

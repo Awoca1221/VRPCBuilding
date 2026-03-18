@@ -127,11 +127,11 @@ public class ComponentRaycast : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            if (!hit.collider.TryGetComponent<ItemCommon>(out var itemCommon))
+            if (!hit.collider.TryGetComponent<AttachObjectDevice>(out var attachObjectDevice))
             {
-                itemCommon = hit.collider.GetComponentInParent<ItemCommon>();
+                attachObjectDevice = hit.collider.GetComponentInParent<AttachObjectDevice>();
             }
-            if (itemCommon != null && hit.distance < closestDist)
+            if (attachObjectDevice != null && hit.distance < closestDist)
             {
                 closestHit = hit;
                 closestDist = hit.distance;
@@ -174,80 +174,80 @@ public class ComponentRaycast : MonoBehaviour
 
             if (closestValidHit.HasValue)
             {
-                if (!closestValidHit.Value.collider.TryGetComponent<ItemCommon>(out var itemCommon))
+                if (!closestValidHit.Value.collider.TryGetComponent<AttachObjectDevice>(out var attachObjectDevice))
                 {
-                    itemCommon = closestValidHit.Value.collider.GetComponentInParent<ItemCommon>();
+                    attachObjectDevice = closestValidHit.Value.collider.GetComponentInParent<AttachObjectDevice>();
                 }
-                SetDeviceObject(itemCommon.gameObject);
-                BaseInfo baseInfo = itemCommon.GetInfo();
+                SetDeviceObject(attachObjectDevice.gameObject);
+                DeviceInfo deviceInfo = attachObjectDevice.deviceInfo;
                 string newText = "";
                 string newTitle = "";
-                switch (baseInfo)
+                switch (deviceInfo)
                 {
-                    case CoolerInfo:
-                        var coolerInfo = baseInfo as CoolerInfo;
+                    case CoolerInfo2:
+                        var coolerInfo = deviceInfo as CoolerInfo2;
                         newText = @$"Тип комплектующего: Кулер
-Название: {baseInfo.Name}
+Название: {deviceInfo.Name}
 Поддержка сокетов: {arrayToString(coolerInfo.SupportSockets)}
 Лимит TDP: {coolerInfo.TDPLimit}";
-                        newTitle = $"{baseInfo.Name}";
+                        newTitle = $"{deviceInfo.Name}";
                         break;
-                    case CPUInfo:
-                        var cpuInfo = baseInfo as CPUInfo;
+                    case CPUInfo2:
+                        var cpuInfo = deviceInfo as CPUInfo2;
                         newText = @$"Тип комплектующего: Процессор
-Название: {baseInfo.Name}
+Название: {deviceInfo.Name}
 Производитель: {cpuInfo.CPUManufacturer}
 Модель: {cpuInfo.Model}
 Тип сокета: {cpuInfo.SocketType}
 Производительность: {cpuInfo.Performance}
 TDP: {cpuInfo.TDP}";
-                        newTitle = $"{baseInfo.Name}";
+                        newTitle = $"{deviceInfo.Name}";
                         break;
-                    case GPUInfo:
-                        var gpuInfo = baseInfo as GPUInfo;
+                    case GPUInfo2:
+                        var gpuInfo = deviceInfo as GPUInfo2;
                         newText = @$"Тип комплектующего: Видеокарта
-Название: {baseInfo.Name}
+Название: {deviceInfo.Name}
 Производитель: {gpuInfo.GPUManufacturer}
 Модель: {gpuInfo.Model}
 Объем памяти: {gpuInfo.MemoryAmountGB} ГБ
 Поддержка PCI-E: {gpuInfo.PCIESupport}
 Производительность: {gpuInfo.Performance}
 TDP: {gpuInfo.TDP}";
-                        newTitle = $"{baseInfo.Name}";
+                        newTitle = $"{deviceInfo.Name}";
                         break;
-                    case MotherboardInfo:
-                        var motherboardInfo = baseInfo as MotherboardInfo;
+                    case MotherboardInfo2:
+                        var motherboardInfo = deviceInfo as MotherboardInfo2;
                         newText = @$"Тип комплектующего: Материнская плата
-Название: {baseInfo.Name}
+Название: {deviceInfo.Name}
 Поддержка CPU: {motherboardInfo.CPUManufacturer}
 Тип сокета: {motherboardInfo.SocketType}
 Поддержка PCI-E: {motherboardInfo.PCIESupport}
 Тип памяти: {motherboardInfo.DDRType}";
-                        newTitle = $"{baseInfo.Name}";
+                        newTitle = $"{deviceInfo.Name}";
                         break;
-                    case RAMInfo:
-                        var ramInfo = baseInfo as RAMInfo;
+                    case RAMInfo2:
+                        var ramInfo = deviceInfo as RAMInfo2;
                         newText = @$"Тип комплектующего: Оперативная память
-Название: {baseInfo.Name}
+Название: {deviceInfo.Name}
 Тип памяти: {ramInfo.DDRType}
 Объем памяти: {ramInfo.MemoryAmountGB} ГБ
 Частота памяти: {ramInfo.FrequencyMhz} Мгц";
-                        newTitle = $"{baseInfo.Name}";
+                        newTitle = $"{deviceInfo.Name}";
                         break;
-                    case PowerSupplyInfo:
-                        var powerSupplyInfo = baseInfo as PowerSupplyInfo;
+                    case PowerSupplyInfo2:
+                        var powerSupplyInfo = deviceInfo as PowerSupplyInfo2;
                         newText = @$"Тип комплектующего: Блок питания
-Название: {baseInfo.Name}
+Название: {deviceInfo.Name}
 Максимальная мощность: {powerSupplyInfo.PowerSupplyMaxPower} Вт";
-                        newTitle = $"{baseInfo.Name}";
+                        newTitle = $"{deviceInfo.Name}";
                         break;
-                    case StorageDeviceInfo:
-                        var storageDeviceInfo = baseInfo as StorageDeviceInfo;
+                    case StorageDeviceInfo2:
+                        var storageDeviceInfo = deviceInfo as StorageDeviceInfo2;
                         newText = @$"Тип комплектующего: Накопитель данных
-Название: {baseInfo.Name}
+Название: {deviceInfo.Name}
 Тип накопителя: {storageDeviceInfo.StorageDeviceType}
 Объем памяти: {storageDeviceInfo.MemoryAmountGB} ГБ";
-                        newTitle = $"{baseInfo.Name}";
+                        newTitle = $"{deviceInfo.Name}";
                         break;
                 }
                 text.SetText(newText);

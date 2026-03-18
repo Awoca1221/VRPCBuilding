@@ -6,6 +6,7 @@ using System.Linq;
 
 public class ScriptTest : MonoBehaviour
 {
+    /*
     // Start is called before the first frame update
     void Start()
     {
@@ -24,4 +25,5 @@ public class ScriptTest : MonoBehaviour
             Debug.Log($"{kvp.Key}: {kvp.Value}");
         }
     }
+    */
 }

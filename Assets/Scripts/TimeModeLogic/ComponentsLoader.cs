@@ -4,15 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
+[RequireComponent(typeof(Renderer))]
 public class ComponentsLoader : MonoBehaviour
 {
-    private IReadOnlyDictionary<string, List<GameObject>> componentPrefabs;
+    private IReadOnlyDictionary<string, List<DeviceInfo>> componentPrefabs;
     private List<GameObject> spawnedObjs = new();
     public TaskManager taskManager;
     public CheckMultipleConnections ramCheck;
     public bool loadOnStart = true;
+
+    public UnityEvent onObjectsSpawned = null;
 
     void Start()
     {
@@ -20,7 +24,7 @@ public class ComponentsLoader : MonoBehaviour
     }
 
     // Спавн случайных компонентов в заданной области
-    private void SpawnRandomComponents()
+    private async void SpawnRandomComponents()
     {
         Renderer cubeRenderer = GetComponent<Renderer>();
         Vector3 spawnAreaCenter = cubeRenderer.bounds.center;
@@ -32,10 +36,10 @@ public class ComponentsLoader : MonoBehaviour
             if (category.Value.Count > 0)
             {
                 // Выбираем случайный префаб из категории
-                GameObject randomPrefab = category.Value[Random.Range(0, category.Value.Count)];
+                DeviceInfo randomPrefab = category.Value[Random.Range(0, category.Value.Count)];
                 
                 // Создаем экземпляр префаба
-                Instantiate(randomPrefab, currentPosition, Quaternion.identity);
+                await ComponentsService.SpawnComponent(randomPrefab.Prefab, currentPosition);
 
                 currentPosition.x += spacing;
                 if (currentPosition.x > spawnAreaCenter.x + SpawnAreaSize.x / 2)
@@ -46,35 +50,35 @@ public class ComponentsLoader : MonoBehaviour
             }
         }
     }
-
-    public void SpawnFullBuildWrapper()
+    /*
+    public async void SpawnFullBuildWrapper()
     {
-        StartCoroutine(SpawnFullBuild());
+        //StartCoroutine(SpawnFullBuild());
+
     }
+    */
 
-    private IEnumerator SpawnFullBuild()
+    public async void SpawnFullBuild()
     {
-        Dictionary<GameObject, string> build = new();
-        List<GameObject> uncomp = new();
+        Dictionary<DeviceInfo, string> build = new();
+        List<DeviceInfo> uncomp = new();
 
         // Берём за основу случайную материнскую плату
-        GameObject motherboard = componentPrefabs["Motherboard"][Random.Range(0, componentPrefabs["Motherboard"].Count)];
-        MotherboardInfo motherboardInfo = motherboard.GetComponent<ItemCommon>().GetMotherboardInfo();
+        MotherboardInfo2 motherboard = (MotherboardInfo2)componentPrefabs["Motherboard"][Random.Range(0, componentPrefabs["Motherboard"].Count)];
         build.Add(motherboard, "5");
         // uint TDPLimit = 0;
         // uint PowerSupplyMaxPower = 0;
-        List<GameObject> compatibleObjs = new();
-        List<GameObject> uncompatibleObjs = new();
+        List<DeviceInfo> compatibleObjs = new();
+        List<DeviceInfo> uncompatibleObjs = new();
 
         // Выбираем процессор
         // compatibleObjs = componentPrefabs["CPU"].Where(c => c.GetComponent<ItemCommon>().GetCPUInfo().SocketType == motherboardInfo.SocketType).ToList();
-        foreach (GameObject obj in componentPrefabs["CPU"])
+        foreach (CPUInfo2 info in componentPrefabs["CPU"].Cast<CPUInfo2>())
         {
-            CPUInfo info = obj.GetComponent<ItemCommon>().GetCPUInfo();
-            if (info.SocketType == motherboardInfo.SocketType)
-                compatibleObjs.Add(obj);
+            if (info.SocketType == motherboard.SocketType)
+                compatibleObjs.Add(info);
             else
-                uncompatibleObjs.Add(obj);
+                uncompatibleObjs.Add(info);
         }
 
         if (compatibleObjs.Count > 0)
@@ -82,15 +86,16 @@ public class ComponentsLoader : MonoBehaviour
         if (uncompatibleObjs.Count > 0)
             uncomp.Add(uncompatibleObjs[Random.Range(0, uncompatibleObjs.Count)]);
         compatibleObjs.Clear();
+        uncompatibleObjs.Clear();
 
         // Выбираем оперативную память
-        compatibleObjs = componentPrefabs["RAM"].Where(c => c.GetComponent<ItemCommon>().GetRAMInfo().DDRType == motherboardInfo.DDRType).ToList();
+        compatibleObjs.AddRange(componentPrefabs["RAM"].Cast<RAMInfo2>().Where(c => c.DDRType == motherboard.DDRType).ToList());
         if (compatibleObjs.Count > 0)
             build.Add(compatibleObjs[Random.Range(0, compatibleObjs.Count)], "ram");
         compatibleObjs.Clear();
         
         // Выбираем кулер
-        compatibleObjs = componentPrefabs["Cooler"].Where(c => c.GetComponent<ItemCommon>().GetCoolerInfo().SupportSockets.Contains(motherboardInfo.SocketType)).ToList();
+        compatibleObjs.AddRange(componentPrefabs["Cooler"].Cast<CoolerInfo2>().Where(c => c.SupportSockets.Contains(motherboard.SocketType)).ToList());
         if (compatibleObjs.Count > 0)
             build.Add(compatibleObjs[Random.Range(0, compatibleObjs.Count)], "3");
         compatibleObjs.Clear();
@@ -117,9 +122,9 @@ public class ComponentsLoader : MonoBehaviour
             // Добавление несовместимых частей (пока только процессор)
             if (uncomp.Count != 0 && Random.Range(0f, 1f) < 0.25f)
             {
-                GameObject uncompObj = uncomp[0];
-                createdObj = Instantiate(uncompObj, currentPosition, Quaternion.identity);
-                yield return null;
+                DeviceInfo uncompObj = uncomp[0];
+                createdObj = await ComponentsService.SpawnComponent(uncompObj.Prefab, currentPosition);
+                //yield return null;
                 spawnedObjs.Add(createdObj);
                 uncomp.Remove(uncompObj);
                 currentPosition.x += spacing;
@@ -136,8 +141,8 @@ public class ComponentsLoader : MonoBehaviour
                 ramCheck.Objects.Clear();
                 for (int i = 0; i < 2; i++)
                 {
-                    createdObj = Instantiate(component.Key, currentPosition, Quaternion.identity);
-                    yield return null;
+                    createdObj = await ComponentsService.SpawnComponent(component.Key.Prefab, currentPosition);
+                    //yield return null;
                     createdObj.GetComponent<AttachObjectDevice>().MultipleConnections = ramCheck;
                     ramCheck.Objects.Add(createdObj);
                     spawnedObjs.Add(createdObj);
@@ -153,8 +158,8 @@ public class ComponentsLoader : MonoBehaviour
             }
             else if (component.Value != "")
             {
-                createdObj = Instantiate(component.Key, currentPosition, Quaternion.identity);
-                yield return null;
+                createdObj = await ComponentsService.SpawnComponent(component.Key.Prefab, currentPosition);
+                //yield return null;
                 createdObj.GetComponent<AttachObjectDevice>().OnConnectEvents.AddListener(() => {taskManager.CompleteTask(component.Value);});
                 createdObj.GetComponent<AttachObjectDevice>().OnDisconnectEvents.AddListener(() => {taskManager.UncompleteTask(component.Value);});
                 spawnedObjs.Add(createdObj);
@@ -167,6 +172,8 @@ public class ComponentsLoader : MonoBehaviour
                 }
             }
         }
+
+        onObjectsSpawned?.Invoke();
     }
 
     public void UnloadBuild()

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21893dc7c14f294d850ed762c1d6de2, type: 3}
+  m_Name: Kingston Hyperx Predator
+  m_EditorClassIdentifier: 
+  <Prefab>k__BackingField:
+    m_AssetGUID: 29272c0fa7fe73f469979936e5011ab3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <Name>k__BackingField: Kingston Hyperx Predator
+  <DDRType>k__BackingField: 2
+  <MemoryAmountGB>k__BackingField: 16
+  <FrequencyMhz>k__BackingField: 3200

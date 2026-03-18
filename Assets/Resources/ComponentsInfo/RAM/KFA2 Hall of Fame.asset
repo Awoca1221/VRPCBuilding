@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21893dc7c14f294d850ed762c1d6de2, type: 3}
+  m_Name: KFA2 Hall of Fame
+  m_EditorClassIdentifier: 
+  <Prefab>k__BackingField:
+    m_AssetGUID: 3adef00dc8d445147a503451594e050a
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <Name>k__BackingField: KFA2 Hall of Fame
+  <DDRType>k__BackingField: 2
+  <MemoryAmountGB>k__BackingField: 8
+  <FrequencyMhz>k__BackingField: 3600

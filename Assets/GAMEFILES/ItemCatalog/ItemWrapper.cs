@@ -14,7 +14,7 @@ public class ItemWrapper : MonoBehaviour
     public UnityEngine.UI.Button button;
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemDescription;
-    private GameObject itemObject = null;
+    private DeviceInfo itemInfo = null;
     public Transform spawnPoint = null;
     //public Transform showcase = null;
     //public GameObject showcaseObjRef = null;
@@ -38,21 +38,21 @@ public class ItemWrapper : MonoBehaviour
 
     private void Start()
     {
-        if (itemObject == null)
+        if (itemInfo == null)
             return;
-        ItemCommon itemCommon = itemObject.GetComponent<ItemCommon>();
+        /*ItemCommon itemCommon = itemInfo.GetComponent<ItemCommon>();
         if (itemCommon == null)
         {
             Debug.LogError("gameObject has no component ItemCommon which is required in Item Prefab");
-            itemObject = null;
+            itemInfo = null;
             return;
-        }
+        }*/
 
-        itemName.text = itemCommon.name;
-        switch (itemCommon.ComponentType)
+        itemName.text = itemInfo.Name;
+        switch (itemInfo.ComponentType)
         {
             case ComponentType.CPU:
-                var info = itemCommon.GetCPUInfo();
+                CPUInfo2 info = (CPUInfo2)itemInfo;
                 itemDescription.text = $"Модель: {info.Model}, Сокет: {info.SocketType}";
                 break;
             //case ComponentType.Cooler:
@@ -69,23 +69,23 @@ public class ItemWrapper : MonoBehaviour
             //    break;
             default:
                 itemDescription.text = "";
-                foreach (var kvp in itemCommon.GetInfo().ToDict()) 
+                foreach (var kvp in itemInfo.ToDict()) 
                 {
                     itemDescription.text += $"{kvp.Key}: {kvp.Value}, ";
                 }
                 break;
         }
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(() =>
+        button.onClick.AddListener(async () =>
         {
-            Instantiate(itemObject, spawnPoint.position, Quaternion.identity);
+            await ComponentsService.SpawnComponent(itemInfo.Prefab, spawnPoint.position);
         }
         );
     }
 
-    public void ApplyComponent(GameObject cmp)
+    public void ApplyComponent(DeviceInfo cmp)
     {
-        itemObject = cmp;
+        itemInfo = cmp;
         gameObject.SetActive(true);
         Start();
     }

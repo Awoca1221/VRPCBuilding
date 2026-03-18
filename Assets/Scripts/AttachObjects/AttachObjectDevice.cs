@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
-[RequireComponent(typeof(ItemCommon))]
 public class AttachObjectDevice : AttachObject
 {
     public enum Status
@@ -19,8 +18,10 @@ public class AttachObjectDevice : AttachObject
     public Status DeviceStatus { get; private set; } = Status.NotInserted;
     public PCBuildManager PCBuildRef { get; private set; } = null;
     [Space]
+    [Tooltip("Ссылка на информацию об устройстве (обязательна)")]
+    public DeviceInfo deviceInfo;
     [Tooltip("Устройство для установки объекта при появлении объекта (не conPoint)")]
-    public GameObject DeviceAttachToOnStart;
+    public GameObject deviceAttachToOnStart;
     [Tooltip("ID слота для установки объекта при появлении объекта (0 если неважно)")]
     public uint slotIDAttachToOnStart = 0;
 
@@ -30,7 +31,6 @@ public class AttachObjectDevice : AttachObject
     private ConnectionPoint[] conPoints;
     private SetupPoint[] setupPoints;
     private bool IsAnySetupPointsSecured => setupPoints.Any(s => s.IsSecured);
-    private ItemCommon objectInfo;
     [field: NonSerialized] public GameObject cpuConnected;
     private HashSet<GameObject> _connectedParts = new();
 
@@ -45,12 +45,11 @@ public class AttachObjectDevice : AttachObject
         conPoints = GetComponentsInChildren<ConnectionPoint>();
         setupPoints = GetComponentsInChildren<SetupPoint>();
         foreach (var point in setupPoints) point.onStatusChanged += OnPointsChangeStatus;
-        objectInfo = GetComponentInParent<ItemCommon>();
         interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
 
-        if (DeviceAttachToOnStart != null)
+        if (deviceAttachToOnStart != null)
         {
-            ForceAttach(DeviceAttachToOnStart, slotIDAttachToOnStart);
+            ForceAttach(deviceAttachToOnStart, slotIDAttachToOnStart);
         }
     }
 
@@ -235,10 +234,10 @@ public class AttachObjectDevice : AttachObject
             }
             if (checkCollider.TryGetComponent<ConnectionPoint>(out var conPoint))
             {
-                if (DeviceAttachToOnStart != null)
+                if (deviceAttachToOnStart != null)
                 {
                     conPoint.OnConnect(gameObject, false);
-                    DeviceAttachToOnStart = null;
+                    deviceAttachToOnStart = null;
                 }
                 else
                 {
@@ -262,11 +261,11 @@ public class AttachObjectDevice : AttachObject
                 OnConnectEvents?.Invoke();
                 return;
             }
-            if (objectInfo.ComponentType == ComponentType.CPU)
+            if (deviceInfo.ComponentType == ComponentType.CPU)
             {
                 connectTo.cpuConnected = gameObject;
             }
-            if (objectInfo.ComponentType == ComponentType.Cooler && connectTo.cpuConnected)
+            if (deviceInfo.ComponentType == ComponentType.Cooler && connectTo.cpuConnected)
             {
                 connectTo.cpuConnected.GetComponent<XRGrabInteractable>().enabled = false;
             }
@@ -304,11 +303,11 @@ public class AttachObjectDevice : AttachObject
                 OnDisconnectEvents?.Invoke();
                 return;
             }
-            if (objectInfo.ComponentType == ComponentType.CPU)
+            if (deviceInfo.ComponentType == ComponentType.CPU)
             {
                 connectTo.cpuConnected = null;
             }
-            if (objectInfo.ComponentType == ComponentType.Cooler && connectTo.cpuConnected)
+            if (deviceInfo.ComponentType == ComponentType.Cooler && connectTo.cpuConnected)
             {
                 connectTo.cpuConnected.GetComponent<XRGrabInteractable>().enabled = true;
             }
@@ -364,33 +363,31 @@ public class AttachObjectDevice : AttachObject
     private void DoCompatibleTest(Collider collider)
     {
         checkCollider = null;
-        ItemCommon colliderInfo = collider.gameObject.GetComponentInParent<ItemCommon>(); // место, где хранится информация об комплектующем, к которому мы подключаемся
+        DeviceInfo colliderInfo = collider.gameObject.GetComponentInParent<AttachObjectDevice>().deviceInfo; // место, где хранится информация об комплектующем, к которому мы подключаемся
         if (colliderInfo == null)
         {
             checkCollider = collider;
             return;
         }
 
-        switch (objectInfo.ComponentType) //тип комплектующего, который мы подключаем
+        switch (deviceInfo) //тип комплектующего, который мы подключаем
         {
-            case ComponentType.NotSelected:
-                return;
-            case ComponentType.CPU:
-                if (objectInfo.GetCPUInfo().SocketType != colliderInfo.GetMotherboardInfo().SocketType) // берём соответствующую информацию об объектах и сравниваем
+            case CPUInfo2:
+                if (((CPUInfo2)deviceInfo).SocketType != ((MotherboardInfo2)colliderInfo).SocketType) // берём соответствующую информацию об объектах и сравниваем
                 {
                     ChangeHighlightColor(wrong); // показываем знак несовместимости
                     return;
                 }
                 break;
-            case ComponentType.RAM:
-                if (objectInfo.GetRAMInfo().DDRType != colliderInfo.GetMotherboardInfo().DDRType)
+            case RAMInfo2:
+                if (((RAMInfo2)deviceInfo).DDRType != ((MotherboardInfo2)colliderInfo).DDRType)
                 {
                     ChangeHighlightColor(wrong);
                     return;
                 }
                 break;
-            case ComponentType.Cooler:
-                if (!objectInfo.GetCoolerInfo().SupportSockets.Contains(colliderInfo.GetMotherboardInfo().SocketType))
+            case CoolerInfo2:
+                if (!((CoolerInfo2)deviceInfo).SupportSockets.Contains(((MotherboardInfo2)colliderInfo).SocketType))
                 {
                     ChangeHighlightColor(wrong);
                     return;
@@ -417,7 +414,6 @@ public class AttachObjectDevice : AttachObject
         {
             return;
         }
-
         StartHighlight(collider);
         DoCompatibleTest(collider);
     }
@@ -427,7 +423,6 @@ public class AttachObjectDevice : AttachObject
     {
         if (_currentColliderForHighlight == null || _currentMatForHightlight == wrong)
             return;
-        
         if (objIsAttached || interactor == null)
         {
             if (_currentMatForHightlight != invis)

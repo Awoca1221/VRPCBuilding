@@ -119,6 +119,7 @@ public abstract class AttachObject : MonoBehaviour
         
         _highlightParent.transform.SetParent(attachPoint.transform);
         _highlightParent.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        _highlightParent.transform.SetParent(null);
         _highlightParent.transform.localScale = Vector3.one;
         
         _highlightParent.SetActive(false);
@@ -129,18 +130,11 @@ public abstract class AttachObject : MonoBehaviour
 
             GameObject newObj = new(meshFilter.name + "_highlight");
 
-            Vector3 worldScale = meshFilter.transform.lossyScale;
+            newObj.transform.localScale = meshFilter.transform.lossyScale;
             newObj.transform.SetParent(_highlightParent.transform);
             newObj.transform.SetPositionAndRotation(
                 meshFilter.transform.position, 
                 meshFilter.transform.rotation
-            );
-
-            Vector3 parentScale = _highlightParent.transform.lossyScale;
-            newObj.transform.localScale = new Vector3(
-                worldScale.x / parentScale.x,
-                worldScale.y / parentScale.y,
-                worldScale.z / parentScale.z
             );
 
             MeshFilter newFilter = newObj.AddComponent<MeshFilter>();
@@ -154,9 +148,8 @@ public abstract class AttachObject : MonoBehaviour
                 materials[i] = invis;
             }
             newRenderer.materials = materials;
-            
-            yield return null;
         }
+        _highlightParent.transform.SetParent(gameObject.transform);
     }
 
     protected void StartHighlight(Collider collider)

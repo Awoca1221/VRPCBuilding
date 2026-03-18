@@ -97,8 +97,9 @@ public class BuildStatusView : MonoBehaviour
         IReadOnlyCollection<GameObject> devices = PCBuild.ConnectedDevices;
         foreach (var device in devices)
         {
-            AttachObjectDevice.Status deviceStatus = device.GetComponent<AttachObjectDevice>().DeviceStatus;
-            ComponentType deviceType = device.GetComponent<ItemCommon>().ComponentType;
+            var attachObject = device.GetComponent<AttachObjectDevice>();
+            AttachObjectDevice.Status deviceStatus = attachObject.DeviceStatus;
+            ComponentType deviceType = attachObject.deviceInfo.ComponentType;
             if (deviceStatus == AttachObjectDevice.Status.InsertedLoose)
             {
                 AddElement(ErrorType.InsertedLoose, deviceType);
