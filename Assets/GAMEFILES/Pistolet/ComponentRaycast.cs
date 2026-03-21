@@ -64,11 +64,17 @@ public class ComponentRaycast : MonoBehaviour
     public void EnableDeleteButton()
     {
         deleteButton.gameObject.SetActive(true);
+        deleteButton.SetIsDisabled(true);
+        text.SetText(defaultText);
+        title.SetText(defaultTitle);
     }
 
     public void DisableDeleteButton()
     {
         deleteButton.gameObject.SetActive(false);
+        deleteButton.SetIsDisabled(true);
+        text.SetText(defaultText);
+        title.SetText(defaultTitle);
     }
 
     private void OnDestroy()
@@ -150,20 +156,25 @@ public class ComponentRaycast : MonoBehaviour
     {
         deviceObject = device;
         if (deleteButton.enabled)
-            deleteButton.SetIsDisabled(false);
+        {
+            AttachObjectDevice deviceInfo = deviceObject.GetComponent<AttachObjectDevice>();
+            if (!deviceInfo.objIsAttached && !deviceInfo.IsAnyDeviceIsAttached)
+            {
+                deleteButton.SetIsDisabled(false);
+            }
+        }
+        //if (deleteButton.enabled)
+        //    deleteButton.SetIsDisabled(false);
     }
 
     public void DeleteObject()
     {
         if (deviceObject == null) return;
 
-        AttachObjectDevice deviceInfo = deviceObject.GetComponent<AttachObjectDevice>();
-        if (!deviceInfo.objIsAttached && !deviceInfo.IsAnyDeviceIsAttached)
-        {
-            Destroy(deviceObject);
-            text.SetText(defaultText);
-            title.SetText(defaultTitle);
-        }
+        deleteButton.SetIsDisabled(true);
+        Destroy(deviceObject);
+        text.SetText(defaultText);
+        title.SetText(defaultTitle);
     }
 
     private void FireRay(InputAction.CallbackContext context)

@@ -26,6 +26,26 @@ public class AttachObjectCable : AttachObject
             }
     }
 
+    public void UpdateIsPowered()
+    {
+        if (secondSocket.IsPowered)
+        {
+            IsPowered = true;
+            if (objIsAttached)
+            {
+                checkCollider.GetComponent<SetupPoint>().SetSecured();
+            }
+        }
+        else if (!checkCollider.transform.parent.CompareTag("Power supply"))
+        {
+            IsPowered = false;
+            if (objIsAttached)
+            {
+                checkCollider.GetComponent<SetupPoint>().SetUnsecured();
+            }
+        }
+    }
+
     protected override void TryAttach()
     {   
         if (checkCollider != null)
@@ -52,6 +72,9 @@ public class AttachObjectCable : AttachObject
             if (secondSocket.IsPowered)
             {
                 checkCollider.GetComponent<SetupPoint>().SetSecured();
+            } else if (IsPowered)
+            {
+                secondSocket.UpdateIsPowered();
             }
 
             if (interactor != null)
@@ -65,10 +88,16 @@ public class AttachObjectCable : AttachObject
     {
         if (objIsAttached)
         {
-            if (checkCollider != null) checkCollider.tag = tag;
             Destroy(attachPoint.GetComponent<FixedJoint>());
             objIsAttached = false;
             IsPowered = false;
+            if (checkCollider == null)
+            {
+                OnDisconnectEvents?.Invoke();
+                return;
+            }
+            checkCollider.tag = tag;
+            secondSocket.UpdateIsPowered();
             checkCollider.GetComponent<SetupPoint>().SetUnsecured();
             OnDisconnectEvents?.Invoke();
         }

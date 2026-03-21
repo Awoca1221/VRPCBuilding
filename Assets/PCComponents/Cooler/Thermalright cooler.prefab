@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3890988304228061238}
   m_Layer: 0
   m_Name: Thermalright cooler
-  m_TagString: Untagged
+  m_TagString: Cooler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

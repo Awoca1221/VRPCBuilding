@@ -173,6 +173,7 @@ public class ScrewdriverManager : MonoBehaviour
     private void SetInUseState()
     {
         rb.constraints = RigidbodyConstraints.FreezeAll & ~RigidbodyConstraints.FreezeRotationX;
+        gameObject.layer = 6;
         
         screw.SetParent(null);
         transform.SetParent(screw);
@@ -214,6 +215,7 @@ public class ScrewdriverManager : MonoBehaviour
     {
         totalProgress = 0f;
         rb.constraints = RigidbodyConstraints.None;
+        gameObject.layer = 0;
         screw.GetComponent<MeshRenderer>().enabled = false;
         UIProgress.GetComponent<Canvas>().enabled = false;
         UIProgress.SetParent(transform);

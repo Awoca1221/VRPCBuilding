@@ -13,11 +13,11 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [Tooltip("Заполнение прогресса (работает только при выставлении targetTime)")]
     public Image fillImage;
     public Image backgroundImage;
-    public bool setDisabledAtStart = false;
+    [field: SerializeField]
+    public bool IsDisabled { get; private set; } = false;
     public UnityEvent onFinishEvent;
     public bool IsHolding { get; private set; } = false;
 
-    private bool isDisabled = false;
     private bool IsProgressButton => targetTime > 0;
     private float holdTime = 0;
 
@@ -32,10 +32,9 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (backgroundImage == null) return;
 
-        if (setDisabledAtStart)
+        if (IsDisabled)
         {
             SetImageAlpha(backgroundImage, 0.5f);
-            isDisabled = true;
         }
         else
         {
@@ -49,18 +48,18 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (status)
         {
             SetImageAlpha(backgroundImage, 0.5f);
-            isDisabled = status;
+            IsDisabled = status;
         }
         else
         {
             SetImageAlpha(backgroundImage, 1f);
-            isDisabled = status;
+            IsDisabled = status;
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (isDisabled) return;
+        if (IsDisabled) return;
 
         IsHolding = true;
         if (IsProgressButton)
@@ -90,7 +89,7 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 fillImage.fillAmount = fillAmount;
                 if (holdTime >= targetTime)
                 {
-                    onFinishEvent.Invoke();
+                    onFinishEvent?.Invoke();
                     IsHolding = false;
                     fillImage.fillAmount = 0;
                 }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NaughtyAttributes.Test;
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -35,7 +35,10 @@ public class PCBuildManager : MonoBehaviour
     }
     public Status PCStatus => currentStatus;
     public IReadOnlyCollection<GameObject> ConnectedDevices => connectedDevices;
+    public int CountConnectedDevices => connectedDevices.Count();
     public UnityAction OnOverallStatusUpdated;
+    [Tooltip("Область для проверки возможности спавна билда")]
+    public Collider testEmptySpace;
 
     private class SpawnObjInfo
     {
@@ -59,7 +62,27 @@ public class PCBuildManager : MonoBehaviour
         //Debug.Log($"Отключено устройство: {device.name}. Всего: {connectedDevices.Count}");
     }
 
-    private void UpdateOverallStatus()
+    public bool IsSpawnAreaClear()
+    {
+        if (testEmptySpace == null)
+        {
+            Debug.Log("testEmptySpace не выставлен");
+            return true;
+        }
+
+        Collider[] hitColliders = Physics.OverlapBox(
+            testEmptySpace.transform.position,
+            testEmptySpace.bounds.extents,
+            testEmptySpace.transform.rotation,
+            Physics.AllLayers,
+            QueryTriggerInteraction.Ignore
+        );
+
+        // если есть хоть один коллайдер, который не дочерний к этому объекту
+        return !hitColliders.Any(col => !col.transform.IsChildOf(transform));
+    }
+
+    public void UpdateOverallStatus()
     {
         var requiredTypes = Enum.GetValues(typeof(ComponentType))
             .Cast<ComponentType>()
@@ -134,15 +157,18 @@ public class PCBuildManager : MonoBehaviour
             newBuild.devices.Add(deviceSave);
         }
 
-        var savedData = SaveService.Load<PlayerBuildsList>("player_builds");
+        newBuild.devices = newBuild.devices
+        .OrderBy(d => d.type)
+        .ToList();
+
+        var savedData = SaveService.Load<PlayerBuildsList>("player_builds") ?? new();
         savedData.builds.Add(newBuild);
         SaveService.Save("player_builds", savedData);
     }
 
-    public async void SpawnBuild(Build build, UnityEvent callback = null)
+    public async void SpawnBuild(Build build, UnityAction callback = null)
     {
         if (connectedDevices.Count != 0) return;
-
         var componentPrefabs = ComponentsService.Instance.Components;
         Dictionary<string, List<SpawnObjInfo>> instantiatedObjs = new();
         
@@ -154,12 +180,17 @@ public class PCBuildManager : MonoBehaviour
             if (foundObject != null)
             {   
                 SpawnObjInfo objInfo = new(){
-                    obj = await ComponentsService.SpawnComponent(foundObject.Prefab, Vector3.zero), slotID = device.slotID
+                    obj = await ComponentsService.SpawnComponent(foundObject.Prefab, Vector3.down), slotID = device.slotID
                 };
-                instantiatedObjs[device.type].Add(objInfo);
+                if (!instantiatedObjs.TryGetValue(device.type, out var list))
+                {
+                    list = new List<SpawnObjInfo>();
+                    instantiatedObjs[device.type] = list;
+                }
+
+                list.Add(objInfo);
             }
         }
-
         instantiatedObjs["PowerSupply"][0].obj.GetComponent<AttachObjectDevice>().ForceAttach(gameObject);
         instantiatedObjs.Remove("PowerSupply");
         instantiatedObjs["Motherboard"][0].obj.GetComponent<AttachObjectDevice>().ForceAttach(gameObject);
@@ -189,6 +220,7 @@ public class PCBuildManager : MonoBehaviour
                     break;
             }
         }
+        callback?.Invoke();
     }
 
     public uint GetCPUPerformance()

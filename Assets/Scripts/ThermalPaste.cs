@@ -39,7 +39,7 @@ public class ThermalPaste : MonoBehaviour
         colliders = Physics.OverlapSphere(needleOrCloth.position, 0.05f);
         for (int i = 0; i < colliders.Length; i++)
         {
-            if (colliders[i].gameObject.CompareTag("CPU") || colliders[i].gameObject.CompareTag("+01.001.0001.0001"))
+            if (colliders[i].gameObject.GetComponent<ChangeMaterial>() != null)
             {
                 obj = colliders[i].gameObject;
                 changeScript = obj.GetComponentInParent<ChangeMaterial>();

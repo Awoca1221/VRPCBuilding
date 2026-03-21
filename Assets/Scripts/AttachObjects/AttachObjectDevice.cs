@@ -9,6 +9,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class AttachObjectDevice : AttachObject
 {
+    private static WaitForSeconds _waitForSeconds0_04 = new WaitForSeconds(0.04f);
+
     public enum Status
     {
         NotInserted,     // Не вставлен
@@ -50,6 +52,7 @@ public class AttachObjectDevice : AttachObject
         if (deviceAttachToOnStart != null)
         {
             ForceAttach(deviceAttachToOnStart, slotIDAttachToOnStart);
+            ForceSetup();
         }
     }
 
@@ -114,6 +117,59 @@ public class AttachObjectDevice : AttachObject
         }
     }
 
+    private IEnumerator DisableCollision()
+    {
+        Collider[] colliders = GetComponents<Collider>().Concat(GetComponentsInChildren<Collider>()).ToArray();
+        
+        foreach (var collider in colliders)
+        {
+            if (!collider.isTrigger)
+            {
+                collider.enabled = false;
+            }
+        }
+        yield return _waitForSeconds0_04;
+        foreach (var collider in colliders)
+        {
+            if (!collider.isTrigger)
+            {
+                collider.enabled = true;
+            }
+        }
+    }
+
+    private void TeleportToAttachPosition(Transform conPoint)
+    {
+        if (objIsAttached) return;
+        StartCoroutine(DisableCollision());
+        // Сохранение прошлой иерархии и смена на новую
+        Dictionary<GameObject, Transform> deviceParents = new();
+        foreach (var point in conPoints)
+        {
+            if (point.ConnectedDevice != null)
+            {
+                deviceParents[point.ConnectedDevice] = point.ConnectedDevice.transform.parent;
+            }
+        }
+        Transform oldPlace = transform.parent;
+        attachPoint.transform.SetParent(conPoint);
+        transform.SetParent(attachPoint.transform);
+
+        // Сдвиг объекта на место подключения
+        attachPoint.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+        // Возврат к прошлой иерархии
+        transform.SetParent(oldPlace);
+        attachPoint.transform.SetParent(transform);
+        foreach (var point in conPoints)
+        {
+            if (point.ConnectedDevice != null)
+            {
+                point.ConnectedDevice.transform.SetParent(deviceParents[point.ConnectedDevice]);
+            }
+        }
+    }
+
     // Телепортирует объект к месту подключения и пытается подключить объект
     public void ForceAttach(GameObject device, uint slotID = 0)
     {
@@ -136,19 +192,8 @@ public class AttachObjectDevice : AttachObject
             }
         }
         if (correctPoint == null) return;
-
         Collider conPointCol = correctPoint.GetComponent<Collider>();
-        // Сохранение прошлой иерархии и смена на новую
-        Transform oldPlace = transform.parent;
-        attachPoint.transform.SetParent(conPointCol.gameObject.transform);
-        transform.SetParent(attachPoint.transform);
-
-        // Сдвиг объекта на место подключения
-        attachPoint.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-
-        // Возврат к прошлой иерархии
-        transform.SetParent(oldPlace);
-        attachPoint.transform.SetParent(transform);
+        TeleportToAttachPosition(conPointCol.transform);
 
         DoCompatibleTest(conPointCol);
         TryAttach();
@@ -196,17 +241,10 @@ public class AttachObjectDevice : AttachObject
     {
         if (checkCollider != null && Quaternion.Angle(attachPoint.transform.rotation, checkCollider.gameObject.transform.rotation) <= 40)
         {
-            // Сохранение прошлой иерархии и смена на новую
-            Transform oldPlace = transform.parent;
-            attachPoint.transform.SetParent(checkCollider.gameObject.transform);
-            transform.SetParent(attachPoint.transform);
-
-            // Сдвиг объекта на место подключения
-            attachPoint.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-
-            // Возврат к прошлой иерархии
-            transform.SetParent(oldPlace);
-            attachPoint.transform.SetParent(transform);
+            if (interactor != null)
+                interactionManager.SelectExit(interactor, interactable);
+            
+            TeleportToAttachPosition(checkCollider.transform);
 
             // Скрепление объекта с разъёмом через FixedJoint
             transform.AddComponent<FixedJoint>();
@@ -222,8 +260,6 @@ public class AttachObjectDevice : AttachObject
                 DeviceStatus = Status.InsertedLoose;
             }
             objIsAttached = true;
-            if (interactor != null)
-                interactionManager.SelectExit(interactor, interactable);
             
             // Необходимо для отключения столкновений коллайдеров
             AddConnectedPart(checkCollider.transform.parent.GameObject());
@@ -278,22 +314,30 @@ public class AttachObjectDevice : AttachObject
     {
         if (objIsAttached && !IsAnySetupPointsSecured)
         {
-            if (checkCollider != null) checkCollider.tag = tag;
             Destroy(GetComponent<FixedJoint>());
             DeviceStatus = Status.NotInserted;
             objIsAttached = false;
-
-            // Необходимо для включения столкновений коллайдеров
-            RemoveConnectedPart(checkCollider.transform.parent.GameObject());
+            SetPCBuildRef(null);
 
             foreach (var point in setupPoints)
             {
                 point.SetUnavailable();
             }
+
+            if (checkCollider == null)
+            {
+                OnDisconnectEvents?.Invoke();
+                return;
+            }
+
+            checkCollider.tag = tag;
+
+            // Необходимо для включения столкновений коллайдеров
+            RemoveConnectedPart(checkCollider.transform.parent.GameObject());
+
             if (checkCollider.TryGetComponent<ConnectionPoint>(out var conPoint))
             {
                 conPoint.OnDisconnect();
-                SetPCBuildRef(null);
             }
 
             // Необходимо для разблокировки процессора при отключении кулера
@@ -322,6 +366,7 @@ public class AttachObjectDevice : AttachObject
         {
             PCBuildRef = refObj;
             PCBuildRef.OnDeviceConnected(gameObject);
+            OnSecuredEvents.AddListener(PCBuildRef.UpdateOverallStatus);
             foreach (var point in conPoints)
             {
                 if (point.ConnectedDevice != null)
@@ -333,6 +378,7 @@ public class AttachObjectDevice : AttachObject
         else if (PCBuildRef != null)
         {
             PCBuildRef.OnDeviceDisconnected(gameObject);
+            OnSecuredEvents.RemoveListener(PCBuildRef.UpdateOverallStatus);
             PCBuildRef = null;
             foreach (var point in conPoints)
             {
@@ -349,12 +395,12 @@ public class AttachObjectDevice : AttachObject
         Destroy(_highlightParent);
         if (objIsAttached)
         {
-            TryUnattach();
+            ForceUnattach();
             foreach (var point in conPoints)
             {
                 if (point.ConnectedDevice != null)
                 {
-                    point.ConnectedDevice.GetComponent<AttachObject>().TryUnattach();
+                    point.ConnectedDevice.GetComponent<AttachObjectDevice>().ForceUnattach();
                 }
             }
         }
@@ -363,12 +409,13 @@ public class AttachObjectDevice : AttachObject
     private void DoCompatibleTest(Collider collider)
     {
         checkCollider = null;
-        DeviceInfo colliderInfo = collider.gameObject.GetComponentInParent<AttachObjectDevice>().deviceInfo; // место, где хранится информация об комплектующем, к которому мы подключаемся
-        if (colliderInfo == null)
+        AttachObjectDevice attachObj = collider.gameObject.GetComponentInParent<AttachObjectDevice>(); // место, где хранится информация об комплектующем, к которому мы подключаемся
+        if (attachObj == null)
         {
             checkCollider = collider;
             return;
         }
+        DeviceInfo colliderInfo = attachObj.deviceInfo;
 
         switch (deviceInfo) //тип комплектующего, который мы подключаем
         {

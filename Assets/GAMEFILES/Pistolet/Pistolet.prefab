@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 4769152537259748192}
   - component: {fileID: 1501852095490768757}
   - component: {fileID: 2992284894293314362}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: DeleteButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ MonoBehaviour:
   targetTime: 0.6
   fillImage: {fileID: 8223661500179569766}
   backgroundImage: {fileID: 1501852095490768757}
-  setDisabledAtStart: 1
+  <IsDisabled>k__BackingField: 1
   onFinishEvent:
     m_PersistentCalls:
       m_Calls:
@@ -528,7 +528,7 @@ GameObject:
   - component: {fileID: 4667930345983987644}
   - component: {fileID: 9141275703073181109}
   - component: {fileID: 4440791865551731979}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,7 +662,7 @@ GameObject:
   - component: {fileID: 1396346262071569895}
   - component: {fileID: 5951357098697244956}
   - component: {fileID: 8223661500179569766}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: DeleteProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 6631832134148677529}
   - component: {fileID: 677721595967435690}
   - component: {fileID: 8981151948956201223}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1522,7 +1522,7 @@ GameObject:
   - component: {fileID: 1071546573092565610}
   - component: {fileID: 2764739212568106507}
   - component: {fileID: 2071513742696571993}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: DeleteImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1683,7 +1683,7 @@ GameObject:
   - component: {fileID: 3149756260405773246}
   - component: {fileID: 1427980651901943727}
   - component: {fileID: 5079130667765305178}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1887,7 +1887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5961891748578821176}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pistolet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1921,7 +1921,7 @@ GameObject:
   - component: {fileID: 4017130615776086811}
   - component: {fileID: 6819482121977467658}
   - component: {fileID: 1357176388326170414}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
