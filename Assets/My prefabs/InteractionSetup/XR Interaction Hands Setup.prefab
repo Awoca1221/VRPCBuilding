@@ -2648,7 +2648,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 23
   m_InteractionLayers:
-    m_Bits: 1089
+    m_Bits: 1345
   m_AttachTransform: {fileID: 6382631359152709320}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
@@ -2719,7 +2719,7 @@ MonoBehaviour:
   m_ImproveAccuracyWithSphereCollider: 1
   m_PhysicsLayerMask:
     serializedVersion: 2
-    m_Bits: 1089
+    m_Bits: 1345
   m_PhysicsTriggerInteraction: 1
 --- !u!135 &4582808292336140043
 SphereCollider:
@@ -6691,7 +6691,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   m_InteractionLayers:
-    m_Bits: 1025
+    m_Bits: 1281
   m_AttachTransform: {fileID: 4712014456415375588}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
@@ -6778,7 +6778,7 @@ MonoBehaviour:
   m_ConeCastAngle: 3
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 2147484705
+    m_Bits: 2147484961
   m_RaycastTriggerInteraction: 1
   m_RaycastSnapVolumeInteraction: 1
   m_HitClosestOnly: 0
@@ -13551,7 +13551,7 @@ MonoBehaviour:
   m_OriginBaseGameObject: {fileID: 6099726603881866546}
   m_CameraFloorOffsetObject: {fileID: 4859933295280119885}
   m_RequestedTrackingOriginMode: 0
-  m_CameraYOffset: 1.36144
+  m_CameraYOffset: 1.7
 --- !u!143 &1517391392144992133
 CharacterController:
   m_ObjectHideFlags: 0
@@ -13565,13 +13565,13 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1856
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1.36144
+  m_Height: 1.7
   m_Radius: 0.1
   m_SlopeLimit: 45
   m_StepOffset: 0.5
@@ -14140,7 +14140,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 23
   m_InteractionLayers:
-    m_Bits: 1089
+    m_Bits: 1345
   m_AttachTransform: {fileID: 2542427723000121703}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
@@ -14211,7 +14211,7 @@ MonoBehaviour:
   m_ImproveAccuracyWithSphereCollider: 1
   m_PhysicsLayerMask:
     serializedVersion: 2
-    m_Bits: 1089
+    m_Bits: 1345
   m_PhysicsTriggerInteraction: 1
 --- !u!135 &396209014532047355
 SphereCollider:
@@ -18195,7 +18195,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   m_InteractionLayers:
-    m_Bits: 1025
+    m_Bits: 1281
   m_AttachTransform: {fileID: 1038939440863934441}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
@@ -18282,7 +18282,7 @@ MonoBehaviour:
   m_ConeCastAngle: 3
   m_RaycastMask:
     serializedVersion: 2
-    m_Bits: 2147484705
+    m_Bits: 2147484961
   m_RaycastTriggerInteraction: 1
   m_RaycastSnapVolumeInteraction: 1
   m_HitClosestOnly: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5968876345795797894}
   - component: {fileID: 8391734029428380063}
   - component: {fileID: 3890988304228061238}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Thermalright cooler
   m_TagString: Cooler
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2470015702155022703}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cooler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,6 +338,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -888447324491273448, guid: 6f87a5727dc7bf64eb0324d245110c84, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -261092084840383615, guid: 6f87a5727dc7bf64eb0324d245110c84, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -345,6 +349,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6f87a5727dc7bf64eb0324d245110c84, type: 3}
       propertyPath: m_Name
       value: Thermarlight model
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6f87a5727dc7bf64eb0324d245110c84, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017174136935762383, guid: 6f87a5727dc7bf64eb0324d245110c84, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

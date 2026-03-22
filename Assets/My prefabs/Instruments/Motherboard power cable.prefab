@@ -750,7 +750,7 @@ GameObject:
   - component: {fileID: 6560749986599583772}
   - component: {fileID: 5824129248366600324}
   - component: {fileID: 5714143051556214755}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Start
   m_TagString: Motherboard power
   m_Icon: {fileID: 0}
@@ -9237,7 +9237,7 @@ GameObject:
   - component: {fileID: 7632146555419746931}
   - component: {fileID: 5370799587375894350}
   - component: {fileID: 7109385266293602919}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: End
   m_TagString: Motherboard power
   m_Icon: {fileID: 0}

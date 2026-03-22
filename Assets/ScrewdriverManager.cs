@@ -40,7 +40,7 @@ public class ScrewdriverManager : MonoBehaviour
     {
         if (!isInUse) return;
 
-        UIProgress.transform.LookAt(Camera.main.transform);
+        UIProgress.LookAt(Camera.main.transform);
     }
     
     // Отслеживает прогресс закручивания
@@ -173,7 +173,7 @@ public class ScrewdriverManager : MonoBehaviour
     private void SetInUseState()
     {
         rb.constraints = RigidbodyConstraints.FreezeAll & ~RigidbodyConstraints.FreezeRotationX;
-        gameObject.layer = 6;
+        gameObject.layer = LayerMask.NameToLayer("Instrument");
         
         screw.SetParent(null);
         transform.SetParent(screw);
@@ -215,7 +215,7 @@ public class ScrewdriverManager : MonoBehaviour
     {
         totalProgress = 0f;
         rb.constraints = RigidbodyConstraints.None;
-        gameObject.layer = 0;
+        gameObject.layer = LayerMask.NameToLayer("PhysicObject");
         screw.GetComponent<MeshRenderer>().enabled = false;
         UIProgress.GetComponent<Canvas>().enabled = false;
         UIProgress.SetParent(transform);

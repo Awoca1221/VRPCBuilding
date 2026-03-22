@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8864370061681636691}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RAM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: -312243501780463237}
   - component: {fileID: -8689570476153257682}
   - component: {fileID: -1070699741784471845}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tridentz5 Neo
   m_TagString: RAM
   m_Icon: {fileID: 0}

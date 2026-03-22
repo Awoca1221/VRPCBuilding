@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4165638502187570590}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CPU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,6 +94,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: dfe5c59e66b121e4a9a0c68ee713ada9, type: 3}
       propertyPath: m_Name
       value: Ryzen 9 5900x
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dfe5c59e66b121e4a9a0c68ee713ada9, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dfe5c59e66b121e4a9a0c68ee713ada9, type: 3}
       propertyPath: m_TagString

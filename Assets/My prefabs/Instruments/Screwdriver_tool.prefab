@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6528709733805131623}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: InteractorPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 3359591594978517792}
   - component: {fileID: 8263414781921105001}
   - component: {fileID: 2847666439267605114}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1657270551132733972}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: ScrewdriverModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 104208259805431559}
   - component: {fileID: 6393227832634070699}
   - component: {fileID: 6696627411411542723}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: SoundPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 5155819194715676477}
   - component: {fileID: 1993845565964124549}
   - component: {fileID: 2394102436982346565}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Screwdriver_tool
   m_TagString: Screw
   m_Icon: {fileID: 0}
@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 6143917126932307048}
   - component: {fileID: 7512875105870275139}
   - component: {fileID: 6804692422323443277}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: UIProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +715,7 @@ GameObject:
   - component: {fileID: 6938177840476613190}
   - component: {fileID: 756677316559630676}
   - component: {fileID: 945132462902008136}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,6 +839,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Screw2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 759a279ab0051934c9e2932f0f9f6bc3, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -908,6 +912,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 759a279ab0051934c9e2932f0f9f6bc3, type: 3}
       propertyPath: m_Name
       value: Screw2_highlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 759a279ab0051934c9e2932f0f9f6bc3, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 759a279ab0051934c9e2932f0f9f6bc3, type: 3}
       propertyPath: m_IsActive
@@ -986,6 +994,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 25fddf7ac7e752b49bd428d5a4ce97ae, type: 3}
       propertyPath: m_Name
       value: Screwdriver
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 25fddf7ac7e752b49bd428d5a4ce97ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6510112150598826555, guid: 25fddf7ac7e752b49bd428d5a4ce97ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109989669349563735, guid: 25fddf7ac7e752b49bd428d5a4ce97ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

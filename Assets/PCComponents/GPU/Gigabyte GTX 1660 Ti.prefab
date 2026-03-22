@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8600711969080540737}
   - component: {fileID: 1249968596664672513}
   - component: {fileID: 4686749134258294551}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8785600839144373270}
   - component: {fileID: 516574201014527907}
   - component: {fileID: 3144075298715718909}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.019 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4512641861560929416}
   - component: {fileID: 5676825777961085664}
   - component: {fileID: 8450471089424779586}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder.007 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 2910515254045655269}
   - component: {fileID: 6943761468446497942}
   - component: {fileID: 1941132247432465069}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.012 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 7014828034570544084}
   - component: {fileID: 7624971216572957275}
   - component: {fileID: 2196109705635561468}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hdmi.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 1561068165380976742}
   - component: {fileID: 469602580089374764}
   - component: {fileID: 4504667940971281174}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +511,7 @@ GameObject:
   - component: {fileID: 3852278110246990144}
   - component: {fileID: 1140719999432902245}
   - component: {fileID: 4019111495898166741}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GIGABYTE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 3344614750562690452}
   - component: {fileID: 6651874380834477425}
   - component: {fileID: 7283897627062562303}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.015
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 746398466620685417}
   - component: {fileID: 3821396648678666227}
   - component: {fileID: 665320458085639444}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.004 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -760,7 +760,7 @@ GameObject:
   - component: {fileID: 8536728834645123109}
   - component: {fileID: 5331450867042292620}
   - component: {fileID: 5307137002878220197}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.016
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -843,7 +843,7 @@ GameObject:
   - component: {fileID: 7143679152510657266}
   - component: {fileID: 5566991109676875721}
   - component: {fileID: 3514300111786470605}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -929,7 +929,7 @@ GameObject:
   - component: {fileID: 6602223625319326487}
   - component: {fileID: 6080126854231332732}
   - component: {fileID: 8546317451837717252}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: "Hell_R\xFCckseite.001 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1075,7 +1075,7 @@ GameObject:
   - component: {fileID: 1645978237611664174}
   - component: {fileID: 8941209497237832794}
   - component: {fileID: 7082694709660979876}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1158,7 +1158,7 @@ GameObject:
   - component: {fileID: 8667472924098902807}
   - component: {fileID: 8307297734840834364}
   - component: {fileID: 1190345618598102924}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1241,7 +1241,7 @@ GameObject:
   - component: {fileID: 1458749851439420966}
   - component: {fileID: 6753266142889326861}
   - component: {fileID: 3486809518500495492}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube.004 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1325,7 +1325,7 @@ GameObject:
   - component: {fileID: 7041513775701149476}
   - component: {fileID: 377113939639616615}
   - component: {fileID: 7949017335452002607}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1408,7 +1408,7 @@ GameObject:
   - component: {fileID: 8317471047032522170}
   - component: {fileID: 2383897409049508127}
   - component: {fileID: 4076374980734383695}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: "K\xFChlk\xF6rper"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1492,7 +1492,7 @@ GameObject:
   - component: {fileID: 2879789433867544121}
   - component: {fileID: 3733287308556664508}
   - component: {fileID: 7034577062602443893}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.017 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1575,7 +1575,7 @@ GameObject:
   - component: {fileID: 6849713382467404407}
   - component: {fileID: 1001031284951170517}
   - component: {fileID: 4875573665637105746}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane.015 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1659,7 +1659,7 @@ GameObject:
   - component: {fileID: 9119339421156418412}
   - component: {fileID: 8833171904196199139}
   - component: {fileID: 8694088909045854839}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: "Hell_R\xFCckseite.006 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1743,7 +1743,7 @@ GameObject:
   - component: {fileID: 7072912573113765647}
   - component: {fileID: 717979732020640676}
   - component: {fileID: 93251085979587343}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1826,7 +1826,7 @@ GameObject:
   - component: {fileID: 2657917104460205004}
   - component: {fileID: 3747511299052094145}
   - component: {fileID: 7575009347583158106}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1909,7 +1909,7 @@ GameObject:
   - component: {fileID: 4249985408879211957}
   - component: {fileID: 1120262120015624142}
   - component: {fileID: 1951485153698079906}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1992,7 +1992,7 @@ GameObject:
   - component: {fileID: 1340549351082599397}
   - component: {fileID: 5624236590258024250}
   - component: {fileID: 1836796322901664711}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Vert
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2076,7 +2076,7 @@ GameObject:
   - component: {fileID: 7107175532884168658}
   - component: {fileID: 6327598567474305772}
   - component: {fileID: 6002459693580977901}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GIGABYTE.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2159,7 +2159,7 @@ GameObject:
   - component: {fileID: 169663370445392324}
   - component: {fileID: 6641596601179955586}
   - component: {fileID: 6833102538627594681}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2243,7 +2243,7 @@ GameObject:
   - component: {fileID: 8372108158864621007}
   - component: {fileID: 1349400932529666107}
   - component: {fileID: 2487340445059872622}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2327,7 +2327,7 @@ GameObject:
   - component: {fileID: 1097241175687272248}
   - component: {fileID: 6962198969983544408}
   - component: {fileID: 2322873275434344611}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gigabyte GTX 1660 Ti
   m_TagString: GPU
   m_Icon: {fileID: 0}
@@ -2573,7 +2573,7 @@ GameObject:
   - component: {fileID: 3412963884951774715}
   - component: {fileID: 2191722419339610375}
   - component: {fileID: 6855493559593798512}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GIGABYTE.Fan.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2656,7 +2656,7 @@ GameObject:
   - component: {fileID: 1050882174366039041}
   - component: {fileID: 6597433552142383440}
   - component: {fileID: 5575083401428599246}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2739,7 +2739,7 @@ GameObject:
   - component: {fileID: 4639769546682675046}
   - component: {fileID: 6992819959053592300}
   - component: {fileID: 8117985602698353432}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Videocard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2866,7 +2866,7 @@ GameObject:
   - component: {fileID: 3520951541567397946}
   - component: {fileID: 8595940254136922492}
   - component: {fileID: 8733210537595571034}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2949,7 +2949,7 @@ GameObject:
   - component: {fileID: 6473410768243325930}
   - component: {fileID: 6074740193601241149}
   - component: {fileID: 2790839024076007896}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.009 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3032,7 +3032,7 @@ GameObject:
   - component: {fileID: 2826684949595007743}
   - component: {fileID: 8973702430624786427}
   - component: {fileID: 1552247288322407091}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Displayport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3120,7 +3120,7 @@ GameObject:
   - component: {fileID: 3255870379268160120}
   - component: {fileID: 7289414341435394373}
   - component: {fileID: 103354134745303439}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: vorderwand.Gut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3289,7 +3289,7 @@ GameObject:
   - component: {fileID: 4555006148248047020}
   - component: {fileID: 4400300527376286084}
   - component: {fileID: 398973872380832623}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3372,7 +3372,7 @@ GameObject:
   - component: {fileID: 8510648665880002636}
   - component: {fileID: 1889172694809730366}
   - component: {fileID: 2890305756178539754}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GIGABYTE.Fan.L (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3455,7 +3455,7 @@ GameObject:
   - component: {fileID: 6607899880442698921}
   - component: {fileID: 6352171859403296749}
   - component: {fileID: 6615692695832961520}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane.004 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3539,7 +3539,7 @@ GameObject:
   - component: {fileID: 8691597177498079036}
   - component: {fileID: 3259820454933770812}
   - component: {fileID: 4178741479977533776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3622,7 +3622,7 @@ GameObject:
   - component: {fileID: 1355844896871189649}
   - component: {fileID: 150860183870672987}
   - component: {fileID: 6005340008482290201}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GPU power
   m_TagString: GPU power
   m_Icon: {fileID: 0}
@@ -3690,7 +3690,7 @@ GameObject:
   - component: {fileID: 5844432369062878424}
   - component: {fileID: 6005956327390325627}
   - component: {fileID: 8919471725673724091}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3773,7 +3773,7 @@ GameObject:
   - component: {fileID: 6212498698716963294}
   - component: {fileID: 4842936531738118563}
   - component: {fileID: 3679083070107826721}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Vert.003 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3857,7 +3857,7 @@ GameObject:
   - component: {fileID: 4880575403783234334}
   - component: {fileID: 5812102686443054971}
   - component: {fileID: 7953726909710374010}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bolt.006 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

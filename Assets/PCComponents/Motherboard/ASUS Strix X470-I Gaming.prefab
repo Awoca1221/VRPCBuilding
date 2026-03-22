@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2103101705540812778}
   - component: {fileID: 1762733299846668643}
   - component: {fileID: 2072008189750724595}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hitzepaste
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 4968777008348543854}
   - component: {fileID: 4042594196305317602}
   - component: {fileID: 8307944643090924736}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ASUS Strix X470-I Gaming
   m_TagString: Motherboard
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 6432762391454879267}
   - component: {fileID: 4581038833587940507}
   - component: {fileID: 3714520980104307848}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: "K\xFChlk\xF6rper_.Gross"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 207466189584612594}
   - component: {fileID: 6207649928124535824}
   - component: {fileID: 1668565781433647527}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 4432534073685329546}
   - component: {fileID: 5342826822657489863}
   - component: {fileID: 3313951777620715190}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Motherboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +735,7 @@ GameObject:
   - component: {fileID: 3500512791714067104}
   - component: {fileID: 6647351037474276641}
   - component: {fileID: 5341979836125219350}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RAM2
   m_TagString: RAM
   m_Icon: {fileID: 0}
@@ -948,7 +948,7 @@ GameObject:
   - component: {fileID: 6322632452387473918}
   - component: {fileID: 6100844372651447373}
   - component: {fileID: 2289833188151955408}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sound_board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1069,7 +1069,7 @@ GameObject:
   - component: {fileID: 7301235327108223409}
   - component: {fileID: 417801924983706626}
   - component: {fileID: 8749528518921054080}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Corsair-M.2_circuit board.002 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1184,7 +1184,7 @@ GameObject:
   - component: {fileID: 4890902593647071901}
   - component: {fileID: 6776760095374760009}
   - component: {fileID: 1818009348936485768}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cooler
   m_TagString: Cooler
   m_Icon: {fileID: 0}
@@ -1400,7 +1400,7 @@ GameObject:
   - component: {fileID: 4607450605129219926}
   - component: {fileID: 6717790618264569161}
   - component: {fileID: 2714699134522295469}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Videocard
   m_TagString: GPU
   m_Icon: {fileID: 0}
@@ -1613,7 +1613,7 @@ GameObject:
   - component: {fileID: 1418903890214148236}
   - component: {fileID: 8164398638188090696}
   - component: {fileID: 3223301656473779272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1723,7 +1723,7 @@ GameObject:
   - component: {fileID: 2646087688507863956}
   - component: {fileID: 7908675116882107524}
   - component: {fileID: 6294377800449056517}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IO_Wlan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1840,7 +1840,7 @@ GameObject:
   - component: {fileID: 4060729805736175553}
   - component: {fileID: 6825485795999808783}
   - component: {fileID: 7163163063505986297}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Memory_slot.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1946,7 +1946,7 @@ GameObject:
   - component: {fileID: 3914397345436228922}
   - component: {fileID: 9132576518923264176}
   - component: {fileID: 2413864855905430148}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2054,7 +2054,7 @@ GameObject:
   - component: {fileID: 5274476543244063818}
   - component: {fileID: 7440317633816773410}
   - component: {fileID: 5392432418669457004}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CPU
   m_TagString: CPU
   m_Icon: {fileID: 0}
@@ -2267,7 +2267,7 @@ GameObject:
   - component: {fileID: 3839243206126173887}
   - component: {fileID: 1763072687886325777}
   - component: {fileID: 24503463755013551}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mainbord.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2373,7 +2373,7 @@ GameObject:
   - component: {fileID: 7811125587076836880}
   - component: {fileID: 6251358369420508468}
   - component: {fileID: 9195740051568704180}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sockel_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2481,7 +2481,7 @@ GameObject:
   - component: {fileID: 7006554309404238275}
   - component: {fileID: 8275758742971638069}
   - component: {fileID: 360333734322243637}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RAM1
   m_TagString: RAM
   m_Icon: {fileID: 0}
@@ -2694,7 +2694,7 @@ GameObject:
   - component: {fileID: 462070706221356094}
   - component: {fileID: 2402651043320001905}
   - component: {fileID: 4066827860999478212}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: "K\xFChlk\xF6rper.Klein"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2800,7 +2800,7 @@ GameObject:
   - component: {fileID: 3292193251939721102}
   - component: {fileID: 8315001048852126116}
   - component: {fileID: 1474976804335326099}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BezierCurve.011 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2905,7 +2905,7 @@ GameObject:
   - component: {fileID: 538776893804440114}
   - component: {fileID: 5673695966625252337}
   - component: {fileID: 3084733039921550999}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PCI_Express16 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3016,7 +3016,7 @@ GameObject:
   - component: {fileID: 2030685613228914799}
   - component: {fileID: 6074949320207013657}
   - component: {fileID: 7175614958158282958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CPU power
   m_TagString: CPU power
   m_Icon: {fileID: 0}
@@ -3135,7 +3135,7 @@ GameObject:
   - component: {fileID: 566374268750236158}
   - component: {fileID: 5666331831612760171}
   - component: {fileID: 6421628656973774828}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3241,7 +3241,7 @@ GameObject:
   - component: {fileID: 1351746593695162755}
   - component: {fileID: 303296102282587607}
   - component: {fileID: 7606062320418029865}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Corsair-M.2_Boden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3354,7 +3354,7 @@ GameObject:
   - component: {fileID: 7933697851882926874}
   - component: {fileID: 321589987122007748}
   - component: {fileID: 6914315861167133992}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Motherboard power
   m_TagString: Motherboard power
   m_Icon: {fileID: 0}
@@ -3473,7 +3473,7 @@ GameObject:
   - component: {fileID: 7920486555648994146}
   - component: {fileID: 7414812669806059884}
   - component: {fileID: 1164426489558060751}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BezierCurve.010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3578,6 +3578,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScrewPoint1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2301285568860241706, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2915268443587794447, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.08009
@@ -3618,6 +3622,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 6779099835973666585, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3639,6 +3647,10 @@ PrefabInstance:
     - target: {fileID: 2301285568860241706, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_Name
       value: ScrewPoint1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2301285568860241706, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2915268443587794447, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3680,6 +3692,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 6779099835973666585, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3701,6 +3717,10 @@ PrefabInstance:
     - target: {fileID: 2301285568860241706, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_Name
       value: ScrewPoint1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2301285568860241706, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2915268443587794447, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3742,6 +3762,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 6779099835973666585, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3763,6 +3787,10 @@ PrefabInstance:
     - target: {fileID: 2301285568860241706, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_Name
       value: ScrewPoint1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2301285568860241706, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2915268443587794447, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3803,6 +3831,10 @@ PrefabInstance:
     - target: {fileID: 2915268443587794447, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779099835973666585, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

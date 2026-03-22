@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 488863572095486230}
   - component: {fileID: 3055537241404003191}
   - component: {fileID: 6846091776986971965}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CPU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 7802276077143110710}
   - component: {fileID: 3290956025951593991}
   - component: {fileID: 3109527411701401208}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ryzen 7 2700X
   m_TagString: CPU
   m_Icon: {fileID: 0}

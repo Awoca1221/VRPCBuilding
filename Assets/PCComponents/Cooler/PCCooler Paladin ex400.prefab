@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4551145104420514427}
   - component: {fileID: 1084989883288418934}
   - component: {fileID: 1931505934397639353}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fan_Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 402484720542218001}
   - component: {fileID: 3925744553836739339}
   - component: {fileID: 6930481076727621818}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Deepcool_Fan_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 8012537951670363172}
   - component: {fileID: 2007322161886465291}
   - component: {fileID: -5133058785279203989}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PCCooler Paladin ex400
   m_TagString: Cooler
   m_Icon: {fileID: 0}
@@ -520,7 +520,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2592667839051468882}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cooler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 472153278385849977}
   - component: {fileID: 3584092881875661402}
   - component: {fileID: 8625483656443463022}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Deepcool_blades_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

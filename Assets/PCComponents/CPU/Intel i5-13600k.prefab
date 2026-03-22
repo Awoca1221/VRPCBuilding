@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1340426388612404603}
   - component: {fileID: 6107423288866144926}
   - component: {fileID: 1390038166523918980}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Intel i5-13600k
   m_TagString: CPU
   m_Icon: {fileID: 0}
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 1184056700689361034}
   - component: {fileID: 444301364070262603}
   - component: {fileID: 8557248936818787387}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Paste
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2267267399570610091}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CPU
   m_TagString: Untagged
   m_Icon: {fileID: 0}

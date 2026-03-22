@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5426228531047903805}
   - component: {fileID: 505697759251953697}
   - component: {fileID: 7112454690376316778}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: End
   m_TagString: GPU power
   m_Icon: {fileID: 0}
@@ -11649,7 +11649,7 @@ GameObject:
   - component: {fileID: 4838879512502724600}
   - component: {fileID: 3346885123257930443}
   - component: {fileID: 7250875087801214672}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Start
   m_TagString: GPU power
   m_Icon: {fileID: 0}

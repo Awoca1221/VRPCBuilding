@@ -999,7 +999,7 @@ GameObject:
   - component: {fileID: 2100543758606221068}
   - component: {fileID: 2167413604215817595}
   - component: {fileID: 2353061527209349306}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: End
   m_TagString: CPU power
   m_Icon: {fileID: 0}
@@ -12051,7 +12051,7 @@ GameObject:
   - component: {fileID: 217457975784042569}
   - component: {fileID: 1932412730882015523}
   - component: {fileID: 6943197124845818348}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Start
   m_TagString: CPU power
   m_Icon: {fileID: 0}

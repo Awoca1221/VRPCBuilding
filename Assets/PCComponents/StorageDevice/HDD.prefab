@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7643392132425852420}
   - component: {fileID: 2362388866175603878}
   - component: {fileID: 4113945163176396916}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HDD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 6049268296589837448}
   - component: {fileID: 8982516617659966498}
   - component: {fileID: 888332790669669797}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Deckel.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 1651064289106045925}
   - component: {fileID: 8898542763478681563}
   - component: {fileID: 534557551543856084}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HYPER-ssd-fury.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 967376497365201897}
   - component: {fileID: 5570893683792078998}
   - component: {fileID: 1609862617135029644}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Deckel (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 8728492281706301172}
   - component: {fileID: 6893125945261145213}
   - component: {fileID: 1096656597479463397}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HYPER-ssd-fury.001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -569,7 +569,7 @@ GameObject:
   - component: {fileID: 5396725468549827591}
   - component: {fileID: 4232215314813403205}
   - component: {fileID: 8797541481612054818}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Magnet_oben
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 5346781411485545601}
   - component: {fileID: 6517208099308550684}
   - component: {fileID: 2427916130029210306}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: "geh\xE4se.001"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -782,7 +782,7 @@ GameObject:
   - component: {fileID: 6696530121207589092}
   - component: {fileID: 2251799960176694609}
   - component: {fileID: 6108723851673630354}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BezierCurve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -887,7 +887,7 @@ GameObject:
   - component: {fileID: 8710613741836345863}
   - component: {fileID: 8739720980441065052}
   - component: {fileID: 3152502206314795278}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platine_oben
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1005,7 +1005,7 @@ GameObject:
   - component: {fileID: 243112276830254343}
   - component: {fileID: 6393368667780866538}
   - component: {fileID: 3106977930190848519}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Anschluss.001 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1114,7 +1114,7 @@ GameObject:
   - component: {fileID: 6033456096556078819}
   - component: {fileID: 8471526607347310677}
   - component: {fileID: 3614027638609725076}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1209,7 +1209,7 @@ GameObject:
   - component: {fileID: 2578443785645734443}
   - component: {fileID: 8561948603327188406}
   - component: {fileID: 6750599478497786680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dISK_MOTOR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1316,7 +1316,7 @@ GameObject:
   - component: {fileID: 5526104268016238963}
   - component: {fileID: 2552594218623379793}
   - component: {fileID: 1861693181720237599}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HDD
   m_TagString: HDD 3.5
   m_Icon: {fileID: 0}

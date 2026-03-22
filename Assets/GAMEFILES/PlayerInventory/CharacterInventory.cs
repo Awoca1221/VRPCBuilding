@@ -20,8 +20,11 @@ public class CharacterInventory : MonoBehaviour
     public GameObject defaultPrefab;
     public GameObject pistoletPrefab;
 
+    private CharacterController characterController;
+
     private void Start()
     {
+        characterController = XROrigin.GetComponent<CharacterController>();
         foreach (var bodySocket in bodySockets)
         {
             if (bodySocket != null)
@@ -35,7 +38,7 @@ public class CharacterInventory : MonoBehaviour
 
     void Update()
     {
-        var playerHeight = XROrigin.CameraYOffset;
+        var playerHeight = characterController.height;
         var currentHMDRot = XROrigin.Camera.transform.rotation;
         var currentPlayerBodyPos = XROrigin.transform.position;
 

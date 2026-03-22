@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6932756285830814769}
   - component: {fileID: 3793340968236666879}
   - component: {fileID: 7010859985022585939}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Kingston Hyperx Predator
   m_TagString: RAM
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 6661433032631454824}
   - component: {fileID: 3593570533120188657}
   - component: {fileID: 8115432694281462590}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RAM
   m_TagString: Untagged
   m_Icon: {fileID: 0}

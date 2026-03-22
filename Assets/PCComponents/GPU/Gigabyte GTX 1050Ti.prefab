@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5644916907793601824}
   - component: {fileID: 903838312096965514}
   - component: {fileID: 7685012732993656593}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VideocardPower
   m_TagString: GPU power
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 887999226590474276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Videocard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,13 +147,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -240213744269075570, guid: ae305e5412c256c478777dd2dfcf4d9f, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ae305e5412c256c478777dd2dfcf4d9f, type: 3}
       propertyPath: m_Name
       value: Gigabyte GTX 1050Ti
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ae305e5412c256c478777dd2dfcf4d9f, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ae305e5412c256c478777dd2dfcf4d9f, type: 3}
       propertyPath: m_TagString
       value: GPU
+      objectReference: {fileID: 0}
+    - target: {fileID: 3457781966705231620, guid: ae305e5412c256c478777dd2dfcf4d9f, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -33,12 +33,14 @@ public class PCBuildManager : MonoBehaviour
         Unstable, // ПК в рабочем состоянии, но возможны проблемы в нагрузке
         Working // ПК в рабочем состоянии
     }
+
+    [Tooltip("Область для проверки возможности спавна билда")]
+    public Collider testEmptySpace;
     public Status PCStatus => currentStatus;
     public IReadOnlyCollection<GameObject> ConnectedDevices => connectedDevices;
     public int CountConnectedDevices => connectedDevices.Count();
     public UnityAction OnOverallStatusUpdated;
-    [Tooltip("Область для проверки возможности спавна билда")]
-    public Collider testEmptySpace;
+    public UnityEvent OnWorkingStatusEvent;
 
     private class SpawnObjInfo
     {
@@ -57,7 +59,14 @@ public class PCBuildManager : MonoBehaviour
 
     public void OnDeviceDisconnected(GameObject device)
     {
-        connectedDevices.Remove(device);
+        if (device != null)
+        {
+            connectedDevices.Remove(device);
+        }
+        else
+        {
+            connectedDevices.RemoveWhere(item => item == null);
+        }
         UpdateOverallStatus();
         //Debug.Log($"Отключено устройство: {device.name}. Всего: {connectedDevices.Count}");
     }
@@ -130,6 +139,7 @@ public class PCBuildManager : MonoBehaviour
         if (hasEnoughPower)
         {
             currentStatus = Status.Working;
+            OnWorkingStatusEvent?.Invoke();
         }
         else
         {

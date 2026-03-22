@@ -370,6 +370,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1549794394444284203, guid: 339d24f5a7aa4d44da51ceb6d5be4396, type: 3}
   m_PrefabInstance: {fileID: 5180573760282857040}
   m_PrefabAsset: {fileID: 0}
+--- !u!143 &5975083793794935253 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 1517391392144992133, guid: 339d24f5a7aa4d44da51ceb6d5be4396, type: 3}
+  m_PrefabInstance: {fileID: 5180573760282857040}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6469886756391940080
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -426,6 +431,10 @@ PrefabInstance:
       propertyPath: XROrigin
       value: 
       objectReference: {fileID: 1499420920860781283}
+    - target: {fileID: 4280144934240678045, guid: 7476faec156438f41a83abd3c4d0ac31, type: 3}
+      propertyPath: characterController
+      value: 
+      objectReference: {fileID: 5975083793794935253}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

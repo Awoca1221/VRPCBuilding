@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6525298370022356548}
   - component: {fileID: 3745556395763344985}
   - component: {fileID: 7088108273152425765}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RAM1
   m_TagString: RAM
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 5692368201911830569}
   - component: {fileID: 2842428441182748694}
   - component: {fileID: 283211910371218267}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RAM3
   m_TagString: RAM
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 2628035692508410911}
   - component: {fileID: 5484588203870392767}
   - component: {fileID: 3771615258874885409}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Motherboard power
   m_TagString: Motherboard power
   m_Icon: {fileID: 0}
@@ -567,7 +567,7 @@ GameObject:
   - component: {fileID: 2519358286459022730}
   - component: {fileID: 2897997309044299036}
   - component: {fileID: 6018942410817231932}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MotherboardMesh
   m_TagString: Motherboard
   m_Icon: {fileID: 0}
@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 2658383537359144912}
   - component: {fileID: 1489574759245761848}
   - component: {fileID: 6234694517371453647}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RAM2
   m_TagString: RAM
   m_Icon: {fileID: 0}
@@ -956,7 +956,7 @@ GameObject:
   - component: {fileID: 2340680328139915815}
   - component: {fileID: 6271646395514708575}
   - component: {fileID: 7788459590521633785}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MSI MAG B660M Mortar
   m_TagString: Motherboard
   m_Icon: {fileID: 0}
@@ -1214,7 +1214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5468501765372165681}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MotherboardAttach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1251,7 +1251,7 @@ GameObject:
   - component: {fileID: 2519622626123959857}
   - component: {fileID: 7028215653026261742}
   - component: {fileID: 3657118358676858888}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CPU
   m_TagString: CPU
   m_Icon: {fileID: 0}
@@ -1465,7 +1465,7 @@ GameObject:
   - component: {fileID: 905824662754966300}
   - component: {fileID: 3689081122439622996}
   - component: {fileID: 6263816702106533252}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CPU power2
   m_TagString: CPU power
   m_Icon: {fileID: 0}
@@ -1587,7 +1587,7 @@ GameObject:
   - component: {fileID: 8969585138065752888}
   - component: {fileID: 8408987654612022704}
   - component: {fileID: 5599219203800812874}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cooler
   m_TagString: Cooler
   m_Icon: {fileID: 0}
@@ -1803,7 +1803,7 @@ GameObject:
   - component: {fileID: 9136055329201983684}
   - component: {fileID: 6659875494714510163}
   - component: {fileID: 7947935247382403913}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Videocard
   m_TagString: GPU
   m_Icon: {fileID: 0}
@@ -2016,7 +2016,7 @@ GameObject:
   - component: {fileID: 333756341571078899}
   - component: {fileID: 7394486576388269205}
   - component: {fileID: 5922651124860219578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Radiator2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2121,7 +2121,7 @@ GameObject:
   - component: {fileID: 4632036680825140576}
   - component: {fileID: 6361393674987969483}
   - component: {fileID: 7258903918383524884}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Radiator1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2229,7 +2229,7 @@ GameObject:
   - component: {fileID: 7301243424910537872}
   - component: {fileID: 1699736816474543463}
   - component: {fileID: 7612811015311291327}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RAM4
   m_TagString: RAM
   m_Icon: {fileID: 0}
@@ -2443,7 +2443,7 @@ GameObject:
   - component: {fileID: 6278125744360754665}
   - component: {fileID: 8772017324961555264}
   - component: {fileID: 8986618272110756528}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CPU power1
   m_TagString: CPU power
   m_Icon: {fileID: 0}
@@ -2562,6 +2562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScrewPoint (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2301285568860241706, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2915268443587794447, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.009
@@ -2602,6 +2606,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6779099835973666585, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2623,6 +2631,10 @@ PrefabInstance:
     - target: {fileID: 2301285568860241706, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_Name
       value: ScrewPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 2301285568860241706, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2915268443587794447, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2664,6 +2676,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6779099835973666585, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2685,6 +2701,10 @@ PrefabInstance:
     - target: {fileID: 2301285568860241706, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_Name
       value: ScrewPoint (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2301285568860241706, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2915268443587794447, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2726,6 +2746,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6779099835973666585, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2747,6 +2771,10 @@ PrefabInstance:
     - target: {fileID: 2301285568860241706, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_Name
       value: ScrewPoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2301285568860241706, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2915268443587794447, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2787,6 +2815,10 @@ PrefabInstance:
     - target: {fileID: 2915268443587794447, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6779099835973666585, guid: 2fda9c884ca2d524eb904da9a6a01a92, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -79,11 +79,13 @@ public class BuildStatusView : MonoBehaviour
         SaveService.onSave -= OnBuildsDataUpdate;
         foreach (var elem in errorElems)
         {
+            elem.SetActive(false);
             Destroy(elem);
         }
         errorElems.Clear();
         foreach (var elem in buildElems)
         {
+            elem.SetActive(false);
             Destroy(elem);
         }
         buildElems.Clear();
@@ -94,6 +96,7 @@ public class BuildStatusView : MonoBehaviour
         // Удаление всех элементов в списке
         foreach (var elem in errorElems)
         {
+            elem.SetActive(false);
             Destroy(elem);
         }
         errorElems.Clear();
@@ -186,6 +189,7 @@ public class BuildStatusView : MonoBehaviour
         lastSelectedBuildIndex = -1;
         foreach (var elem in buildElems)
         {
+            elem.SetActive(false);
             Destroy(elem);
         }
         buildElems.Clear();

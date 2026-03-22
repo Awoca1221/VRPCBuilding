@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8583255768274099436}
   - component: {fileID: 6571749919819921116}
   - component: {fileID: 6510041198952530913}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MSI_Rtx3050_fan2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2755711928253817991}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Videocard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 6509022579168077634}
   - component: {fileID: 6261395218671623607}
   - component: {fileID: 1181993703397607739}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MSI_Rtx3050_fan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 8502724997834373490}
   - component: {fileID: 6515552258251879769}
   - component: {fileID: 2680824691432402270}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VideocardPower
   m_TagString: GPU power
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 2908835110731987808}
   - component: {fileID: 3380651058057270257}
   - component: {fileID: -841118216417198927}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MSI RTX 3050
   m_TagString: GPU
   m_Icon: {fileID: 0}
