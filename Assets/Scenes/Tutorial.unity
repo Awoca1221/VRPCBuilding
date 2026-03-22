@@ -42083,7 +42083,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Thermaltake Toughpower 1550W
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+    - {fileID: 3325664287354685069, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+    - {fileID: 5783792944640367250, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -43374,7 +43377,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HDD
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1861693181720237599, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
+    - {fileID: 2552594218623379793, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
+    - {fileID: 5526104268016238963, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -45525,7 +45531,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HDD
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1861693181720237599, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
+    - {fileID: 2552594218623379793, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
+    - {fileID: 5526104268016238963, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -59462,7 +59471,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HDD
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1861693181720237599, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
+    - {fileID: 2552594218623379793, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
+    - {fileID: 5526104268016238963, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -78128,7 +78140,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Thermaltake Toughpower 1550W
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+    - {fileID: 3325664287354685069, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+    - {fileID: 5783792944640367250, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -91592,7 +91607,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Thermaltake Toughpower 1550W
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+    - {fileID: 3325664287354685069, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+    - {fileID: 5783792944640367250, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -107403,8 +107421,7 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Motherboard power
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8307944643090924736, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -117004,7 +117021,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HDD
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1861693181720237599, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
+    - {fileID: 2552594218623379793, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
+    - {fileID: 5526104268016238963, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -131088,7 +131108,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Thermaltake Toughpower 1550W
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+    - {fileID: 3325664287354685069, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+    - {fileID: 5783792944640367250, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -188534,7 +188557,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Thermaltake Toughpower 1550W
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+    - {fileID: 3325664287354685069, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
+    - {fileID: 5783792944640367250, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

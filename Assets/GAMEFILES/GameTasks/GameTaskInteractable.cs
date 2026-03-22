@@ -31,7 +31,8 @@ public class GameTaskInteractable : MonoBehaviour
 
     private void OnGrabbed(SelectEnterEventArgs args)
     {
-        canvas.enabled = true;
+        if (args.interactorObject is XRDirectInteractor)
+            canvas.enabled = true;
     }
 
     private void OnReleased(SelectExitEventArgs args)

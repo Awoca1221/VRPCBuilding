@@ -51,12 +51,25 @@ public class CustomSocketInteractor : XRSocketInteractor
     protected override void OnHoverExiting(HoverExitEventArgs args)
     {
         base.OnHoverExiting(args);
-        StartCoroutine(DeleteAllowedObj((XRGrabInteractable)args.interactableObject));
+        if (gameObject.activeInHierarchy)
+            StartCoroutine(DeleteAllowedObj((XRGrabInteractable)args.interactableObject));
     }
 
     private IEnumerator DeleteAllowedObj(XRGrabInteractable interactable)
     {
         yield return _waitForSeconds0_1;
         allowedToSelect.Remove(interactable);
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        StopAllCoroutines();
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        StopAllCoroutines();
     }
 }

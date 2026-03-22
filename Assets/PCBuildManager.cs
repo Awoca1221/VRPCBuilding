@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,6 +33,20 @@ public class PCBuildManager : MonoBehaviour
         NotWorking, // Не проходит минимальные требования к работоспособности
         Unstable, // ПК в рабочем состоянии, но возможны проблемы в нагрузке
         Working // ПК в рабочем состоянии
+    }
+
+    public class CPUPerformance
+    {
+        public readonly uint performance;
+        public readonly bool isOverheated;
+        public readonly bool isWithoutPaste;
+
+        public CPUPerformance(uint p, bool io, bool iwp)
+        {
+            performance = p;
+            isOverheated = io;
+            isWithoutPaste = iwp;
+        }
     }
 
     [Tooltip("Область для проверки возможности спавна билда")]
@@ -233,9 +248,12 @@ public class PCBuildManager : MonoBehaviour
         callback?.Invoke();
     }
 
-    public uint GetCPUPerformance()
+    public CPUPerformance GetCPUPerformance()
     {
-        if (currentStatus == Status.NotWorking) return 0;
+        if (currentStatus == Status.NotWorking)
+        {
+            return new CPUPerformance(0, false, false);
+        }
 
         CPUInfo2 cpuInfo = null;
         CoolerInfo2 coolerInfo = null;
@@ -261,12 +279,25 @@ public class PCBuildManager : MonoBehaviour
         }
         
         uint performance = (uint)(cpuInfo.Performance + ramInfo.FrequencyMhz * 0.5f);
+        bool isOverheated = false;
+        bool isWithoutPaste = false;
         if (cpuInfo.TDP > coolerInfo.TDPLimit)
         {
             performance = (uint)(performance * 0.8f);
+            isOverheated = true;
+        }
+        GameObject cpu = cpuInfo.GameObject();
+        if (!cpu.TryGetComponent<ChangeMaterial>(out var changeMaterial))
+        {
+            changeMaterial = cpu.GetComponentInChildren<ChangeMaterial>();
+        }
+        if (changeMaterial != null && !changeMaterial.changed)
+        {
+            performance = (uint)(performance * 0.5f);
+            isWithoutPaste = true;
         }
 
-        return performance;
+        return new CPUPerformance(performance, isOverheated, isWithoutPaste);
     }
 
     public uint GetGPUPerformance()
@@ -293,7 +324,7 @@ public class PCBuildManager : MonoBehaviour
     {
         if (currentStatus == Status.NotWorking) return 0;
         
-        uint performance = GetCPUPerformance() + GetGPUPerformance();
+        uint performance = GetCPUPerformance().performance + GetGPUPerformance();
         
         return performance;
     }

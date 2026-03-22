@@ -9,7 +9,7 @@ public class ChangeMaterial : MonoBehaviour
     private Material startMaterial;
     public int indexOfMaterial = -1;
     public MeshRenderer pasteRend;
-    [HideInInspector] public bool changed;
+    public bool changed { get; private set; } = false;
     private Material[] materials;
     private Renderer m_Renderer;
 
@@ -20,7 +20,6 @@ public class ChangeMaterial : MonoBehaviour
         materials = m_Renderer.materials;
         if (indexOfMaterial >= 0)
             startMaterial = materials[indexOfMaterial];
-        changed = false;
     }
 
     public void Change()

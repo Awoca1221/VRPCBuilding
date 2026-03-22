@@ -110,4 +110,9 @@ public class OutlineHandler : MonoBehaviour
         if (!target.isSelected)
                 SetLayerRecursively(obj.transform.gameObject, LayerMask.NameToLayer("Outline"));
     }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
 }

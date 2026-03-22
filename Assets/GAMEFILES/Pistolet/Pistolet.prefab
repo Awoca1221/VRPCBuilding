@@ -1351,7 +1351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1280
   descriptionPanel: {fileID: 8387428313974788166}
   text: {fileID: 1357176388326170414}
   title: {fileID: 4440791865551731979}

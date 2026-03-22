@@ -109,7 +109,7 @@ public class BuildStatusView : MonoBehaviour
                 break;
             case PCBuildManager.Status.Unstable:
                 totalStatusText.text = "Статус компьютера: нестабилен";
-                AddNotEnoughPowerElement();
+                AddCustomElement("Критическое потребление питания сборкой. Требуется блок питания с большей мощностью");
                 break;
             case PCBuildManager.Status.Working:
                 totalStatusText.text = "Статус компьютера: работает";
@@ -119,10 +119,19 @@ public class BuildStatusView : MonoBehaviour
         // Определение производительности сборки
         if (PCBuild.PCStatus == PCBuildManager.Status.Working)
         {
+            PCBuildManager.CPUPerformance cpuPerformance = PCBuild.GetCPUPerformance();
+            if (cpuPerformance.isOverheated)
+            {
+                AddCustomElement("Процессор перегревается, производительность снижена");
+            }
+            if (cpuPerformance.isWithoutPaste)
+            {
+                AddCustomElement("Процессор без термопасты, производительность значительно снижена");
+            }
             performanceText.text =
-            "Оценка процессора: " + PCBuild.GetCPUPerformance() + " баллов\n" +
-            "Оценка видеокарты: " + PCBuild.GetGPUPerformance() + " баллов\n" +
-            "Общая оценка производительности: " + PCBuild.GetOverallPerformance() + " баллов";
+            "Оценка процессора: " + cpuPerformance.performance + " балла(ов)\n" +
+            "Оценка видеокарты: " + PCBuild.GetGPUPerformance() + " балла(ов)\n" +
+            "Общая оценка производительности: " + PCBuild.GetOverallPerformance() + " балла(ов)";
             saveTooltip.isEnabled = false;
             saveButton.interactable = true;
         }
@@ -167,9 +176,9 @@ public class BuildStatusView : MonoBehaviour
         errorElems.Add(createdElement);
     }
 
-    private void AddNotEnoughPowerElement()
+    private void AddCustomElement(string errorMessage)
     {
-        string errorMessage = "Критическое потребление питания сборкой. Требуется блок питания с большей мощностью";
+        if (errorMessage == null) return;
         GameObject createdElement = Instantiate(statusElementPrefab, statusContentTransform);
         createdElement.GetComponent<BuildStatusElement>().SetText(errorMessage);
         errorElems.Add(createdElement);
