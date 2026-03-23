@@ -334,10 +334,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af7728c44defb48418dfe31c461c2f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cpuMeshRenderer: {fileID: 2741905241523952374}
   material: {fileID: 2100000, guid: 3e8d85f9df7f8c742b67d43c336ecc87, type: 2}
   indexOfMaterial: -1
-  pasteRend: {fileID: 8557248936818787387}
-  changed: 0
+  pasteMeshRenderer: {fileID: 0}
 --- !u!1 &1595917696838453731
 GameObject:
   m_ObjectHideFlags: 0

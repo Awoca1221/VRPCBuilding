@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 5490635372827869713}
   - component: {fileID: 2153350647944925823}
   - component: {fileID: 488863572095486230}
-  - component: {fileID: 3055537241404003191}
-  - component: {fileID: 6846091776986971965}
   m_Layer: 8
   m_Name: CPU
   m_TagString: Untagged
@@ -88,43 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3055537241404003191
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724921948201666963}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.0004065586, y: 0.000044490855, z: 0.00040655868}
-  m_Center: {x: -0.000001313966, y: -0.00003222247, z: -0.0000014695258}
---- !u!114 &6846091776986971965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 724921948201666963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af7728c44defb48418dfe31c461c2f35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 3e8d85f9df7f8c742b67d43c336ecc87, type: 2}
-  indexOfMaterial: 0
-  pasteRend: {fileID: 0}
-  changed: 0
 --- !u!1 &9061094376720691830
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,6 +98,8 @@ GameObject:
   - component: {fileID: 7802276077143110710}
   - component: {fileID: 3290956025951593991}
   - component: {fileID: 3109527411701401208}
+  - component: {fileID: 6860917695057763231}
+  - component: {fileID: 3128650518438054863}
   m_Layer: 8
   m_Name: Ryzen 7 2700X
   m_TagString: CPU
@@ -371,3 +334,40 @@ MonoBehaviour:
   <OnUnsecuredEvents>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6860917695057763231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9061094376720691830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7728c44defb48418dfe31c461c2f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cpuMeshRenderer: {fileID: 488863572095486230}
+  material: {fileID: 2100000, guid: 3e8d85f9df7f8c742b67d43c336ecc87, type: 2}
+  indexOfMaterial: 0
+  pasteMeshRenderer: {fileID: 0}
+--- !u!65 &3128650518438054863
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9061094376720691830}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.04, y: 0.004, z: 0.04}
+  m_Center: {x: 0, y: 0.004, z: 0}

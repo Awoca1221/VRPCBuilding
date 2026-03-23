@@ -6,20 +6,18 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
+[RequireComponent(typeof(XRGrabInteractable))]
 public class ThermalPaste : MonoBehaviour
 {
-    public enum types
+    public enum Types
     {
         paste,
         cloth
     };
-    public types type;
+    public Types type;
     public Transform needleOrCloth;
     private XRGrabInteractable interact;
     private Collider[] colliders;
-    private Transform trans;
-    private ChangeMaterial changeScript;
-    private GameObject obj;
     private ActivateEvent evnt;
 
     [field: SerializeField] private UnityEvent OnUseEvents { get; set; } = null;
@@ -28,7 +26,6 @@ public class ThermalPaste : MonoBehaviour
     void Start()
     {
         evnt = new ActivateEvent();
-        trans = GetComponent<Transform>();
         interact = GetComponent<XRGrabInteractable>();
         interact.activated = evnt;
         evnt.AddListener(Use);
@@ -39,18 +36,16 @@ public class ThermalPaste : MonoBehaviour
         colliders = Physics.OverlapSphere(needleOrCloth.position, 0.05f);
         for (int i = 0; i < colliders.Length; i++)
         {
-            if (colliders[i].gameObject.GetComponent<ChangeMaterial>() != null)
+            if (colliders[i].attachedRigidbody.gameObject.TryGetComponent<CPUPasteState>(out var changeScript))
             {
-                obj = colliders[i].gameObject;
-                changeScript = obj.GetComponentInParent<ChangeMaterial>();
-                if (changeScript.changed && type == types.cloth)
+                if (changeScript.IsPasteActive && type == Types.cloth)
                 {
-                    changeScript.ChangeBack();
+                    changeScript.Deactivate();
                     OnUseEvents.Invoke();
                     break;
-                } else if (type == types.paste)
+                } else if (type == Types.paste)
                 {
-                    changeScript.Change();
+                    changeScript.Activate();
                     OnUseEvents.Invoke();
                     break;
                 }

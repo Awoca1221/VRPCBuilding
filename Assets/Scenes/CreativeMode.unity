@@ -1984,6 +1984,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2680824691432402270, guid: b0e204614a7a35347993db538859b64c, type: 3}
+      propertyPath: isRequired
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8032813720850625494, guid: b0e204614a7a35347993db538859b64c, type: 3}
       propertyPath: m_Name
       value: MSI RTX 3050
@@ -2797,6 +2801,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ASUS Strix X470-I Gaming
       objectReference: {fileID: 0}
+    - target: {fileID: 6914315861167133992, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
+      propertyPath: isRequired
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2835,6 +2843,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7014503868152166213, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7175614958158282958, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
+      propertyPath: isRequired
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8307944643090924736, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}

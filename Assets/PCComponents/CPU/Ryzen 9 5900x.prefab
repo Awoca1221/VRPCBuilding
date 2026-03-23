@@ -380,7 +380,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af7728c44defb48418dfe31c461c2f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cpuMeshRenderer: {fileID: 1552962186465708076}
   material: {fileID: 2100000, guid: 3e8d85f9df7f8c742b67d43c336ecc87, type: 2}
   indexOfMaterial: 1
-  pasteRend: {fileID: 0}
-  changed: 0
+  pasteMeshRenderer: {fileID: 0}
+--- !u!23 &1552962186465708076 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: dfe5c59e66b121e4a9a0c68ee713ada9, type: 3}
+  m_PrefabInstance: {fileID: 165699978457879720}
+  m_PrefabAsset: {fileID: 0}

@@ -51,8 +51,7 @@ public class AttachObjectDevice : AttachObject
 
         if (deviceAttachToOnStart != null)
         {
-            ForceAttach(deviceAttachToOnStart, slotIDAttachToOnStart);
-            ForceSetup();
+            ForceAttachAndSetup(deviceAttachToOnStart, slotIDAttachToOnStart);
         }
     }
 
@@ -170,6 +169,12 @@ public class AttachObjectDevice : AttachObject
         }
     }
 
+    public void ForceAttachAndSetup(GameObject device, uint slotID = 0)
+    {
+        ForceAttach(device, slotID);
+        ForceSetup();
+    }
+
     // Телепортирует объект к месту подключения и пытается подключить объект
     public void ForceAttach(GameObject device, uint slotID = 0)
     {
@@ -251,7 +256,8 @@ public class AttachObjectDevice : AttachObject
             transform.GetComponent<FixedJoint>().connectedBody = checkCollider.GetComponentInParent<Rigidbody>();
 
             checkCollider.tag = "Unavailable";
-            if (setupPoints.Count() == 0)
+            SetupPoint[] reqPoints = setupPoints.Where(point => point.isRequired).ToArray();
+            if (reqPoints.Count() == 0)
             {
                 DeviceStatus = Status.FullySecured;
             }

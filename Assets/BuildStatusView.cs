@@ -109,7 +109,10 @@ public class BuildStatusView : MonoBehaviour
                 break;
             case PCBuildManager.Status.Unstable:
                 totalStatusText.text = "Статус компьютера: нестабилен";
-                AddCustomElement("Критическое потребление питания сборкой. Требуется блок питания с большей мощностью");
+                if (PCBuild.IsNotEnoughPower)
+                    AddCustomElement("Критическое потребление питания сборкой. Требуется блок питания с большей мощностью.");
+                if (PCBuild.IsWithoutCPUPaste)
+                    AddCustomElement("Процессор без термопасты. Нанесите термопасту для стабильной работы.");
                 break;
             case PCBuildManager.Status.Working:
                 totalStatusText.text = "Статус компьютера: работает";
@@ -122,11 +125,7 @@ public class BuildStatusView : MonoBehaviour
             PCBuildManager.CPUPerformance cpuPerformance = PCBuild.GetCPUPerformance();
             if (cpuPerformance.isOverheated)
             {
-                AddCustomElement("Процессор перегревается, производительность снижена");
-            }
-            if (cpuPerformance.isWithoutPaste)
-            {
-                AddCustomElement("Процессор без термопасты, производительность значительно снижена");
+                AddCustomElement("Процессор перегревается, производительность снижена.");
             }
             performanceText.text =
             "Оценка процессора: " + cpuPerformance.performance + " балла(ов)\n" +

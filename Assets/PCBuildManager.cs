@@ -39,19 +39,19 @@ public class PCBuildManager : MonoBehaviour
     {
         public readonly uint performance;
         public readonly bool isOverheated;
-        public readonly bool isWithoutPaste;
 
-        public CPUPerformance(uint p, bool io, bool iwp)
+        public CPUPerformance(uint p, bool io)
         {
             performance = p;
             isOverheated = io;
-            isWithoutPaste = iwp;
         }
     }
 
     [Tooltip("Область для проверки возможности спавна билда")]
     public Collider testEmptySpace;
     public Status PCStatus => currentStatus;
+    public bool IsNotEnoughPower { get; private set; } = false;
+    public bool IsWithoutCPUPaste { get; private set; } = false;
     public IReadOnlyCollection<GameObject> ConnectedDevices => connectedDevices;
     public int CountConnectedDevices => connectedDevices.Count();
     public UnityAction OnOverallStatusUpdated;
@@ -112,9 +112,10 @@ public class PCBuildManager : MonoBehaviour
             .Cast<ComponentType>()
             .Where(t => t != ComponentType.NotSelected);
 
-        // Собираем все ConnectionPoint из всех подключенных устройств
+        // Собираем все FullySecured устройства
         var allSecuredPoints = new HashSet<ComponentType>();
         CPUInfo2 cpuInfo = null;
+        CPUPasteState pasteState = null;
         GPUInfo2 gpuInfo = null;
         PowerSupplyInfo2 powerSupplyInfo = null;
         foreach (var device in connectedDevices)
@@ -130,6 +131,7 @@ public class PCBuildManager : MonoBehaviour
             {
                 case CPUInfo2:
                     cpuInfo = (CPUInfo2)elemInfo;
+                    pasteState = device.GetComponent<CPUPasteState>();
                     break;
                 case GPUInfo2:
                     gpuInfo = (GPUInfo2)elemInfo;
@@ -150,15 +152,16 @@ public class PCBuildManager : MonoBehaviour
             return;
         }
 
-        bool hasEnoughPower = (cpuInfo.TDP + gpuInfo.TDP + 100) <= powerSupplyInfo.PowerSupplyMaxPower;
-        if (hasEnoughPower)
+        IsNotEnoughPower = (cpuInfo.TDP + gpuInfo.TDP + 100) > powerSupplyInfo.PowerSupplyMaxPower;
+        IsWithoutCPUPaste = !pasteState.IsPasteActive;
+        if (IsNotEnoughPower || IsWithoutCPUPaste)
         {
-            currentStatus = Status.Working;
-            OnWorkingStatusEvent?.Invoke();
+            currentStatus = Status.Unstable;
         }
         else
         {
-            currentStatus = Status.Unstable;
+            currentStatus = Status.Working;
+            OnWorkingStatusEvent?.Invoke();
         }
         
         OnOverallStatusUpdated?.Invoke();
@@ -216,9 +219,9 @@ public class PCBuildManager : MonoBehaviour
                 list.Add(objInfo);
             }
         }
-        instantiatedObjs["PowerSupply"][0].obj.GetComponent<AttachObjectDevice>().ForceAttach(gameObject);
+        instantiatedObjs["PowerSupply"][0].obj.GetComponent<AttachObjectDevice>().ForceAttachAndSetup(gameObject);
         instantiatedObjs.Remove("PowerSupply");
-        instantiatedObjs["Motherboard"][0].obj.GetComponent<AttachObjectDevice>().ForceAttach(gameObject);
+        instantiatedObjs["Motherboard"][0].obj.GetComponent<AttachObjectDevice>().ForceAttachAndSetup(gameObject);
         GameObject motherboard = instantiatedObjs["Motherboard"][0].obj;
         instantiatedObjs.Remove("Motherboard");
 
@@ -227,18 +230,27 @@ public class PCBuildManager : MonoBehaviour
             switch (devices.Key)
             {
                 case "Cooler":
-                case "CPU":
                 case "GPU":
                 case "RAM":
                     foreach (var device in devices.Value)
                     {
-                        device.obj.GetComponent<AttachObjectDevice>().ForceAttach(motherboard, device.slotID);
+                        device.obj.GetComponent<AttachObjectDevice>().ForceAttachAndSetup(motherboard, device.slotID);
+                    }
+                    break;
+                case "CPU":
+                    foreach (var device in devices.Value)
+                    {
+                        device.obj.GetComponent<AttachObjectDevice>().ForceAttachAndSetup(motherboard, device.slotID);
+                        if (device.obj.TryGetComponent<CPUPasteState>(out var pasteState))
+                        {
+                            pasteState.Activate();
+                        }
                     }
                     break;
                 case "StorageDevice":
                     foreach (var device in devices.Value)
                     {
-                        device.obj.GetComponent<AttachObjectDevice>().ForceAttach(gameObject, device.slotID);
+                        device.obj.GetComponent<AttachObjectDevice>().ForceAttachAndSetup(gameObject, device.slotID);
                     }
                     break;
                 case null:
@@ -252,7 +264,7 @@ public class PCBuildManager : MonoBehaviour
     {
         if (currentStatus == Status.NotWorking)
         {
-            return new CPUPerformance(0, false, false);
+            return new CPUPerformance(0, false);
         }
 
         CPUInfo2 cpuInfo = null;
@@ -280,24 +292,14 @@ public class PCBuildManager : MonoBehaviour
         
         uint performance = (uint)(cpuInfo.Performance + ramInfo.FrequencyMhz * 0.5f);
         bool isOverheated = false;
-        bool isWithoutPaste = false;
         if (cpuInfo.TDP > coolerInfo.TDPLimit)
         {
-            performance = (uint)(performance * 0.8f);
+            float overheatFactor = Math.Max((float)coolerInfo.TDPLimit / cpuInfo.TDP, 0.3f);
+            performance = (uint)(performance * overheatFactor);
             isOverheated = true;
         }
-        GameObject cpu = cpuInfo.GameObject();
-        if (!cpu.TryGetComponent<ChangeMaterial>(out var changeMaterial))
-        {
-            changeMaterial = cpu.GetComponentInChildren<ChangeMaterial>();
-        }
-        if (changeMaterial != null && !changeMaterial.changed)
-        {
-            performance = (uint)(performance * 0.5f);
-            isWithoutPaste = true;
-        }
 
-        return new CPUPerformance(performance, isOverheated, isWithoutPaste);
+        return new CPUPerformance(performance, isOverheated);
     }
 
     public uint GetGPUPerformance()
@@ -315,7 +317,8 @@ public class PCBuildManager : MonoBehaviour
             }
         }
         
-        uint performance = gpuInfo.Performance;
+        float adjustmentMult = 1.2f;
+        uint performance = (uint)(gpuInfo.Performance * adjustmentMult);
         
         return performance;
     }
