@@ -40,7 +40,7 @@ public class CharacterInventory : MonoBehaviour
     {
         var playerHeight = characterController.height;
         var currentHMDRot = XROrigin.Camera.transform.rotation;
-        var currentPlayerBodyPos = XROrigin.transform.position;
+        var currentPlayerBodyPos = XROrigin.transform.position + new Vector3(characterController.center.x, 0, characterController.center.z);;
 
         foreach (var bodySocket in bodySockets)
         {
@@ -53,7 +53,7 @@ public class CharacterInventory : MonoBehaviour
                 pistolet.positionX, (playerHeight * pistolet.heightRatio), pistolet.positionZ);
         }
         transform.SetPositionAndRotation(
-            new Vector3(currentPlayerBodyPos.x, currentPlayerBodyPos.y, currentPlayerBodyPos.z),
+            currentPlayerBodyPos,
             new Quaternion(transform.rotation.x, currentHMDRot.y, transform.rotation.z, currentHMDRot.w)
         );
     }

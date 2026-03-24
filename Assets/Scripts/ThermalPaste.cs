@@ -36,6 +36,7 @@ public class ThermalPaste : MonoBehaviour
         colliders = Physics.OverlapSphere(needleOrCloth.position, 0.05f);
         for (int i = 0; i < colliders.Length; i++)
         {
+            if (colliders[i].attachedRigidbody == null) continue; 
             if (colliders[i].attachedRigidbody.gameObject.TryGetComponent<CPUPasteState>(out var changeScript))
             {
                 if (changeScript.IsPasteActive && type == Types.cloth)
