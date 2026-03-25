@@ -2085,6 +2085,10 @@ PrefabInstance:
       propertyPath: deviceAttachToOnStart
       value: 
       objectReference: {fileID: 1107344311}
+    - target: {fileID: 7948566146663201926, guid: 55f9322bb92613549bb33408eff8fdc0, type: 3}
+      propertyPath: isActiveOnStart
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -10,7 +10,7 @@ using UnityEngine.Events;
 public class Device
 {
     public string type = null;
-    public string name = null;
+    public string itemID = null;
     public uint slotID = 0;
 }
 
@@ -179,7 +179,7 @@ public class PCBuildManager : MonoBehaviour
             Device deviceSave = new()
             {
                 type = devInfo.ComponentType.ToString(),
-                name = devInfo.Name,
+                itemID = devInfo.ItemID,
                 slotID = attachObject.SlotID
             };
             newBuild.devices.Add(deviceSave);
@@ -189,7 +189,7 @@ public class PCBuildManager : MonoBehaviour
         .OrderBy(d => d.type)
         .ToList();
 
-        var savedData = SaveService.Load<PlayerBuildsList>("player_builds") ?? new();
+        var savedData = SaveService.Load<PlayerBuildsList>("player_builds");
         savedData.builds.Add(newBuild);
         SaveService.Save("player_builds", savedData);
     }
@@ -203,7 +203,7 @@ public class PCBuildManager : MonoBehaviour
         foreach (var device in build.devices)
         {
             DeviceInfo foundObject = componentPrefabs[device.type].FirstOrDefault(obj =>
-                obj.Name == device.name
+                obj.ItemID == device.itemID
             );
             if (foundObject != null)
             {   

@@ -203,6 +203,7 @@ public class BuildStatusView : MonoBehaviour
         buildElems.Clear();
 
         buildsData = SaveService.Load<PlayerBuildsList>("player_builds");
+        var componentPrefabs = ComponentsService.Instance.Components;
 
         // заполнение префабов информацией
         int count = buildsData.builds.Count;
@@ -210,7 +211,7 @@ public class BuildStatusView : MonoBehaviour
         {
             GameObject createdElement = Instantiate(buildElementPrefab, buildContentTransform);
             int index = i;
-            createdElement.GetComponent<BuildElement>().SetData(buildsData.builds[i], () => {
+            createdElement.GetComponent<BuildElement>().SetData(buildsData.builds[i], componentPrefabs, () => {
                 HandleSelectBuild(index);
             }, () => {
                 HandleDeleteBuild(index);

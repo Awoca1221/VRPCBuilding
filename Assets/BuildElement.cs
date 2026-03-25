@@ -19,19 +19,29 @@ public class BuildElement : MonoBehaviour
         select.SetActive(status);
     }
 
-    public void SetData(Build entry, Action OnSelect, Action OnDelete)
+    public void SetData(Build entry, IReadOnlyDictionary<string, List<DeviceInfo>> devicesInfo, Action OnSelect, Action OnDelete)
     {
-        description.text = FormatBuild(entry);
+        List<DeviceInfo> devices = new();
+        foreach (var device in entry.devices)
+        {
+            DeviceInfo info = devicesInfo[device.type].Find(obj => obj.ItemID == device.itemID);
+            if (info != null)
+            {
+                devices.Add(info);
+            }
+        }
+
+        description.text = FormatBuild(devices);
         selectButton.onClick.AddListener(() => OnSelect?.Invoke());
         deleteButton.onFinishEvent.AddListener(() => OnDelete?.Invoke());
     }
 
-    private static string FormatBuild(Build build)
+    private static string FormatBuild(List<DeviceInfo> devices)
     {
         // Группируем устройства по type
-        var groupedByType = build.devices
-            .Where(d => !string.IsNullOrEmpty(d.type) && !string.IsNullOrEmpty(d.name))
-            .GroupBy(d => d.type)
+        var groupedByType = devices
+            .Where(d => !string.IsNullOrEmpty(d.ComponentType.ToString()) && !string.IsNullOrEmpty(d.name))
+            .GroupBy(d => d.ComponentType.ToString())
             .ToList();
 
         var lines = new List<string>();
