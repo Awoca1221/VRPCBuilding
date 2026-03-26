@@ -192,7 +192,7 @@ public class ScrewdriverManager : MonoBehaviour
         screw.SetParent(instrumentModel);
 
         screw.GetComponent<MeshRenderer>().enabled = true;
-        Vector3 abovePos = transform.position + Vector3.up * 0.025f;
+        Vector3 abovePos = transform.position + new Vector3(0.01f, 0.025f, 0);
         UIProgress.SetParent(usePlace);
         UIProgress.transform.position = abovePos;
         UIProgress.GetComponent<Canvas>().enabled = true;

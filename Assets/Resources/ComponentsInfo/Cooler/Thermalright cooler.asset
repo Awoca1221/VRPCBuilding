@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685c813b5917ca8429830a601e4f2521, type: 3}
   m_Name: Thermalright cooler
   m_EditorClassIdentifier: 
+  itemID: cccab068-3f16-46f4-ae17-4d6bbe843d26
   <Prefab>k__BackingField:
     m_AssetGUID: 50b9cce6b24a4364fb85e071f965cac1
     m_SubObjectName: 

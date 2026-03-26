@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38466a6a079216340b7cd4a1356ddde5, type: 3}
   m_Name: ASUS PRIME X370-PRO
   m_EditorClassIdentifier: 
+  itemID: f025828b-4b8e-4312-a2eb-8f771e67974d
   <Prefab>k__BackingField:
     m_AssetGUID: 3efe31ea7bf5aba46b79c9f9c7345649
     m_SubObjectName: 

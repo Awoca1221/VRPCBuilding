@@ -114,10 +114,10 @@ public class PCBuildManager : MonoBehaviour
 
         // Собираем все FullySecured устройства
         var allSecuredPoints = new HashSet<ComponentType>();
-        CPUInfo2 cpuInfo = null;
+        CPUInfo cpuInfo = null;
         CPUPasteState pasteState = null;
-        GPUInfo2 gpuInfo = null;
-        PowerSupplyInfo2 powerSupplyInfo = null;
+        GPUInfo gpuInfo = null;
+        PowerSupplyInfo powerSupplyInfo = null;
         foreach (var device in connectedDevices)
         {
             AttachObjectDevice.Status deviceStatus = device.GetComponent<AttachObjectDevice>().DeviceStatus;
@@ -129,15 +129,15 @@ public class PCBuildManager : MonoBehaviour
             DeviceInfo elemInfo = device.GetComponent<AttachObjectDevice>().deviceInfo;
             switch (elemInfo)
             {
-                case CPUInfo2:
-                    cpuInfo = (CPUInfo2)elemInfo;
+                case CPUInfo:
+                    cpuInfo = (CPUInfo)elemInfo;
                     pasteState = device.GetComponent<CPUPasteState>();
                     break;
-                case GPUInfo2:
-                    gpuInfo = (GPUInfo2)elemInfo;
+                case GPUInfo:
+                    gpuInfo = (GPUInfo)elemInfo;
                     break;
-                case PowerSupplyInfo2:
-                    powerSupplyInfo = (PowerSupplyInfo2)elemInfo;
+                case PowerSupplyInfo:
+                    powerSupplyInfo = (PowerSupplyInfo)elemInfo;
                     break;
                 default:
                     break;
@@ -267,22 +267,22 @@ public class PCBuildManager : MonoBehaviour
             return new CPUPerformance(0, false);
         }
 
-        CPUInfo2 cpuInfo = null;
-        CoolerInfo2 coolerInfo = null;
-        RAMInfo2 ramInfo = null;
+        CPUInfo cpuInfo = null;
+        CoolerInfo coolerInfo = null;
+        RAMInfo ramInfo = null;
         foreach (var elem in connectedDevices)
         {
             DeviceInfo elemInfo = elem.GetComponent<AttachObjectDevice>().deviceInfo;
             switch (elemInfo)
             {
-                case CPUInfo2:
-                    cpuInfo = (CPUInfo2)elemInfo;
+                case CPUInfo:
+                    cpuInfo = (CPUInfo)elemInfo;
                     break;
-                case CoolerInfo2:
-                    coolerInfo = (CoolerInfo2)elemInfo;
+                case CoolerInfo:
+                    coolerInfo = (CoolerInfo)elemInfo;
                     break;
-                case RAMInfo2:
-                    ramInfo = (RAMInfo2)elemInfo;
+                case RAMInfo:
+                    ramInfo = (RAMInfo)elemInfo;
                     break;
                 default:
                     break;
@@ -306,11 +306,11 @@ public class PCBuildManager : MonoBehaviour
     {
         if (currentStatus == Status.NotWorking) return 0;
 
-        GPUInfo2 gpuInfo = null;
+        GPUInfo gpuInfo = null;
         foreach (var elem in connectedDevices)
         {
             DeviceInfo elemInfo = elem.GetComponent<AttachObjectDevice>().deviceInfo;
-            if (elemInfo is GPUInfo2 info)
+            if (elemInfo is GPUInfo info)
             {
                 gpuInfo =  info;
                 break;

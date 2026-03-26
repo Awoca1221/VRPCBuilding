@@ -51,6 +51,16 @@ public class BuildStatusView : MonoBehaviour
     private PlayerBuildsList buildsData;
     private int lastSelectedBuildIndex = -1;
     private bool buildIsLoading;
+
+    void Awake()
+    {
+        saveTooltip = saveButton.GetComponent<TooltipHandler>();
+        saveButton.interactable = false;
+        spawnButton.interactable = false;
+        PCBuild.OnOverallStatusUpdated += UpdateStatus;
+        PCBuild.OnOverallStatusUpdated += UpdateSpawnButton;
+        SaveService.onSave += OnBuildsDataUpdate;
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -58,12 +68,7 @@ public class BuildStatusView : MonoBehaviour
         UpdateStatus();
         UpdatePlayerBuilds();
         UpdateSpawnButton();
-        PCBuild.OnOverallStatusUpdated += UpdateStatus;
-        PCBuild.OnOverallStatusUpdated += UpdateSpawnButton;
-        SaveService.onSave += OnBuildsDataUpdate;
-        saveTooltip = saveButton.GetComponent<TooltipHandler>();
-        saveButton.interactable = false;
-        spawnButton.interactable = false;
+
         if (!enableSaveOption)
         {
             savePanel.SetActive(false);

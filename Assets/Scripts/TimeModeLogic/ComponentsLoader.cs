@@ -64,7 +64,7 @@ public class ComponentsLoader : MonoBehaviour
         List<DeviceInfo> uncomp = new();
 
         // Берём за основу случайную материнскую плату
-        MotherboardInfo2 motherboard = (MotherboardInfo2)componentPrefabs["Motherboard"][Random.Range(0, componentPrefabs["Motherboard"].Count)];
+        MotherboardInfo motherboard = (MotherboardInfo)componentPrefabs["Motherboard"][Random.Range(0, componentPrefabs["Motherboard"].Count)];
         build.Add(motherboard, "5");
         // uint TDPLimit = 0;
         // uint PowerSupplyMaxPower = 0;
@@ -73,7 +73,7 @@ public class ComponentsLoader : MonoBehaviour
 
         // Выбираем процессор
         // compatibleObjs = componentPrefabs["CPU"].Where(c => c.GetComponent<ItemCommon>().GetCPUInfo().SocketType == motherboardInfo.SocketType).ToList();
-        foreach (CPUInfo2 info in componentPrefabs["CPU"].Cast<CPUInfo2>())
+        foreach (CPUInfo info in componentPrefabs["CPU"].Cast<CPUInfo>())
         {
             if (info.SocketType == motherboard.SocketType)
                 compatibleObjs.Add(info);
@@ -89,13 +89,13 @@ public class ComponentsLoader : MonoBehaviour
         uncompatibleObjs.Clear();
 
         // Выбираем оперативную память
-        compatibleObjs.AddRange(componentPrefabs["RAM"].Cast<RAMInfo2>().Where(c => c.DDRType == motherboard.DDRType).ToList());
+        compatibleObjs.AddRange(componentPrefabs["RAM"].Cast<RAMInfo>().Where(c => c.DDRType == motherboard.DDRType).ToList());
         if (compatibleObjs.Count > 0)
             build.Add(compatibleObjs[Random.Range(0, compatibleObjs.Count)], "ram");
         compatibleObjs.Clear();
         
         // Выбираем кулер
-        compatibleObjs.AddRange(componentPrefabs["Cooler"].Cast<CoolerInfo2>().Where(c => c.SupportSockets.Contains(motherboard.SocketType)).ToList());
+        compatibleObjs.AddRange(componentPrefabs["Cooler"].Cast<CoolerInfo>().Where(c => c.SupportSockets.Contains(motherboard.SocketType)).ToList());
         if (compatibleObjs.Count > 0)
             build.Add(compatibleObjs[Random.Range(0, compatibleObjs.Count)], "3");
         compatibleObjs.Clear();

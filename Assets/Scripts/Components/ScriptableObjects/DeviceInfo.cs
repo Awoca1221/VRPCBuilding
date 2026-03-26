@@ -10,11 +10,10 @@ using NaughtyAttributes;
 [AttributeUsage(AttributeTargets.Property)]
 public class IncludeInDictAttribute : Attribute { }
 
-public class DeviceInfo : ScriptableObject, ISerializationCallbackReceiver
+public class DeviceInfo : ScriptableObject
 {
-    [SerializeField, ReadOnly] private string itemID;
-    public string ItemID => itemID;
-    [field: SerializeField] public AssetReferenceGameObject Prefab { get; private set; }
+    [ReadOnly] public string ItemID;
+    [field: SerializeField] public AssetReferenceGameObject Prefab { get; protected set; }
     [field: SerializeField] public string Name { get; protected set; } = "";
     public virtual ComponentType ComponentType => ComponentType.NotSelected;
 
@@ -30,20 +29,5 @@ public class DeviceInfo : ScriptableObject, ISerializationCallbackReceiver
             dict[p.Name] = v is Array a ? $"[{string.Join(", ", a.Cast<object>())}]" : v.ToString();
         }
         return dict;
-    }
-    
-    // Вызывается перед сереализацией (сохранения ассета)
-    public void OnBeforeSerialize()
-    {
-        if (string.IsNullOrWhiteSpace(itemID))
-        {
-            itemID = Guid.NewGuid().ToString();
-        }
-    }
-
-    // Вызывается после десериализации (загрузки ассета)
-    public void OnAfterDeserialize()
-    {
-        // пусто, интерфейс просит реализацию метода
     }
 }

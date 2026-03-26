@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38466a6a079216340b7cd4a1356ddde5, type: 3}
   m_Name: ASUS Strix X470-I Gaming
   m_EditorClassIdentifier: 
+  itemID: 06fe9320-1c80-4d11-b211-8cea1907b6f8
   <Prefab>k__BackingField:
     m_AssetGUID: c3b0f60dbc3bae144b887ab15c250a73
     m_SubObjectName: 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21893dc7c14f294d850ed762c1d6de2, type: 3}
   m_Name: Kingston Hyperx Predator
   m_EditorClassIdentifier: 
+  itemID: 1c09be87-3d9b-4c86-8a36-55d3c2d881ed
   <Prefab>k__BackingField:
     m_AssetGUID: 29272c0fa7fe73f469979936e5011ab3
     m_SubObjectName: 

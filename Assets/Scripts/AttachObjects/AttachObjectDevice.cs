@@ -425,22 +425,22 @@ public class AttachObjectDevice : AttachObject
 
         switch (deviceInfo) //тип комплектующего, который мы подключаем
         {
-            case CPUInfo2:
-                if (((CPUInfo2)deviceInfo).SocketType != ((MotherboardInfo2)colliderInfo).SocketType) // берём соответствующую информацию об объектах и сравниваем
+            case CPUInfo:
+                if (((CPUInfo)deviceInfo).SocketType != ((MotherboardInfo)colliderInfo).SocketType) // берём соответствующую информацию об объектах и сравниваем
                 {
                     ChangeHighlightColor(wrong); // показываем знак несовместимости
                     return;
                 }
                 break;
-            case RAMInfo2:
-                if (((RAMInfo2)deviceInfo).DDRType != ((MotherboardInfo2)colliderInfo).DDRType)
+            case RAMInfo:
+                if (((RAMInfo)deviceInfo).DDRType != ((MotherboardInfo)colliderInfo).DDRType)
                 {
                     ChangeHighlightColor(wrong);
                     return;
                 }
                 break;
-            case CoolerInfo2:
-                if (!((CoolerInfo2)deviceInfo).SupportSockets.Contains(((MotherboardInfo2)colliderInfo).SocketType))
+            case CoolerInfo:
+                if (!((CoolerInfo)deviceInfo).SupportSockets.Contains(((MotherboardInfo)colliderInfo).SocketType))
                 {
                     ChangeHighlightColor(wrong);
                     return;

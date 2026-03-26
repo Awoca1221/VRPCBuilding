@@ -52,7 +52,7 @@ public class ItemWrapper : MonoBehaviour
         switch (itemInfo.ComponentType)
         {
             case ComponentType.CPU:
-                CPUInfo2 info = (CPUInfo2)itemInfo;
+                CPUInfo info = (CPUInfo)itemInfo;
                 itemDescription.text = $"Модель: {info.Model}, Сокет: {info.SocketType}";
                 break;
             //case ComponentType.Cooler:

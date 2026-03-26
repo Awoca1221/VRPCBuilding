@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewCPUInfo", menuName = "ScriptableObjects/DeviceInfo/CPUInfo", order = 2)]
-public class CPUInfo2 : DeviceInfo
+public class CPUInfo : DeviceInfo
 {
     public override ComponentType ComponentType => ComponentType.CPU;
     [IncludeInDict][field: SerializeField] public CPUManufacturer CPUManufacturer { get; private set; } = CPUManufacturer.NotSelected;

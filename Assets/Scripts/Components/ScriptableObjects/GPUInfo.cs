@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewGPUInfo", menuName = "ScriptableObjects/DeviceInfo/GPUInfo", order = 3)]
-public class GPUInfo2 : DeviceInfo
+public class GPUInfo : DeviceInfo
 {
     public override ComponentType ComponentType => ComponentType.GPU;
     [IncludeInDict][field: SerializeField] public GPUManufacturer GPUManufacturer { get; private set; } = GPUManufacturer.NotSelected;

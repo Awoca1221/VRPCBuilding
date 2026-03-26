@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38466a6a079216340b7cd4a1356ddde5, type: 3}
   m_Name: MSI MAG B660M Mortar
   m_EditorClassIdentifier: 
+  itemID: 5391f2dd-c47a-4505-9df2-e6557b567717
   <Prefab>k__BackingField:
     m_AssetGUID: cc3c708caa3309d41bc02f77e9ad4316
     m_SubObjectName: 

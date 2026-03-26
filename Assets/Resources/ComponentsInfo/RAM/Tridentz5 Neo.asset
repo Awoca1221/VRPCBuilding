@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21893dc7c14f294d850ed762c1d6de2, type: 3}
   m_Name: Tridentz5 Neo
   m_EditorClassIdentifier: 
+  itemID: 5d6f46d9-4314-4b2c-98c8-ad69859947c4
   <Prefab>k__BackingField:
     m_AssetGUID: c2eadf4e172cb0a4e9baabf953e37ea1
     m_SubObjectName: 

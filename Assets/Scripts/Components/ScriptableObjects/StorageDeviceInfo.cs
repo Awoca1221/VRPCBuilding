@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewStorageDeviceInfo", menuName = "ScriptableObjects/DeviceInfo/StorageDeviceInfo", order = 7)]
-public class StorageDeviceInfo2 : DeviceInfo
+public class StorageDeviceInfo : DeviceInfo
 {
     public override ComponentType ComponentType => ComponentType.StorageDevice;
     [IncludeInDict][field: SerializeField] public StorageDeviceType StorageDeviceType { get; private set; } = StorageDeviceType.NotSelected;

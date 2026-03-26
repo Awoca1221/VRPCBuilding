@@ -195,16 +195,16 @@ public class ComponentRaycast : MonoBehaviour
                 string newTitle = "";
                 switch (deviceInfo)
                 {
-                    case CoolerInfo2:
-                        var coolerInfo = deviceInfo as CoolerInfo2;
+                    case CoolerInfo:
+                        var coolerInfo = deviceInfo as CoolerInfo;
                         newText = @$"Тип комплектующего: Кулер
 Название: {deviceInfo.Name}
 Поддержка сокетов: {arrayToString(coolerInfo.SupportSockets)}
 Лимит TDP: {coolerInfo.TDPLimit}";
                         newTitle = $"{deviceInfo.Name}";
                         break;
-                    case CPUInfo2:
-                        var cpuInfo = deviceInfo as CPUInfo2;
+                    case CPUInfo:
+                        var cpuInfo = deviceInfo as CPUInfo;
                         newText = @$"Тип комплектующего: Процессор
 Название: {deviceInfo.Name}
 Производитель: {cpuInfo.CPUManufacturer}
@@ -214,8 +214,8 @@ public class ComponentRaycast : MonoBehaviour
 TDP: {cpuInfo.TDP}";
                         newTitle = $"{deviceInfo.Name}";
                         break;
-                    case GPUInfo2:
-                        var gpuInfo = deviceInfo as GPUInfo2;
+                    case GPUInfo:
+                        var gpuInfo = deviceInfo as GPUInfo;
                         newText = @$"Тип комплектующего: Видеокарта
 Название: {deviceInfo.Name}
 Производитель: {gpuInfo.GPUManufacturer}
@@ -226,8 +226,8 @@ TDP: {cpuInfo.TDP}";
 TDP: {gpuInfo.TDP}";
                         newTitle = $"{deviceInfo.Name}";
                         break;
-                    case MotherboardInfo2:
-                        var motherboardInfo = deviceInfo as MotherboardInfo2;
+                    case MotherboardInfo:
+                        var motherboardInfo = deviceInfo as MotherboardInfo;
                         newText = @$"Тип комплектующего: Материнская плата
 Название: {deviceInfo.Name}
 Поддержка CPU: {motherboardInfo.CPUManufacturer}
@@ -236,8 +236,8 @@ TDP: {gpuInfo.TDP}";
 Тип памяти: {motherboardInfo.DDRType}";
                         newTitle = $"{deviceInfo.Name}";
                         break;
-                    case RAMInfo2:
-                        var ramInfo = deviceInfo as RAMInfo2;
+                    case RAMInfo:
+                        var ramInfo = deviceInfo as RAMInfo;
                         newText = @$"Тип комплектующего: Оперативная память
 Название: {deviceInfo.Name}
 Тип памяти: {ramInfo.DDRType}
@@ -245,15 +245,15 @@ TDP: {gpuInfo.TDP}";
 Частота памяти: {ramInfo.FrequencyMhz} Мгц";
                         newTitle = $"{deviceInfo.Name}";
                         break;
-                    case PowerSupplyInfo2:
-                        var powerSupplyInfo = deviceInfo as PowerSupplyInfo2;
+                    case PowerSupplyInfo:
+                        var powerSupplyInfo = deviceInfo as PowerSupplyInfo;
                         newText = @$"Тип комплектующего: Блок питания
 Название: {deviceInfo.Name}
 Максимальная мощность: {powerSupplyInfo.PowerSupplyMaxPower} Вт";
                         newTitle = $"{deviceInfo.Name}";
                         break;
-                    case StorageDeviceInfo2:
-                        var storageDeviceInfo = deviceInfo as StorageDeviceInfo2;
+                    case StorageDeviceInfo:
+                        var storageDeviceInfo = deviceInfo as StorageDeviceInfo;
                         newText = @$"Тип комплектующего: Накопитель данных
 Название: {deviceInfo.Name}
 Тип накопителя: {storageDeviceInfo.StorageDeviceType}
