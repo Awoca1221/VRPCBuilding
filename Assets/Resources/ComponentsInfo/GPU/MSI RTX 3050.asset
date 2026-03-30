@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157e18a58ae724c4da043176d25a9269, type: 3}
   m_Name: MSI RTX 3050
   m_EditorClassIdentifier: 
-  itemID: ebcb9bc9-fcbc-46c1-8204-3c631a9ac283
+  ItemID: ebcb9bc9-fcbc-46c1-8204-3c631a9ac283
   <Prefab>k__BackingField:
     m_AssetGUID: b0e204614a7a35347993db538859b64c
     m_SubObjectName: 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbff4686a55bdbc4e8431ed2e542ae52, type: 3}
   m_Name: asus rog platinum 1200W
   m_EditorClassIdentifier: 
-  itemID: 2b49bc53-de40-4ed0-8bea-50d66570c0ab
+  ItemID: 2b49bc53-de40-4ed0-8bea-50d66570c0ab
   <Prefab>k__BackingField:
     m_AssetGUID: 313947747f05cfd4ab97c814a666d20d
     m_SubObjectName: 

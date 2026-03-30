@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685c813b5917ca8429830a601e4f2521, type: 3}
   m_Name: PCCooler Paladin ex400
   m_EditorClassIdentifier: 
-  itemID: f8570144-7038-4b5f-963d-3715cc78aeed
+  ItemID: f8570144-7038-4b5f-963d-3715cc78aeed
   <Prefab>k__BackingField:
     m_AssetGUID: 4edeabf4618b15d4fa92e0d73a7b6efc
     m_SubObjectName: 

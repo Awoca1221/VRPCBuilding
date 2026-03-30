@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bff505e3130ecf4da766a2f5d4cb837, type: 3}
   m_Name: HDD
   m_EditorClassIdentifier: 
-  itemID: 4232f194-fa7f-46bb-9fa7-2c7049565f97
+  ItemID: 4232f194-fa7f-46bb-9fa7-2c7049565f97
   <Prefab>k__BackingField:
     m_AssetGUID: 176e7172f744e084ca1eb9fa5a7b8637
     m_SubObjectName: 

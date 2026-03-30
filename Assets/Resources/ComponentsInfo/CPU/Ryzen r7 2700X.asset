@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01e5600113a56042a9fa6df995d2269, type: 3}
   m_Name: Ryzen r7 2700X
   m_EditorClassIdentifier: 
-  itemID: 26a3942b-52fc-40a9-ad9a-f03f16fc7466
+  ItemID: 26a3942b-52fc-40a9-ad9a-f03f16fc7466
   <Prefab>k__BackingField:
     m_AssetGUID: c4cbf5ea2b0e1c94fb2f6220a2dbe608
     m_SubObjectName: 

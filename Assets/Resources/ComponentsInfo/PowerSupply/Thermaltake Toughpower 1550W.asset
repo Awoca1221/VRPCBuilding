@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbff4686a55bdbc4e8431ed2e542ae52, type: 3}
   m_Name: Thermaltake Toughpower 1550W
   m_EditorClassIdentifier: 
-  itemID: 2e6a3e46-8959-495f-95b2-11260db89021
+  ItemID: 2e6a3e46-8959-495f-95b2-11260db89021
   <Prefab>k__BackingField:
     m_AssetGUID: a88440bf972f64c4bbd48b9075f956c5
     m_SubObjectName: 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157e18a58ae724c4da043176d25a9269, type: 3}
   m_Name: Gigabyte GTX 1660 Ti
   m_EditorClassIdentifier: 
-  itemID: e43575f9-cdc2-44bd-8597-ad1c5d465c6f
+  ItemID: e43575f9-cdc2-44bd-8597-ad1c5d465c6f
   <Prefab>k__BackingField:
     m_AssetGUID: 6311c28ef1f7f8043ac315782c4c83d0
     m_SubObjectName: 

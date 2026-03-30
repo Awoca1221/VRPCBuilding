@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01e5600113a56042a9fa6df995d2269, type: 3}
   m_Name: Intel i5-13600k
   m_EditorClassIdentifier: 
-  itemID: c8cfdd1d-4d9f-4d53-8be3-59cad79bf120
+  ItemID: c8cfdd1d-4d9f-4d53-8be3-59cad79bf120
   <Prefab>k__BackingField:
     m_AssetGUID: 9d42986e98a5bfb409dec79d5b6d40b9
     m_SubObjectName: 

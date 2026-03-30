@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21893dc7c14f294d850ed762c1d6de2, type: 3}
   m_Name: KFA2 Hall of Fame
   m_EditorClassIdentifier: 
-  itemID: d5fccaf5-74f0-44c9-9852-9b0ce8ef2cac
+  ItemID: d5fccaf5-74f0-44c9-9852-9b0ce8ef2cac
   <Prefab>k__BackingField:
     m_AssetGUID: 3adef00dc8d445147a503451594e050a
     m_SubObjectName: 

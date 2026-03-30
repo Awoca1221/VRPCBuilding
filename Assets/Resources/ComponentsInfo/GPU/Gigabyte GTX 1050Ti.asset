@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157e18a58ae724c4da043176d25a9269, type: 3}
   m_Name: Gigabyte GTX 1050Ti
   m_EditorClassIdentifier: 
-  itemID: 0180e8b0-de40-4e62-ab73-d41e51d43b1f
+  ItemID: 0180e8b0-de40-4e62-ab73-d41e51d43b1f
   <Prefab>k__BackingField:
     m_AssetGUID: e629c5252935afb479a3a94086274c6e
     m_SubObjectName: 
