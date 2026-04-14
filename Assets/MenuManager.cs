@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    [Tooltip("Ссылка на миксер")]
+    [Tooltip("Ссылка на микшер")]
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private Slider masterSlider;
 

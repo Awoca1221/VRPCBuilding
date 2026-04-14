@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01e5600113a56042a9fa6df995d2269, type: 3}
+  m_Name: Intel i5 13600K
+  m_EditorClassIdentifier: 
+  ItemID: c8cfdd1d-4d9f-4d53-8be3-59cad79bf120
+  <Prefab>k__BackingField:
+    m_AssetGUID: 9d42986e98a5bfb409dec79d5b6d40b9
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <Name>k__BackingField: Intel i5 13600K
+  <CPUManufacturer>k__BackingField: 2
+  <Model>k__BackingField: Intel i5 13600K
+  <SocketType>k__BackingField: 4
+  <Performance>k__BackingField: 37562
+  <TDP>k__BackingField: 125

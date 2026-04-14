@@ -37,8 +37,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 55f9322bb92613549bb33408eff8fdc0
-    m_Address: Assets/PCComponents/CPU/Ryzen 9 5900x.prefab
+  - m_GUID: bedef4c15b683ad49977149bcd79244a
+    m_Address: Assets/PCComponents/CPU/Ryzen 5 5600.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -99,6 +99,116 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 176e7172f744e084ca1eb9fa5a7b8637
     m_Address: Assets/PCComponents/StorageDevice/HDD.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5be350fa6050a504ba082aa22f282d39
+    m_Address: Assets/PCComponents/Motherboard/ASUS B650 STRIX.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aae787b2fa5977d4981d1ba65bdb9b01
+    m_Address: Assets/PCComponents/Motherboard/ASUS PRIME Z490.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc243b922fc30874aa947da2f3798b07
+    m_Address: Assets/PCComponents/GPU/RX 6700XT.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a8f2581b1cbd734286012bd76439791
+    m_Address: Assets/PCComponents/CPU/Intel i5 11400.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 02e24641668e59549bdf2a789617631f
+    m_Address: Assets/PCComponents/CPU/Intel i5 11400F.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c4bc2ab864d72a41b8b5288f862f7bb
+    m_Address: Assets/PCComponents/CPU/Intel i7 11700F.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6c1ffb6d2283f346a1474adaaeac81e
+    m_Address: Assets/PCComponents/CPU/Intel i9 11900KF.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9872d0bcb62b2c7498306e8a49eb97e8
+    m_Address: Assets/PCComponents/CPU/Ryzen 5 7500F.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ad5fa55e2b96f34c8b50377425a8938
+    m_Address: Assets/PCComponents/CPU/Ryzen 5 7600.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 21c1d1e8a9f409a4a9926a71edb87e12
+    m_Address: Assets/PCComponents/CPU/Ryzen 7 7700.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 636e49ceeb4b77643af256286f8ace16
+    m_Address: Assets/PCComponents/CPU/Ryzen 7 7800X3D.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95cc48b682a86fa4294329033bae04ac
+    m_Address: Assets/PCComponents/CPU/Ryzen 9 7900X.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd3bd82abf0de1b4fbaebe9afb81d679
+    m_Address: Assets/PCComponents/CPU/Intel i5 12400F.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5b59970a96de5448a403596023aa67e
+    m_Address: Assets/PCComponents/CPU/Intel i5 12400.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: efbaedb0d3cc1c4469f3ad35f34f3efd
+    m_Address: Assets/PCComponents/CPU/Intel i7 12700F.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 50b2897f7e851d34f8855cb41f69927d
+    m_Address: Assets/PCComponents/CPU/Intel i9 12900 KF.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f859f35c1f08b41449867e0538e1b909
+    m_Address: Assets/PCComponents/CPU/Ryzen 5 5600G.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6c0820b144b5aa4999ddb5900024e24
+    m_Address: Assets/PCComponents/CPU/Ryzen 7 5700.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 908739079228a4f42a323c3ff50dcfaa
+    m_Address: Assets/PCComponents/CPU/Ryzen 7 5800X3D.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e46916ad879ad68449296db31f6116bc
+    m_Address: Assets/PCComponents/CPU/Ryzen 9 5900X.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9dfca22c1153894b8a0fef66228f3b2
+    m_Address: Assets/PCComponents/GPU/RTX 2070 Founders Edition.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4dba95e0ff1c5b645b932c508e025629
+    m_Address: Assets/PCComponents/GPU/RTX 3080 Founders Edition.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

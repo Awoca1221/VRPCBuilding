@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157e18a58ae724c4da043176d25a9269, type: 3}
+  m_Name: RX 6700XT
+  m_EditorClassIdentifier: 
+  ItemID: 3b0f6eb3-3001-4836-94d8-91be637c21a2
+  <Prefab>k__BackingField:
+    m_AssetGUID: fc243b922fc30874aa947da2f3798b07
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <Name>k__BackingField: RX 6700XT
+  <GPUManufacturer>k__BackingField: 2
+  <Model>k__BackingField: RX 6700XT
+  <MemoryAmountGB>k__BackingField: 12
+  <PCIESupport>k__BackingField: 4
+  <Performance>k__BackingField: 19729
+  <TDP>k__BackingField: 230

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01e5600113a56042a9fa6df995d2269, type: 3}
+  m_Name: Ryzen 7 5800X3D
+  m_EditorClassIdentifier: 
+  ItemID: 4f646754-2314-4add-8ed9-d48754ba82c9
+  <Prefab>k__BackingField:
+    m_AssetGUID: 908739079228a4f42a323c3ff50dcfaa
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <Name>k__BackingField: Ryzen 7 5800X3D
+  <CPUManufacturer>k__BackingField: 1
+  <Model>k__BackingField: Ryzen 7 5800X3D
+  <SocketType>k__BackingField: 2
+  <Performance>k__BackingField: 28304
+  <TDP>k__BackingField: 130

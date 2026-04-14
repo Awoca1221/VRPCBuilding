@@ -350,6 +350,7 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 3e8d85f9df7f8c742b67d43c336ecc87, type: 2}
   indexOfMaterial: 0
   pasteMeshRenderer: {fileID: 0}
+  isActiveOnStart: 0
 --- !u!65 &3128650518438054863
 BoxCollider:
   m_ObjectHideFlags: 0

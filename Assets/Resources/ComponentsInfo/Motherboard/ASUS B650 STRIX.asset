@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38466a6a079216340b7cd4a1356ddde5, type: 3}
+  m_Name: ASUS B650 STRIX
+  m_EditorClassIdentifier: 
+  ItemID: 77aaabda-d7bb-4ca6-9d9a-c35b8c49ea8e
+  <Prefab>k__BackingField:
+    m_AssetGUID: 5be350fa6050a504ba082aa22f282d39
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <Name>k__BackingField: ASUS B650 STRIX
+  <CPUManufacturer>k__BackingField: 1
+  <SocketType>k__BackingField: 1
+  <PCIESupport>k__BackingField: 1
+  <DDRType>k__BackingField: 1

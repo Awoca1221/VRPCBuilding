@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157e18a58ae724c4da043176d25a9269, type: 3}
+  m_Name: RTX 3080 Founders Edition
+  m_EditorClassIdentifier: 
+  ItemID: 92dc6387-fefe-41c6-af87-1265e1287b56
+  <Prefab>k__BackingField:
+    m_AssetGUID: 4dba95e0ff1c5b645b932c508e025629
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <Name>k__BackingField: RTX 3080 Founders Edition
+  <GPUManufacturer>k__BackingField: 1
+  <Model>k__BackingField: RTX 3080
+  <MemoryAmountGB>k__BackingField: 10
+  <PCIESupport>k__BackingField: 4
+  <Performance>k__BackingField: 25023
+  <TDP>k__BackingField: 320

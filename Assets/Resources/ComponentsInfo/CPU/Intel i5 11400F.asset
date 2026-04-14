@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01e5600113a56042a9fa6df995d2269, type: 3}
+  m_Name: Intel i5 11400F
+  m_EditorClassIdentifier: 
+  ItemID: cd70ef91-6014-4fee-85ee-1379b5ab4c96
+  <Prefab>k__BackingField:
+    m_AssetGUID: 02e24641668e59549bdf2a789617631f
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <Name>k__BackingField: Intel i5 11400F
+  <CPUManufacturer>k__BackingField: 2
+  <Model>k__BackingField: Intel i5 11400F
+  <SocketType>k__BackingField: 5
+  <Performance>k__BackingField: 16884
+  <TDP>k__BackingField: 65
