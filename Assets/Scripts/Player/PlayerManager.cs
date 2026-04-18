@@ -20,9 +20,14 @@ public class PlayerManager : Singleton<PlayerManager>
         xrOriginObj = GetComponentInChildren<XROrigin>().gameObject;
         pistoletLogic = GetComponentInChildren<ComponentRaycast>();
         SceneManager.sceneLoaded += OnSceneLoaded;
-        if (SceneManager.GetActiveScene().name == "Start") {
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "Start") {
             menuObj.SetActive(false);
             StartCoroutine(ChangeToMainMenu());
+        }
+        if (currentScene.name == "CreativeMode" || currentScene.name == "RestrictionMode")
+        {
+            pistoletLogic.EnableDeleteButton();
         }
     }
 
@@ -33,7 +38,7 @@ public class PlayerManager : Singleton<PlayerManager>
         } else {
             menuObj.SetActive(true);
         }
-        if (scene.name == "CreativeMode")
+        if (scene.name == "CreativeMode" || scene.name == "RestrictionMode")
         {
             pistoletLogic.EnableDeleteButton();
         } else {

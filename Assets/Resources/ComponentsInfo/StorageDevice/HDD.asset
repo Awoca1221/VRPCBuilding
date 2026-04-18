@@ -19,5 +19,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   <Name>k__BackingField: Unknown HDD
+  <Price>k__BackingField: 2500
   <StorageDeviceType>k__BackingField: 2
   <MemoryAmountGB>k__BackingField: 512

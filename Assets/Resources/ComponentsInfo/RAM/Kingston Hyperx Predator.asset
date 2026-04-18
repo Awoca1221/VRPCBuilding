@@ -19,6 +19,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   <Name>k__BackingField: Kingston Hyperx Predator
+  <Price>k__BackingField: 12000
   <DDRType>k__BackingField: 2
   <MemoryAmountGB>k__BackingField: 16
   <FrequencyMhz>k__BackingField: 3200

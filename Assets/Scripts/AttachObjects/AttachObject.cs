@@ -104,7 +104,7 @@ public abstract class AttachObject : MonoBehaviour
         // метод для override
     }
 
-    public virtual void TryUnattach()
+    public virtual void TryUnattach(bool forced = false)
     {
         // метод для override
     }

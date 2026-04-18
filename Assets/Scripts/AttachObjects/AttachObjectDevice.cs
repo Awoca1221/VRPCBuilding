@@ -238,7 +238,7 @@ public class AttachObjectDevice : AttachObject
         if (!objIsAttached) return;
 
         ForceUnsetup();
-        TryUnattach();
+        TryUnattach(true);
     }
 
     // Подключение объекта
@@ -316,7 +316,7 @@ public class AttachObjectDevice : AttachObject
     }
 
     // Отключение объекта
-    public override void TryUnattach()
+    public override void TryUnattach(bool forced = false)
     {
         if (objIsAttached && !IsAnySetupPointsSecured)
         {
@@ -343,7 +343,10 @@ public class AttachObjectDevice : AttachObject
 
             if (checkCollider.TryGetComponent<ConnectionPoint>(out var conPoint))
             {
-                conPoint.OnDisconnect();
+                if (forced)
+                    conPoint.OnDisconnect(false);
+                else
+                    conPoint.OnDisconnect();
             }
 
             // Необходимо для разблокировки процессора при отключении кулера

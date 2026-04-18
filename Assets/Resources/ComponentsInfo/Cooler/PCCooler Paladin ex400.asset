@@ -19,5 +19,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   <Name>k__BackingField: PCCooler Paladin ex400
+  <Price>k__BackingField: 1500
   <SupportSockets>k__BackingField: 060000000700000008000000
   <TDPLimit>k__BackingField: 120

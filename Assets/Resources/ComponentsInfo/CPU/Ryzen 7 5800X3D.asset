@@ -19,6 +19,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   <Name>k__BackingField: Ryzen 7 5800X3D
+  <Price>k__BackingField: 25000
   <CPUManufacturer>k__BackingField: 1
   <Model>k__BackingField: Ryzen 7 5800X3D
   <SocketType>k__BackingField: 2

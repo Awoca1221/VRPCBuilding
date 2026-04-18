@@ -19,6 +19,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   <Name>k__BackingField: Ryzen 7 7700
+  <Price>k__BackingField: 17500
   <CPUManufacturer>k__BackingField: 1
   <Model>k__BackingField: Ryzen 7 7700
   <SocketType>k__BackingField: 1

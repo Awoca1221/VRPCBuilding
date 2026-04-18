@@ -124,7 +124,7 @@ public class BuildStatusView : MonoBehaviour
                 break;
         }
 
-        // Определение производительности сборки
+        // Определение информации о сборке
         if (PCBuild.PCStatus == PCBuildManager.Status.Working)
         {
             PCBuildManager.CPUPerformance cpuPerformance = PCBuild.GetCPUPerformance();
@@ -133,6 +133,7 @@ public class BuildStatusView : MonoBehaviour
                 AddCustomElement("Процессор перегревается, производительность снижена.");
             }
             performanceText.text =
+            "Цена сборки: " + PCBuild.GetPrice() + "р.\n" +
             "Оценка процессора: " + cpuPerformance.performance + " балла(ов)\n" +
             "Оценка видеокарты: " + PCBuild.GetGPUPerformance() + " балла(ов)\n" +
             "Общая оценка производительности: " + PCBuild.GetOverallPerformance() + " балла(ов)";
@@ -141,7 +142,9 @@ public class BuildStatusView : MonoBehaviour
         }
         else
         {
-            performanceText.text = "Невозможно оценить производительность не собранной сборки";
+            performanceText.text =
+            "Цена сборки: " + PCBuild.GetPrice() + "р.\n" +
+            "Производительность: неопределена (необходима рабочая сборка)";
         }
 
         if (PCBuild.PCStatus == PCBuildManager.Status.Working || PCBuild.PCStatus == PCBuildManager.Status.Unstable) return;

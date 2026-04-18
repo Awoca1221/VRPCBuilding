@@ -18,5 +18,6 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  <Name>k__BackingField: Thermaltake Toughpower 1550W
-  <PowerSupplyMaxPower>k__BackingField: 1550
+  <Name>k__BackingField: Thermaltake Toughpower 1000W
+  <Price>k__BackingField: 9000
+  <PowerSupplyMaxPower>k__BackingField: 1000

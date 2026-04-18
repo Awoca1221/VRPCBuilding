@@ -19,6 +19,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   <Name>k__BackingField: Intel i5 13600K
+  <Price>k__BackingField: 21300
   <CPUManufacturer>k__BackingField: 2
   <Model>k__BackingField: Intel i5 13600K
   <SocketType>k__BackingField: 4

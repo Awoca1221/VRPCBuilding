@@ -18,5 +18,6 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  <Name>k__BackingField: asus rog platinum 1200W
-  <PowerSupplyMaxPower>k__BackingField: 1200
+  <Name>k__BackingField: asus rog platinum 500W
+  <Price>k__BackingField: 4000
+  <PowerSupplyMaxPower>k__BackingField: 500

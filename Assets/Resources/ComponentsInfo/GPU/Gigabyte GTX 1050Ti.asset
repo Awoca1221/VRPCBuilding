@@ -19,6 +19,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   <Name>k__BackingField: Gigabyte GTX 1050Ti
+  <Price>k__BackingField: 10000
   <GPUManufacturer>k__BackingField: 1
   <Model>k__BackingField: GTX 1050Ti
   <MemoryAmountGB>k__BackingField: 4

@@ -19,6 +19,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   <Name>k__BackingField: RTX 3080 Founders Edition
+  <Price>k__BackingField: 50000
   <GPUManufacturer>k__BackingField: 1
   <Model>k__BackingField: RTX 3080
   <MemoryAmountGB>k__BackingField: 10

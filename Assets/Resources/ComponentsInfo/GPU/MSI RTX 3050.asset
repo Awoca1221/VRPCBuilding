@@ -19,6 +19,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   <Name>k__BackingField: MSI RTX 3050
+  <Price>k__BackingField: 19000
   <GPUManufacturer>k__BackingField: 1
   <Model>k__BackingField: RTX 3050
   <MemoryAmountGB>k__BackingField: 8

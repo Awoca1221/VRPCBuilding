@@ -19,6 +19,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   <Name>k__BackingField: KFA2 Hall of Fame
+  <Price>k__BackingField: 6500
   <DDRType>k__BackingField: 2
   <MemoryAmountGB>k__BackingField: 8
   <FrequencyMhz>k__BackingField: 3600

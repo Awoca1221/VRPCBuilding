@@ -19,6 +19,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   <Name>k__BackingField: ASUS PRIME X370-PRO
+  <Price>k__BackingField: 10000
   <CPUManufacturer>k__BackingField: 1
   <SocketType>k__BackingField: 2
   <PCIESupport>k__BackingField: 4

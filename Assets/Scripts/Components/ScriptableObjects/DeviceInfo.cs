@@ -15,6 +15,7 @@ public class DeviceInfo : ScriptableObject
     [ReadOnly] public string ItemID;
     [field: SerializeField] public AssetReferenceGameObject Prefab { get; protected set; }
     [field: SerializeField] public string Name { get; protected set; } = "";
+    [IncludeInDict][field: SerializeField] public uint Price { get; protected set; } = 0;
     public virtual ComponentType ComponentType => ComponentType.NotSelected;
 
     public Dictionary<string, string> ToDict()

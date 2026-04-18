@@ -19,5 +19,6 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   <Name>k__BackingField: Thermalright cooler
+  <Price>k__BackingField: 3000
   <SupportSockets>k__BackingField: 0200000001000000
-  <TDPLimit>k__BackingField: 100
+  <TDPLimit>k__BackingField: 180

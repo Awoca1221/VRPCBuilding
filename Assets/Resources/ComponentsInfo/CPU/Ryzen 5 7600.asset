@@ -18,9 +18,10 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  <Name>k__BackingField: Ryzen 7 7600
+  <Name>k__BackingField: Ryzen 5 7600
+  <Price>k__BackingField: 16600
   <CPUManufacturer>k__BackingField: 1
-  <Model>k__BackingField: Ryzen 7 7600
+  <Model>k__BackingField: Ryzen 5 7600
   <SocketType>k__BackingField: 1
   <Performance>k__BackingField: 26996
   <TDP>k__BackingField: 65

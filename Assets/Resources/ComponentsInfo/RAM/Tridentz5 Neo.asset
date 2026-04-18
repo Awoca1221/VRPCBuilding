@@ -19,6 +19,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   <Name>k__BackingField: Tridentz5 Neo
+  <Price>k__BackingField: 15000
   <DDRType>k__BackingField: 1
   <MemoryAmountGB>k__BackingField: 16
   <FrequencyMhz>k__BackingField: 6000

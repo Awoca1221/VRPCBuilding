@@ -879,9 +879,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1005031155613215586, guid: e46916ad879ad68449296db31f6116bc, type: 3}
+      propertyPath: deviceAttachToOnStart
+      value: 
+      objectReference: {fileID: 1107344311}
     - target: {fileID: 3535586571866548473, guid: e46916ad879ad68449296db31f6116bc, type: 3}
       propertyPath: m_Name
       value: Ryzen 9 5900X
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638584711925076201, guid: e46916ad879ad68449296db31f6116bc, type: 3}
+      propertyPath: isActiveOnStart
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

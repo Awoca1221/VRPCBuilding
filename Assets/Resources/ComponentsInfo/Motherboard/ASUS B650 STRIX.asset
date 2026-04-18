@@ -19,6 +19,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   <Name>k__BackingField: ASUS B650 STRIX
+  <Price>k__BackingField: 15700
   <CPUManufacturer>k__BackingField: 1
   <SocketType>k__BackingField: 1
   <PCIESupport>k__BackingField: 1

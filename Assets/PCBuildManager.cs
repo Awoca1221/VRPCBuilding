@@ -260,6 +260,17 @@ public class PCBuildManager : MonoBehaviour
         callback?.Invoke();
     }
 
+    public uint GetPrice()
+    {
+        uint price = 0;
+        foreach (var elem in connectedDevices)
+        {
+            price += elem.GetComponent<AttachObjectDevice>().deviceInfo.Price;
+        }
+        
+        return price;
+    }
+
     public CPUPerformance GetCPUPerformance()
     {
         if (currentStatus == Status.NotWorking)

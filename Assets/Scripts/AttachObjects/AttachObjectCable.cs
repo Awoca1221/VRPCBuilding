@@ -84,7 +84,7 @@ public class AttachObjectCable : AttachObject
         }
     }
 
-    public override void TryUnattach()
+    public override void TryUnattach(bool forced = false)
     {
         if (objIsAttached)
         {

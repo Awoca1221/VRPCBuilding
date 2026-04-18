@@ -91,6 +91,7 @@ public class HoldButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 {
                     onFinishEvent?.Invoke();
                     IsHolding = false;
+                    holdTime = 0;
                     fillImage.fillAmount = 0;
                 }
             }
