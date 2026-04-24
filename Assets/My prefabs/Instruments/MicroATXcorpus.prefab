@@ -1806,6 +1806,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testEmptySpace: {fileID: 2564046707463134776}
+  OnWorkingStatusEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &5505156216832130
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2033,6 +2036,8 @@ GameObject:
   - component: {fileID: 7462007761679894849}
   - component: {fileID: 3092837154496974535}
   - component: {fileID: 4042571376505233523}
+  - component: {fileID: 2712822816862161145}
+  - component: {fileID: 6628181133603515338}
   m_Layer: 0
   m_Name: HDD_Cage
   m_TagString: Untagged
@@ -2124,8 +2129,50 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 158.22371, y: 111.01343, z: 67.33601}
-  m_Center: {x: -15.002604, y: -0.000032916654, z: 0.76533264}
+  m_Size: {x: 158.22371, y: 1.2597485, z: 67.33601}
+  m_Center: {x: -15.002578, y: -54.876785, z: 0.7653321}
+--- !u!65 &2712822816862161145
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4093707538702990675}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 158.22371, y: 1.2597485, z: 67.33601}
+  m_Center: {x: -15.002578, y: 54.7, z: 0.7653321}
+--- !u!65 &6628181133603515338
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4093707538702990675}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 158.22371, y: 110.287285, z: 1.76857}
+  m_Center: {x: -15.002577, y: 0.18630357, z: -32.89845}
 --- !u!1 &4447994398218142112
 GameObject:
   m_ObjectHideFlags: 0

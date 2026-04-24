@@ -32,6 +32,12 @@ namespace HPhysic
         private Connector startConnector;
         private Connector endConnector;
 
+        void OnDestroy()
+        {
+            Destroy(start);
+            Destroy(end);
+        }
+
         [Button("Reset points")]
         private void UpdatePoints()
         {

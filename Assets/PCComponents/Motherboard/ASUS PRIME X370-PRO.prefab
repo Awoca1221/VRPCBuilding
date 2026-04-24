@@ -1000,6 +1000,74 @@ AudioHighPassFilter:
   m_Enabled: 1
   m_CutoffFrequency: 5000
   m_HighpassResonanceQ: 1
+--- !u!1 &6207981592872307417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4446813870643503743}
+  - component: {fileID: 2866225801552133655}
+  - component: {fileID: 1484680342617551050}
+  m_Layer: 8
+  m_Name: SATACable
+  m_TagString: SATA cable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4446813870643503743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6207981592872307417}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -0.12941736, y: -0.121959925, z: 0.0128701925}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1749331726447799928}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2866225801552133655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6207981592872307417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd5234072caaf6e418745f2cced6d2b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointType: 2
+  isRequired: 0
+--- !u!65 &1484680342617551050
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6207981592872307417}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.02, y: 0.012388565, z: 0.026167514}
+  m_Center: {x: 4.5177284e-10, y: 0.0011942828, z: 0.0037897455}
 --- !u!1 &7893161658144348991
 GameObject:
   m_ObjectHideFlags: 0
@@ -2327,24 +2395,27 @@ PrefabInstance:
       addedObject: {fileID: 2756873648800790797}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: eb109fcc74edf1a4889994e0c49815ac, type: 3}
       insertIndex: 7
-      addedObject: {fileID: 7779571707396396081}
+      addedObject: {fileID: 4446813870643503743}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: eb109fcc74edf1a4889994e0c49815ac, type: 3}
       insertIndex: 8
-      addedObject: {fileID: 238074722175570693}
+      addedObject: {fileID: 7779571707396396081}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: eb109fcc74edf1a4889994e0c49815ac, type: 3}
       insertIndex: 9
-      addedObject: {fileID: 1440366614563389028}
+      addedObject: {fileID: 238074722175570693}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: eb109fcc74edf1a4889994e0c49815ac, type: 3}
       insertIndex: 10
-      addedObject: {fileID: 2065271963136564975}
+      addedObject: {fileID: 1440366614563389028}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: eb109fcc74edf1a4889994e0c49815ac, type: 3}
       insertIndex: 11
-      addedObject: {fileID: 7669346136162698247}
+      addedObject: {fileID: 2065271963136564975}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: eb109fcc74edf1a4889994e0c49815ac, type: 3}
       insertIndex: 12
-      addedObject: {fileID: 8149491153100174718}
+      addedObject: {fileID: 7669346136162698247}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: eb109fcc74edf1a4889994e0c49815ac, type: 3}
       insertIndex: 13
+      addedObject: {fileID: 8149491153100174718}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: eb109fcc74edf1a4889994e0c49815ac, type: 3}
+      insertIndex: 14
       addedObject: {fileID: 3492591962140849962}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eb109fcc74edf1a4889994e0c49815ac, type: 3}

@@ -70,7 +70,8 @@ public class OutlineHandler : MonoBehaviour
             interactionManager.GetValidTargets(baseInteractor, targets);
             if (targets.Count == 0)
             {
-                SetLayerRecursively(target.gameObject, SetOldLayer);
+                if (target != null)
+                    SetLayerRecursively(target.gameObject, SetOldLayer);
                 break;
             }
             if (target.transform.gameObject != targets[0].transform.gameObject)

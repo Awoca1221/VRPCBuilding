@@ -23,7 +23,7 @@ public class MoveToOrigin : MonoBehaviour
             homeCoroutine = StartCoroutine(GoHome());
     }
 
-    void OnGrabbed(SelectEnterEventArgs _)
+    private void OnGrabbed(SelectEnterEventArgs _)
     {
         if (homeCoroutine != null)
         {
@@ -32,15 +32,21 @@ public class MoveToOrigin : MonoBehaviour
         }
     }
 
-    void OnReleased(SelectExitEventArgs _)
+    private void OnReleased(SelectExitEventArgs _)
     {
-        homeCoroutine = StartCoroutine(GoHome());
+        if (gameObject.activeInHierarchy)
+            homeCoroutine = StartCoroutine(GoHome());
     }
 
-    IEnumerator GoHome()
+    void OnDestroy()
     {
-        Vector3 startPos = transform.localPosition;
-        Quaternion startRot = transform.localRotation;
+        if (homeCoroutine != null)
+            StopCoroutine(homeCoroutine);
+    }
+
+    private IEnumerator GoHome()
+    {
+        transform.GetLocalPositionAndRotation(out Vector3 startPos, out Quaternion startRot);
         float elapsed = 0;
 
         while (elapsed < homeTime)
@@ -56,5 +62,6 @@ public class MoveToOrigin : MonoBehaviour
         }
 
         transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        homeCoroutine = null;
     }
 }

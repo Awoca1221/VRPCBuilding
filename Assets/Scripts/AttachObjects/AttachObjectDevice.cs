@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -35,6 +36,7 @@ public class AttachObjectDevice : AttachObject
     private bool IsAnySetupPointsSecured => setupPoints.Any(s => s.IsSecured);
     [field: NonSerialized] public GameObject cpuConnected;
     private HashSet<GameObject> _connectedParts = new();
+    private GameObject compatabilityPanel;
 
     [field: SerializeField] public UnityEvent OnSecuredEvents { get; set; } = null;
     [field: SerializeField] public UnityEvent OnUnsecuredEvents { get; set; } = null;
@@ -48,10 +50,34 @@ public class AttachObjectDevice : AttachObject
         setupPoints = GetComponentsInChildren<SetupPoint>();
         foreach (var point in setupPoints) point.onStatusChanged += OnPointsChangeStatus;
         interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
+        compatabilityPanel = Instantiate(Resources.Load<GameObject>("UI/CompatabilityPanel"), attachPoint.transform);
+        compatabilityPanel.SetActive(false);
 
         if (deviceAttachToOnStart != null)
         {
             ForceAttachAndSetup(deviceAttachToOnStart, slotIDAttachToOnStart);
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (compatabilityPanel.activeInHierarchy)
+        {
+            compatabilityPanel.transform.LookAt(Camera.main.transform);
+        }
+    }
+
+    protected override void OnGrabExit(SelectExitEventArgs args)
+    {
+        base.OnGrabExit(args);
+
+        if (_currentColliderForHighlight != null)
+        {
+            EndHighlight();
+            if (compatabilityPanel.activeInHierarchy)
+            {
+                compatabilityPanel.SetActive(false);
+            }
         }
     }
 
@@ -201,7 +227,7 @@ public class AttachObjectDevice : AttachObject
         TeleportToAttachPosition(conPointCol.transform);
 
         DoCompatibleTest(conPointCol);
-        TryAttach();
+        TryAttach(true);
     }
 
     // Автоматическая полная установка комплектующего (пока только винты)
@@ -242,7 +268,7 @@ public class AttachObjectDevice : AttachObject
     }
 
     // Подключение объекта
-    protected override void TryAttach()
+    protected override void TryAttach(bool forced = false)
     {
         if (checkCollider != null && Quaternion.Angle(attachPoint.transform.rotation, checkCollider.gameObject.transform.rotation) <= 40)
         {
@@ -276,13 +302,10 @@ public class AttachObjectDevice : AttachObject
             }
             if (checkCollider.TryGetComponent<ConnectionPoint>(out var conPoint))
             {
-                if (deviceAttachToOnStart != null)
+                if (forced)
                 {
                     conPoint.OnConnect(gameObject, false);
-                    deviceAttachToOnStart = null;
-                }
-                else
-                {
+                } else {
                     conPoint.OnConnect(gameObject);
                 }
                 Transform conPointParent = conPoint.transform.parent;
@@ -415,6 +438,12 @@ public class AttachObjectDevice : AttachObject
         }
     }
 
+    private void ShowCompatabilityError(string message)
+    {
+        compatabilityPanel.GetComponentInChildren<TextMeshProUGUI>().text = message;
+        compatabilityPanel.SetActive(true);
+    }
+
     private void DoCompatibleTest(Collider collider)
     {
         checkCollider = null;
@@ -431,21 +460,21 @@ public class AttachObjectDevice : AttachObject
             case CPUInfo:
                 if (((CPUInfo)deviceInfo).SocketType != ((MotherboardInfo)colliderInfo).SocketType) // берём соответствующую информацию об объектах и сравниваем
                 {
-                    ChangeHighlightColor(wrong); // показываем знак несовместимости
+                    ShowCompatabilityError("Несовместимость\n\nТип сокета процессора не совпадает с материнской платой");
                     return;
                 }
                 break;
             case RAMInfo:
                 if (((RAMInfo)deviceInfo).DDRType != ((MotherboardInfo)colliderInfo).DDRType)
                 {
-                    ChangeHighlightColor(wrong);
+                    ShowCompatabilityError("Несовместимость\n\nТип оперативной памяти (DDR) не совпадает с материнской платой");
                     return;
                 }
                 break;
             case CoolerInfo:
                 if (!((CoolerInfo)deviceInfo).SupportSockets.Contains(((MotherboardInfo)colliderInfo).SocketType))
                 {
-                    ChangeHighlightColor(wrong);
+                    ShowCompatabilityError("Несовместимость\n\nТип сокета материнской платы не поддерживается данным кулером");
                     return;
                 }
                 break;
@@ -499,7 +528,14 @@ public class AttachObjectDevice : AttachObject
     // Метод, останавливающий подсветку и отслеживание объекта для подключения
     protected override void OnTriggerExit(Collider collider)
     {
-        if (collider == _currentColliderForHighlight) EndHighlight();
+        if (collider == _currentColliderForHighlight)
+        {
+            EndHighlight();
+            if (compatabilityPanel.activeInHierarchy)
+            {
+                compatabilityPanel.SetActive(false);
+            }
+        }
 
         if (checkCollider != null && !objIsAttached && checkCollider.gameObject == collider.gameObject)
         {

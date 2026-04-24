@@ -1,3 +1,4 @@
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,10 +8,11 @@ public class SetupPoint : MonoBehaviour
     {
         NotSelected,
         Screw,
-        PowerSocket
+        Cable
     }
 
     public Type pointType = Type.NotSelected;
+    [Tooltip("Указывает на необходимость действия для полной установки")]
     public bool isRequired = true;
     public bool IsSecured { get; private set; } = false;
     public bool IsAvailable { get; private set; } = false;

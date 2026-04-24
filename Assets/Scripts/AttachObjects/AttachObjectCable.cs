@@ -35,9 +35,9 @@ public class AttachObjectCable : AttachObject
             {
                 checkCollider.GetComponent<SetupPoint>().SetSecured();
             }
-        }
-        else if (!checkCollider.transform.parent.CompareTag("Power supply"))
-        {
+        } else if (objIsAttached && !checkCollider.GetComponent<SetupPoint>().isRequired) {
+            return;
+        } else {
             IsPowered = false;
             if (objIsAttached)
             {
@@ -46,7 +46,7 @@ public class AttachObjectCable : AttachObject
         }
     }
 
-    protected override void TryAttach()
+    protected override void TryAttach(bool forced = false)
     {   
         if (checkCollider != null)
         {
@@ -65,13 +65,14 @@ public class AttachObjectCable : AttachObject
             
             checkCollider.tag = "Unavailable";
             objIsAttached = true;
-            if (checkCollider.transform.parent.CompareTag("Power supply"))
+            SetupPoint setupPoint = checkCollider.GetComponent<SetupPoint>();
+            if (!setupPoint.isRequired)
             {
                 IsPowered = true;
             }
             if (secondSocket.IsPowered)
             {
-                checkCollider.GetComponent<SetupPoint>().SetSecured();
+                setupPoint.SetSecured();
             } else if (IsPowered)
             {
                 secondSocket.UpdateIsPowered();

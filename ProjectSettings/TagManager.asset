@@ -28,6 +28,7 @@ TagManager:
   - Motherboard2 power
   - Motherboard1 power
   - Power supply ATX
+  - SATA cable
   layers:
   - Default
   - TransparentFX

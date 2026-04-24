@@ -81,7 +81,7 @@ public abstract class AttachObject : MonoBehaviour
         }
     }
 
-    protected void OnGrabExit(SelectExitEventArgs args)
+    protected virtual void OnGrabExit(SelectExitEventArgs args)
     {
         if (interactor.transform.TryGetComponent<HandInfo>(out var info))
         {
@@ -99,15 +99,9 @@ public abstract class AttachObject : MonoBehaviour
             TryAttach();
     }
 
-    protected virtual void TryAttach()
-    {
-        // метод для override
-    }
+    protected abstract void TryAttach(bool forced = false);
 
-    public virtual void TryUnattach(bool forced = false)
-    {
-        // метод для override
-    }
+    public abstract void TryUnattach(bool forced = false);
 
     // Методы для подсветки места подключения
     protected IEnumerator CreateHighlight()
@@ -203,18 +197,9 @@ public abstract class AttachObject : MonoBehaviour
         if (objIsAttached) TryUnattach();
     }
 
-    protected virtual void OnTriggerEnter(Collider collider)
-    {
-        // Метод для override
-    }
+    protected abstract void OnTriggerEnter(Collider collider);
 
-    protected virtual void OnTriggerStay(Collider collider)
-    {
-        // Метод для override
-    }
+    protected abstract void OnTriggerStay(Collider collider);
 
-    protected virtual void OnTriggerExit(Collider collider)
-    {
-        // Метод для override
-    }
+    protected abstract void OnTriggerExit(Collider collider);
 }

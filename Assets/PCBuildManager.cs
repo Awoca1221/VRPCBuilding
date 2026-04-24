@@ -295,8 +295,6 @@ public class PCBuildManager : MonoBehaviour
                 case RAMInfo:
                     ramInfo = (RAMInfo)elemInfo;
                     break;
-                default:
-                    break;
             }
             if (cpuInfo != null && coolerInfo != null && ramInfo != null) break;
         }
@@ -337,8 +335,26 @@ public class PCBuildManager : MonoBehaviour
     public uint GetOverallPerformance()
     {
         if (currentStatus == Status.NotWorking) return 0;
+
+        GPUInfo gpuInfo = null;
+        RAMInfo ramInfo = null;
+        foreach (var elem in connectedDevices)
+        {
+            DeviceInfo elemInfo = elem.GetComponent<AttachObjectDevice>().deviceInfo;
+            switch (elemInfo)
+            {
+                case GPUInfo:
+                    gpuInfo = (GPUInfo)elemInfo;
+                    break;
+                case RAMInfo:
+                    ramInfo = (RAMInfo)elemInfo;
+                    break;
+            }
+            if (gpuInfo != null && ramInfo != null) break;
+        }
         
         uint performance = GetCPUPerformance().performance + GetGPUPerformance();
+        performance += (gpuInfo.MemoryAmountGB + ramInfo.MemoryAmountGB) * 500;
         
         return performance;
     }

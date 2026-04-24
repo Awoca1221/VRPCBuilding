@@ -5,10 +5,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(LineRenderer)), RequireComponent(typeof(XRGrabInteractable))]
 public class ComponentRaycast : MonoBehaviour
 {
+    private static WaitForSeconds _waitForSeconds5 = new(5f);
     public LayerMask interactableLayer;
     private LineRenderer lineRenderer;
 
@@ -19,8 +22,15 @@ public class ComponentRaycast : MonoBehaviour
     public TextMeshProUGUI text;
     public TextMeshProUGUI title;
     public HoldButton deleteButton;
+    public Button questionButton;
+    public Button showConnectionButton;
+    public GameObject hightlightPointPrefab;
+    private List<GameObject> hightlightPoints = new();
+    public TextMeshProUGUI helpText;
+    public ChangeUI changeUI;
 
     private GameObject deviceObject;
+    private Coroutine showCoroutine;
 
     private XRGrabInteractable grabInteractable;
     private bool isGrabbed = false;
@@ -91,6 +101,14 @@ public class ComponentRaycast : MonoBehaviour
                 info.activateAction.performed += FireRay;
             }
         }
+        foreach (var obj in hightlightPoints)
+        {
+            Destroy(obj);
+        }
+        if (showCoroutine != null)
+        {
+            StopCoroutine(showCoroutine);
+        }
     }
 
     private void OnGrabbed(SelectEnterEventArgs args)
@@ -133,11 +151,11 @@ public class ComponentRaycast : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            if (!hit.collider.TryGetComponent<AttachObjectDevice>(out var attachObjectDevice))
+            if (!hit.collider.TryGetComponent<AttachObject>(out var attachObject))
             {
-                attachObjectDevice = hit.collider.GetComponentInParent<AttachObjectDevice>();
+                attachObject = hit.collider.GetComponentInParent<AttachObject>();
             }
-            if (attachObjectDevice != null && hit.distance < closestDist)
+            if (attachObject != null && hit.distance < closestDist)
             {
                 closestHit = hit;
                 closestDist = hit.distance;
@@ -155,9 +173,10 @@ public class ComponentRaycast : MonoBehaviour
     private void SetDeviceObject(GameObject device)
     {
         deviceObject = device;
-        if (deleteButton.enabled)
+        questionButton.interactable = true;
+        showConnectionButton.interactable = true;
+        if (deleteButton.enabled && deviceObject.TryGetComponent<AttachObjectDevice>(out var deviceInfo))
         {
-            AttachObjectDevice deviceInfo = deviceObject.GetComponent<AttachObjectDevice>();
             if (!deviceInfo.objIsAttached && !deviceInfo.IsAnyDeviceIsAttached)
             {
                 deleteButton.SetIsDisabled(false);
@@ -167,110 +186,228 @@ public class ComponentRaycast : MonoBehaviour
         //    deleteButton.SetIsDisabled(false);
     }
 
-    public void DeleteObject()
+    private void ClearDeviceObject()
     {
-        if (deviceObject == null) return;
-
-        deleteButton.SetIsDisabled(true);
-        Destroy(deviceObject);
+        deviceObject = null;
         text.SetText(defaultText);
         title.SetText(defaultTitle);
+        changeUI.ActivatePanel(0);
+        questionButton.interactable = false;
+        showConnectionButton.interactable = false;
+        if (deleteButton.enabled)
+            deleteButton.SetIsDisabled(true);
+    }
+
+    public void DeleteObject()
+    {
+        if (deviceObject == null)
+        {
+            ClearDeviceObject();
+            return;
+        }
+
+        Destroy(deviceObject);
+        ClearDeviceObject();
+    }
+
+    public void ShowConnections()
+    {
+        if (showCoroutine != null) return;
+        showCoroutine = StartCoroutine(ShowConCoroutine());
+    }
+
+    private IEnumerator ShowConCoroutine()
+    {
+        float scanRadius = 5f;
+        int layerMask = LayerMask.GetMask("PhysicObject");
+        Collider[] hitColliders = Physics.OverlapSphere(
+            transform.position,
+            scanRadius,
+            layerMask,
+            QueryTriggerInteraction.Collide
+        );
+
+        List<GameObject> targetObjs = new();
+        foreach (var col in hitColliders)
+        {
+            if (col.isTrigger && col.CompareTag(deviceObject.tag))
+            {
+                targetObjs.Add(col.gameObject);
+            }
+        }
+
+        int instantiateCount = targetObjs.Count - hightlightPoints.Count;
+        for (int i = 0; i < instantiateCount; i++)
+        {
+            GameObject point = Instantiate(hightlightPointPrefab);
+            point.SetActive(false);
+            hightlightPoints.Add(point);
+        }
+
+        for (int i = 0; i < targetObjs.Count; i++)
+        {
+            hightlightPoints[i].transform.SetParent(targetObjs[i].transform);
+            hightlightPoints[i].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            hightlightPoints[i].SetActive(true);
+        }
+        
+        yield return _waitForSeconds5;
+
+        for (int i = targetObjs.Count - 1; i >= 0; i--)
+        {
+            if (hightlightPoints[i] != null)
+            {
+                hightlightPoints[i].transform.SetParent(transform);
+                hightlightPoints[i].transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                hightlightPoints[i].SetActive(false);
+            } else {
+                hightlightPoints.RemoveAt(i);
+            }
+        }
+        showCoroutine = null;
     }
 
     private void FireRay(InputAction.CallbackContext context)
     {
-        if (isGrabbed)
-        {
-            RaycastHit? closestValidHit = GetClosestHit();
+        if (!isGrabbed) return;
 
-            if (closestValidHit.HasValue)
+        RaycastHit? closestValidHit = GetClosestHit();
+        if (!closestValidHit.HasValue)
+        {
+            ClearDeviceObject();
+            return;
+        }
+        
+        if (!closestValidHit.Value.collider.TryGetComponent<AttachObject>(out var attachObject))
+        {
+            attachObject = closestValidHit.Value.collider.GetComponentInParent<AttachObject>();
+        }
+
+        SetDeviceObject(attachObject.gameObject);
+        string newText = "";
+        string newTitle = "";
+        string newHelpText = "";
+
+        if (attachObject is AttachObjectCable cable)
+        {
+            newTitle = "Кабель";
+            newText = cable.tag switch
             {
-                if (!closestValidHit.Value.collider.TryGetComponent<AttachObjectDevice>(out var attachObjectDevice))
-                {
-                    attachObjectDevice = closestValidHit.Value.collider.GetComponentInParent<AttachObjectDevice>();
-                }
-                SetDeviceObject(attachObjectDevice.gameObject);
-                DeviceInfo deviceInfo = attachObjectDevice.deviceInfo;
-                string newText = "";
-                string newTitle = "";
-                switch (deviceInfo)
-                {
-                    case CoolerInfo:
-                        var coolerInfo = deviceInfo as CoolerInfo;
-                        newText = @$"Тип комплектующего: Кулер
-Название: {deviceInfo.Name}
-Поддержка сокетов: {arrayToString(coolerInfo.SupportSockets)}
-Лимит TDP: {coolerInfo.TDPLimit}";
-                        newTitle = $"{deviceInfo.Name}";
-                        break;
-                    case CPUInfo:
-                        var cpuInfo = deviceInfo as CPUInfo;
-                        newText = @$"Тип комплектующего: Процессор
-Название: {deviceInfo.Name}
-Производитель: {cpuInfo.CPUManufacturer}
-Модель: {cpuInfo.Model}
-Тип сокета: {cpuInfo.SocketType}
-Производительность: {cpuInfo.Performance}
-TDP: {cpuInfo.TDP}";
-                        newTitle = $"{deviceInfo.Name}";
-                        break;
-                    case GPUInfo:
-                        var gpuInfo = deviceInfo as GPUInfo;
-                        newText = @$"Тип комплектующего: Видеокарта
-Название: {deviceInfo.Name}
-Производитель: {gpuInfo.GPUManufacturer}
-Модель: {gpuInfo.Model}
-Объем памяти: {gpuInfo.MemoryAmountGB} ГБ
-Поддержка PCI-E: {gpuInfo.PCIESupport}
-Производительность: {gpuInfo.Performance}
-TDP: {gpuInfo.TDP}";
-                        newTitle = $"{deviceInfo.Name}";
-                        break;
-                    case MotherboardInfo:
-                        var motherboardInfo = deviceInfo as MotherboardInfo;
-                        newText = @$"Тип комплектующего: Материнская плата
-Название: {deviceInfo.Name}
-Поддержка CPU: {motherboardInfo.CPUManufacturer}
-Тип сокета: {motherboardInfo.SocketType}
-Поддержка PCI-E: {motherboardInfo.PCIESupport}
-Тип памяти: {motherboardInfo.DDRType}";
-                        newTitle = $"{deviceInfo.Name}";
-                        break;
-                    case RAMInfo:
-                        var ramInfo = deviceInfo as RAMInfo;
-                        newText = @$"Тип комплектующего: Оперативная память
-Название: {deviceInfo.Name}
-Тип памяти: {ramInfo.DDRType}
-Объем памяти: {ramInfo.MemoryAmountGB} ГБ
-Частота памяти: {ramInfo.FrequencyMhz} Мгц";
-                        newTitle = $"{deviceInfo.Name}";
-                        break;
-                    case PowerSupplyInfo:
-                        var powerSupplyInfo = deviceInfo as PowerSupplyInfo;
-                        newText = @$"Тип комплектующего: Блок питания
-Название: {deviceInfo.Name}
-Максимальная мощность: {powerSupplyInfo.PowerSupplyMaxPower} Вт";
-                        newTitle = $"{deviceInfo.Name}";
-                        break;
-                    case StorageDeviceInfo:
-                        var storageDeviceInfo = deviceInfo as StorageDeviceInfo;
-                        newText = @$"Тип комплектующего: Накопитель данных
-Название: {deviceInfo.Name}
-Тип накопителя: {storageDeviceInfo.StorageDeviceType}
-Объем памяти: {storageDeviceInfo.MemoryAmountGB} ГБ";
-                        newTitle = $"{deviceInfo.Name}";
-                        break;
-                }
-                text.SetText(newText);
-                title.SetText(newTitle);
-            }
-            else
+                "CPU power" => "Тип кабеля: питание процессора",
+                "GPU power" => "Тип кабеля: питание видеокарты",
+                "Motherboard power" => "Тип кабеля: питание материнской платы",
+                "SATA cable" => "Тип кабеля: SATA кабель для накопителя",
+                _ => $"Тип кабеля: {cable.tag}",
+            };
+            newHelpText = "<color=#ADD8E6>Тип кабеля:</color> определяется назначением кабеля, его разъёмом. Используется для определения места подключения.";
+            
+            text.SetText(newText);
+            title.SetText(newTitle);
+            helpText.SetText(newHelpText);
+            return;
+        }
+
+        if (attachObject is AttachObjectDevice device)
+        {
+            DeviceInfo deviceInfo = device.deviceInfo;
+
+            switch (deviceInfo)
             {
-                text.SetText(defaultText);
-                title.SetText(defaultTitle);
-                if (deleteButton.enabled)
-                    deleteButton.SetIsDisabled(true);
+                case CoolerInfo:
+                    var coolerInfo = deviceInfo as CoolerInfo;
+                    newText = "Тип комплектующего: Кулер\n" +
+                    $"Название: {deviceInfo.Name}\n" +
+                    $"Поддержка сокетов: {arrayToString(coolerInfo.SupportSockets)}\n" +
+                    $"Лимит TDP: {coolerInfo.TDPLimit} Вт";
+                    newTitle = $"{deviceInfo.Name}";
+                    newHelpText = "<color=#ADD8E6>Поддержка сокетов:</color> указывает сокеты материнской платы, на которые возможна установка.\n" +
+                    "<color=#ADD8E6>Лимит TDP:</color> максимальная рассеиваемая мощность тепла кулером от процессора. При превышении лимита происходит перегрев процессора.";
+                    break;
+                case CPUInfo:
+                    var cpuInfo = deviceInfo as CPUInfo;
+                    newText = "Тип комплектующего: Процессор\n" +
+                    $"Название: {deviceInfo.Name}\n" +
+                    $"Производитель: {cpuInfo.CPUManufacturer}\n" +
+                    $"Модель: {cpuInfo.Model}\n" +
+                    $"Тип сокета: {cpuInfo.SocketType}\n" +
+                    $"Производительность: {cpuInfo.Performance}\n" +
+                    $"TDP: {cpuInfo.TDP} Вт";
+                    newTitle = $"{deviceInfo.Name}";
+                    newHelpText = "<color=#ADD8E6>Производитель:</color> создатель данной модели. Используется для разделения моделей на группы.\n\n" +
+                    "<color=#ADD8E6>Модель:</color> название модели. Одна модель может иметь несколько версий, созданные разными компаниями.\n\n" +
+                    "<color=#ADD8E6>Тип сокета:</color> указывает сокет материнской платы, на который возможна установка.\n\n" +
+                    "<color=#ADD8E6>Производительность:</color> синтетическая оценка производительности устройства.\n\n" +
+                    "<color=#ADD8E6>TDP:</color> Расчётная тепловая мощность при работе. Данные используются для выбора подходящего кулера и вычисления потребления сборки.";
+                    break;
+                case GPUInfo:
+                    var gpuInfo = deviceInfo as GPUInfo;
+                    newText = "Тип комплектующего: Видеокарта\n" +
+                    $"Название: {deviceInfo.Name}\n" +
+                    $"Производитель: {gpuInfo.GPUManufacturer}\n" +
+                    $"Модель: {gpuInfo.Model}\n" +
+                    $"Объем памяти: {gpuInfo.MemoryAmountGB} ГБ\n" +
+                    $"Поддержка PCI-E: {gpuInfo.PCIESupport}\n" +
+                    $"Производительность: {gpuInfo.Performance}\n" +
+                    $"TDP: {gpuInfo.TDP} Вт";
+                    newTitle = $"{deviceInfo.Name}";
+                    newHelpText = "<color=#ADD8E6>Производитель:</color> создатель данной модели. Используется для разделения моделей на группы.\n\n" +
+                    "<color=#ADD8E6>Модель:</color> название модели. Одна модель может иметь несколько версий, созданные разными компаниями.\n\n" +
+                    "<color=#ADD8E6>Объём памяти:</color> количество видеопамяти. Хранит данные, необходимые для вычислений, влияет на производительность.\n\n" +
+                    "<color=#ADD8E6>Поддержка PCI-E:</color> максимальная поддерживаемая версия PCI-E. Влияет на скорость передачи данных к материнской плате и не влияет на совместимость.\n\n" +
+                    "<color=#ADD8E6>Производительность:</color> синтетическая оценка производительности устройства.\n\n" +
+                    "<color=#ADD8E6>TDP:</color> Расчётная тепловая мощность при работе. Данные используются для вычисления потребления сборки.";
+                    break;
+                case MotherboardInfo:
+                    var motherboardInfo = deviceInfo as MotherboardInfo;
+                    newText = "Тип комплектующего: Материнская плата\n" +
+                    $"Название: {deviceInfo.Name}\n" +
+                    $"Поддержка CPU: {motherboardInfo.CPUManufacturer}\n" +
+                    $"Тип сокета: {motherboardInfo.SocketType}\n" +
+                    $"Поддержка PCI-E: {motherboardInfo.PCIESupport}\n" +
+                    $"Тип памяти: {motherboardInfo.DDRType}";
+                    newTitle = $"{deviceInfo.Name}";
+                    newHelpText = "<color=#ADD8E6>Поддержка CPU:</color> указывает для какого производителя процессоров нацелена материнская плата. Используется для разделения на группы.\n\n" +
+                    "<color=#ADD8E6>Тип сокета:</color> указывает сокет материнской платы. Используется для проверки совместимости процессора.\n\n" +
+                    "<color=#ADD8E6>Поддержка PCI-E:</color> максимальная поддерживаемая версия PCI-E. Влияет на скорость передачи данных к видеокарте и не влияет на совместимость.\n\n" +
+                    "<color=#ADD8E6>Тип памяти:</color> указывает поддерживаемый тип оперативной памяти. Другие типы несовместимы.";
+                    break;
+                case RAMInfo:
+                    var ramInfo = deviceInfo as RAMInfo;
+                    newText = "Тип комплектующего: Оперативная память\n" +
+                    $"Название: {deviceInfo.Name}\n" +
+                    $"Тип памяти: {ramInfo.DDRType}\n" +
+                    $"Объем памяти: {ramInfo.MemoryAmountGB} ГБ\n" +
+                    $"Частота памяти: {ramInfo.FrequencyMhz} Мгц";
+                    newTitle = $"{deviceInfo.Name}";
+                    newHelpText = "<color=#ADD8E6>Тип памяти:</color> тип оперативной памяти. Используется для проверки совместимости с материнской платой.\n\n" +
+                    "<color=#ADD8E6>Объём памяти:</color> количество оперативной памяти. Хранит данные, необходимые для вычислений, влияет на производительность.\n\n" +
+                    "<color=#ADD8E6>Частота памяти:</color> частота выполнений операций оперативной памятью. Влияет на производительность.";
+                    break;
+                case PowerSupplyInfo:
+                    var powerSupplyInfo = deviceInfo as PowerSupplyInfo;
+                    newText = "Тип комплектующего: Блок питания\n" +
+                    $"Название: {deviceInfo.Name}\n" +
+                    $"Максимальная мощность: {powerSupplyInfo.PowerSupplyMaxPower} Вт";
+                    newTitle = $"{deviceInfo.Name}";
+                    newHelpText = "<color=#ADD8E6>Максимальная мощность:</color> максимальная выдаваемая мощность блоком питания. Готовая сборка должна потреблять меньше, чем указанное значение. Вычисление примерного потребления сборки:\n" +
+                    "Потребление = TDP_процессора + TDP_видеокарты + 100 Вт.";
+                    break;
+                case StorageDeviceInfo:
+                    var storageDeviceInfo = deviceInfo as StorageDeviceInfo;
+                    newText = "Тип комплектующего: Накопитель данных\n" +
+                    $"Название: {deviceInfo.Name}\n" +
+                    $"Тип накопителя: {storageDeviceInfo.StorageDeviceType}\n" +
+                    $"Объем памяти: {storageDeviceInfo.MemoryAmountGB} ГБ";
+                    newTitle = $"{deviceInfo.Name}";
+                    newHelpText = "<color=#ADD8E6>Тип накопителя:</color> указывает на тип используемой памяти и разъёма подключения накопителем. Влияет на скорость загрузки данных в оперативную память.\n\n" +
+                    "<color=#ADD8E6>Объём памяти:</color> количество памяти в накопителе. Хранит все данные компьютера.";
+                    break;
             }
+
+            text.SetText(newText);
+            title.SetText(newTitle);
+            helpText.SetText(newHelpText);
+            return;
         }
     }
 

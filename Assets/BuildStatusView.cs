@@ -133,10 +133,10 @@ public class BuildStatusView : MonoBehaviour
                 AddCustomElement("Процессор перегревается, производительность снижена.");
             }
             performanceText.text =
-            "Цена сборки: " + PCBuild.GetPrice() + "р.\n" +
-            "Оценка процессора: " + cpuPerformance.performance + " балла(ов)\n" +
-            "Оценка видеокарты: " + PCBuild.GetGPUPerformance() + " балла(ов)\n" +
-            "Общая оценка производительности: " + PCBuild.GetOverallPerformance() + " балла(ов)";
+            $"Цена сборки: {PCBuild.GetPrice()}р.\n" +
+            $"Оценка процессора: {cpuPerformance.performance} балла(ов)\n" +
+            $"Оценка видеокарты: {PCBuild.GetGPUPerformance()} балла(ов)\n" +
+            $"Общая оценка производительности: {PCBuild.GetOverallPerformance()} балла(ов)";
             saveTooltip.isEnabled = false;
             saveButton.interactable = true;
         }
