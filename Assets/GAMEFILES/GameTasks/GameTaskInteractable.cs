@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
 [RequireComponent(typeof(XRGrabInteractable))]
@@ -9,6 +10,7 @@ public class GameTaskInteractable : MonoBehaviour
 {
     private XRGrabInteractable grabInteractable;
     public Canvas canvas;
+    public UnityEvent OnInventoryGrab;
 
     void Awake()
     {
@@ -33,6 +35,8 @@ public class GameTaskInteractable : MonoBehaviour
     {
         if (args.interactorObject is XRDirectInteractor)
             canvas.enabled = true;
+        if (args.interactorObject is XRSocketInteractor)
+            OnInventoryGrab?.Invoke();
     }
 
     private void OnReleased(SelectExitEventArgs args)

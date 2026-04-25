@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class CompleteTaskOnGrab : MonoBehaviour
+public class EventOnGrabOrScan : MonoBehaviour
 {
-    public string taskId;
-    public TaskManager taskManager;
+    public UnityEvent OnGrab;
+    public UnityEvent OnScan;
     private XRGrabInteractable interactable;
 
     // Start is called before the first frame update
@@ -19,6 +19,6 @@ public class CompleteTaskOnGrab : MonoBehaviour
 
     private void TaskComplete(SelectEnterEventArgs args)
     {
-        taskManager.CompleteTask(taskId);
+        OnGrab?.Invoke();
     }
 }

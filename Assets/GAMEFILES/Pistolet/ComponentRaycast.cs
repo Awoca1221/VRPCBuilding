@@ -27,7 +27,7 @@ public class ComponentRaycast : MonoBehaviour
     public GameObject hightlightPointPrefab;
     private List<GameObject> hightlightPoints = new();
     public TextMeshProUGUI helpText;
-    public ChangeUI changeUI;
+    private ChangeUI changeUI;
 
     private GameObject deviceObject;
     private Coroutine showCoroutine;
@@ -55,6 +55,7 @@ public class ComponentRaycast : MonoBehaviour
         lineRenderer.endWidth = 0.005f;
         lineRenderer.enabled = false;
 
+        changeUI = descriptionPanel.GetComponent<ChangeUI>();
         descriptionPanel.SetActive(false);
 
         if (TryGetComponent<XRGrabInteractable>(out grabInteractable))
@@ -175,6 +176,10 @@ public class ComponentRaycast : MonoBehaviour
         deviceObject = device;
         questionButton.interactable = true;
         showConnectionButton.interactable = true;
+        if (deviceObject.TryGetComponent<EventOnGrabOrScan>(out var eventOnScan))
+        {
+            eventOnScan.OnScan?.Invoke();
+        }
         if (deleteButton.enabled && deviceObject.TryGetComponent<AttachObjectDevice>(out var deviceInfo))
         {
             if (!deviceInfo.objIsAttached && !deviceInfo.IsAnyDeviceIsAttached)
@@ -182,8 +187,6 @@ public class ComponentRaycast : MonoBehaviour
                 deleteButton.SetIsDisabled(false);
             }
         }
-        //if (deleteButton.enabled)
-        //    deleteButton.SetIsDisabled(false);
     }
 
     private void ClearDeviceObject()

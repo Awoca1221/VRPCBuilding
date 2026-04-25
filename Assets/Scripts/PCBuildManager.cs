@@ -280,7 +280,7 @@ public class PCBuildManager : MonoBehaviour
 
         CPUInfo cpuInfo = null;
         CoolerInfo coolerInfo = null;
-        RAMInfo ramInfo = null;
+        List<RAMInfo> ramInfo = null;
         foreach (var elem in connectedDevices)
         {
             DeviceInfo elemInfo = elem.GetComponent<AttachObjectDevice>().deviceInfo;
@@ -293,13 +293,21 @@ public class PCBuildManager : MonoBehaviour
                     coolerInfo = (CoolerInfo)elemInfo;
                     break;
                 case RAMInfo:
-                    ramInfo = (RAMInfo)elemInfo;
+                    ramInfo.Add((RAMInfo)elemInfo);
                     break;
             }
-            if (cpuInfo != null && coolerInfo != null && ramInfo != null) break;
         }
         
-        uint performance = (uint)(cpuInfo.Performance + ramInfo.FrequencyMhz * 0.5f);
+        uint ramFrequency = ramInfo[0].FrequencyMhz;
+        foreach (var ram in ramInfo)
+        {
+            if (ram.FrequencyMhz < ramFrequency)
+            {
+                ramFrequency = ram.FrequencyMhz;
+            }
+        }
+
+        uint performance = (uint)(cpuInfo.Performance + ramFrequency * 0.5f);
         bool isOverheated = false;
         if (cpuInfo.TDP > coolerInfo.TDPLimit)
         {
@@ -337,7 +345,7 @@ public class PCBuildManager : MonoBehaviour
         if (currentStatus == Status.NotWorking) return 0;
 
         GPUInfo gpuInfo = null;
-        RAMInfo ramInfo = null;
+        List<RAMInfo> ramInfo = null;
         foreach (var elem in connectedDevices)
         {
             DeviceInfo elemInfo = elem.GetComponent<AttachObjectDevice>().deviceInfo;
@@ -347,14 +355,17 @@ public class PCBuildManager : MonoBehaviour
                     gpuInfo = (GPUInfo)elemInfo;
                     break;
                 case RAMInfo:
-                    ramInfo = (RAMInfo)elemInfo;
+                    ramInfo.Add((RAMInfo)elemInfo);
                     break;
             }
-            if (gpuInfo != null && ramInfo != null) break;
         }
-        
-        uint performance = GetCPUPerformance().performance + GetGPUPerformance();
-        performance += (gpuInfo.MemoryAmountGB + ramInfo.MemoryAmountGB) * 500;
+
+        uint memoryMultiplier = 500;
+        uint performance = GetCPUPerformance().performance + GetGPUPerformance() + gpuInfo.MemoryAmountGB * memoryMultiplier;
+        foreach (var ram in ramInfo)
+        {
+            performance += ram.MemoryAmountGB * memoryMultiplier;
+        }
         
         return performance;
     }
