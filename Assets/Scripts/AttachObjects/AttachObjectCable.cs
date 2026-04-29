@@ -1,7 +1,6 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
+using System.Linq;
 
 public class AttachObjectCable : AttachObject
 {
@@ -35,15 +34,51 @@ public class AttachObjectCable : AttachObject
             {
                 checkCollider.GetComponent<SetupPoint>().SetSecured();
             }
-        } else if (objIsAttached && !checkCollider.GetComponent<SetupPoint>().isRequired) {
+        } else if (objIsAttached && checkCollider != null && !checkCollider.GetComponent<SetupPoint>().isRequired) {
             return;
         } else {
             IsPowered = false;
-            if (objIsAttached)
+            if (objIsAttached && checkCollider != null)
             {
                 checkCollider.GetComponent<SetupPoint>().SetUnsecured();
             }
         }
+    }
+
+    private void TeleportToAttachPosition(Transform setupPoint)
+    {
+        if (objIsAttached) return;
+        
+        // Сохранение прошлой иерархии и смена на новую
+        Transform oldPlace = attachPoint.transform.parent;
+        attachPoint.transform.SetParent(setupPoint);
+        attachPoint.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        
+        // Возврат к прошлой иерархии
+        attachPoint.transform.SetParent(oldPlace);
+    }
+
+    public void ForceAttach(GameObject device)
+    {
+        SetupPoint[] deviceSetupPoints = device.GetComponentsInChildren<SetupPoint>();
+        SetupPoint correctPoint = null;
+        foreach (var point in deviceSetupPoints)
+        {
+            if (point.CompareTag(tag))
+            {
+                correctPoint = point;
+                break;
+            }
+        }
+        if (correctPoint == null)
+        {
+            Debug.Log($"{device.name} не имеет внутри себя SetupPoint для установки");
+            return;
+        }
+
+        TeleportToAttachPosition(correctPoint.transform);
+        DoCompatibleTest(correctPoint.GetComponent<Collider>());
+        TryAttach(true);
     }
 
     protected override void TryAttach(bool forced = false)
@@ -104,6 +139,14 @@ public class AttachObjectCable : AttachObject
         }
     }
 
+    private void DoCompatibleTest(Collider collider)
+    {
+        if (collider.gameObject.CompareTag(tag))
+        {
+            checkCollider = collider;
+        }
+    }
+
     protected override void OnTriggerEnter(Collider collider)
     {
         if (objIsAttached || interactor == null) return;
@@ -112,9 +155,8 @@ public class AttachObjectCable : AttachObject
         {
             return;
         }
-
         StartHighlight(collider);
-        checkCollider = collider;
+        DoCompatibleTest(collider);
     }
 
     protected override void OnTriggerStay(Collider collider)

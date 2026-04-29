@@ -10,7 +10,7 @@ public class InstrumentSpawn : MonoBehaviour
     [field: SerializeField]
     public GameObject instrumentsOnScene { get; private set; }
 
-    private List<GameObject> instruments = new();
+    private readonly List<GameObject> instruments = new();
 
     void Start()
     {

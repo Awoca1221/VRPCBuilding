@@ -1308,6 +1308,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpinCorpusATX (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2876788774882994850, guid: 41f28221e401df949bc937eb1aaf0b4f, type: 3}
+      propertyPath: instrumentSpawn
+      value: 
+      objectReference: {fileID: 122095426}
     - target: {fileID: 6518554176899795086, guid: 41f28221e401df949bc937eb1aaf0b4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.8142
@@ -2165,7 +2169,7 @@ PrefabInstance:
     - target: {fileID: 1861693181720237599, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
       propertyPath: deviceAttachToOnStart
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1243036931}
     - target: {fileID: 3692192210611529590, guid: 176e7172f744e084ca1eb9fa5a7b8637, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2574,7 +2578,7 @@ PrefabInstance:
     - target: {fileID: 8307944643090924736, guid: c3b0f60dbc3bae144b887ab15c250a73, type: 3}
       propertyPath: deviceAttachToOnStart
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1243036931}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2856,6 +2860,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpinCorpusATX
       objectReference: {fileID: 0}
+    - target: {fileID: 2876788774882994850, guid: 41f28221e401df949bc937eb1aaf0b4f, type: 3}
+      propertyPath: instrumentSpawn
+      value: 
+      objectReference: {fileID: 1441613878}
     - target: {fileID: 6518554176899795086, guid: 41f28221e401df949bc937eb1aaf0b4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.6438
@@ -2906,12 +2914,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2876788774882994850, guid: 41f28221e401df949bc937eb1aaf0b4f, type: 3}
   m_PrefabInstance: {fileID: 1243036928}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1243036931}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bb2f2c64ed735d49ac02b58a0960236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1243036931 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7603604962608349670, guid: 41f28221e401df949bc937eb1aaf0b4f, type: 3}
+  m_PrefabInstance: {fileID: 1243036928}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1300490186
 GameObject:
   m_ObjectHideFlags: 0
@@ -4043,7 +4056,7 @@ PrefabInstance:
     - target: {fileID: 7518595102757111552, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
       propertyPath: deviceAttachToOnStart
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1243036931}
     - target: {fileID: 8017656920112766073, guid: a88440bf972f64c4bbd48b9075f956c5, type: 3}
       propertyPath: m_Name
       value: Thermaltake Toughpower 1550W

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HPhysic;
 using Unity.VisualScripting;
 using UnityEditor.EditorTools;
 using UnityEngine;
@@ -47,8 +48,19 @@ public class PCBuildManager : MonoBehaviour
         }
     }
 
+    [Serializable]
+    public class CablePlaces
+    {
+        public CablePlace CPU;
+        public CablePlace GPU;
+        public CablePlace Motherboard;
+        public CablePlace SATA;
+    }
+
     [Tooltip("Область для проверки возможности спавна билда")]
     public Collider testEmptySpace;
+    public CablePlaces cablePlaces;
+    public InstrumentSpawn instrumentSpawn;
     public Status PCStatus => currentStatus;
     public bool IsNotEnoughPower { get; private set; } = false;
     public bool IsWithoutCPUPaste { get; private set; } = false;
@@ -108,6 +120,7 @@ public class PCBuildManager : MonoBehaviour
 
     public void UpdateOverallStatus()
     {
+        connectedDevices.RemoveWhere(item => item == null);
         var requiredTypes = Enum.GetValues(typeof(ComponentType))
             .Cast<ComponentType>()
             .Where(t => t != ComponentType.NotSelected);
@@ -197,6 +210,8 @@ public class PCBuildManager : MonoBehaviour
     public async void SpawnBuild(Build build, UnityAction callback = null)
     {
         if (connectedDevices.Count != 0) return;
+
+        instrumentSpawn.SpawnInstruments();
         var componentPrefabs = ComponentsService.Instance.Components;
         Dictionary<string, List<SpawnObjInfo>> instantiatedObjs = new();
         
@@ -219,18 +234,43 @@ public class PCBuildManager : MonoBehaviour
                 list.Add(objInfo);
             }
         }
-        instantiatedObjs["PowerSupply"][0].obj.GetComponent<AttachObjectDevice>().ForceAttachAndSetup(gameObject);
+        GameObject powerSupply = instantiatedObjs["PowerSupply"][0].obj;
+        powerSupply.GetComponent<AttachObjectDevice>().ForceAttachAndSetup(gameObject);
         instantiatedObjs.Remove("PowerSupply");
-        instantiatedObjs["Motherboard"][0].obj.GetComponent<AttachObjectDevice>().ForceAttachAndSetup(gameObject);
         GameObject motherboard = instantiatedObjs["Motherboard"][0].obj;
+        motherboard.GetComponent<AttachObjectDevice>().ForceAttachAndSetup(gameObject);
         instantiatedObjs.Remove("Motherboard");
+
+        PhysicCable[] cables = instrumentSpawn.GetComponentsInChildren<PhysicCable>();
+        foreach (var cable in cables)
+        {
+            switch (cable.tag)
+            {
+                case "CPU power":
+                    StartCoroutine(cablePlaces.CPU.ConnectCable(cable, powerSupply, motherboard));
+                    break;
+                case "Motherboard power":
+                    StartCoroutine(cablePlaces.Motherboard.ConnectCable(cable, powerSupply, motherboard));
+                    break;
+            }
+        }
 
         foreach (var devices in instantiatedObjs)
         {
             switch (devices.Key)
             {
-                case "Cooler":
                 case "GPU":
+                    foreach (var device in devices.Value)
+                    {
+                        device.obj.GetComponent<AttachObjectDevice>().ForceAttachAndSetup(motherboard, device.slotID);
+                    }
+                    foreach (var cable in cables)
+                    {
+                        if (cable.CompareTag("GPU power"))
+                            StartCoroutine(cablePlaces.GPU.ConnectCable(cable, powerSupply, devices.Value[0].obj));
+                    }
+                    break;
+                case "Cooler":
                 case "RAM":
                     foreach (var device in devices.Value)
                     {
@@ -252,11 +292,17 @@ public class PCBuildManager : MonoBehaviour
                     {
                         device.obj.GetComponent<AttachObjectDevice>().ForceAttachAndSetup(gameObject, device.slotID);
                     }
+                    foreach (var cable in cables)
+                    {
+                        if (cable.CompareTag("SATA cable"))
+                            StartCoroutine(cablePlaces.SATA.ConnectCable(cable, motherboard, devices.Value[0].obj));
+                    }
                     break;
-                case null:
+                default:
                     break;
             }
         }
+
         callback?.Invoke();
     }
 
@@ -280,7 +326,7 @@ public class PCBuildManager : MonoBehaviour
 
         CPUInfo cpuInfo = null;
         CoolerInfo coolerInfo = null;
-        List<RAMInfo> ramInfo = null;
+        List<RAMInfo> ramInfo = new();
         foreach (var elem in connectedDevices)
         {
             DeviceInfo elemInfo = elem.GetComponent<AttachObjectDevice>().deviceInfo;
@@ -345,7 +391,7 @@ public class PCBuildManager : MonoBehaviour
         if (currentStatus == Status.NotWorking) return 0;
 
         GPUInfo gpuInfo = null;
-        List<RAMInfo> ramInfo = null;
+        List<RAMInfo> ramInfo = new();
         foreach (var elem in connectedDevices)
         {
             DeviceInfo elemInfo = elem.GetComponent<AttachObjectDevice>().deviceInfo;

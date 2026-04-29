@@ -25,6 +25,7 @@ namespace HPhysic
         [SerializeField, Required] private GameObject point0;
 
         private List<Transform> points;
+        public List<Transform> GetPoints => points;
         private List<Transform> connectors;
 
         private const string cloneText = "Part";

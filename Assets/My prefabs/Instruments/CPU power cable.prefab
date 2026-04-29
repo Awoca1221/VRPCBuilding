@@ -11498,7 +11498,7 @@ GameObject:
   - component: {fileID: 5117396766485437212}
   m_Layer: 0
   m_Name: CPU power cable
-  m_TagString: Untagged
+  m_TagString: CPU power
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

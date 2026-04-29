@@ -10,8 +10,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class AttachObjectDevice : AttachObject
 {
-    private static WaitForSeconds _waitForSeconds0_04 = new WaitForSeconds(0.04f);
-
     public enum Status
     {
         NotInserted,     // Не вставлен
@@ -153,7 +151,7 @@ public class AttachObjectDevice : AttachObject
                 collider.enabled = false;
             }
         }
-        yield return _waitForSeconds0_04;
+        yield return new WaitForFixedUpdate();
         foreach (var collider in colliders)
         {
             if (!collider.isTrigger)
@@ -222,11 +220,14 @@ public class AttachObjectDevice : AttachObject
                 }
             }
         }
-        if (correctPoint == null) return;
-        Collider conPointCol = correctPoint.GetComponent<Collider>();
-        TeleportToAttachPosition(conPointCol.transform);
-
-        DoCompatibleTest(conPointCol);
+        if (correctPoint == null)
+        {
+            Debug.Log($"{device.name} не имеет внутри себя SetupPoint для установки");
+            return;
+        }
+        
+        TeleportToAttachPosition(correctPoint.transform);
+        DoCompatibleTest(correctPoint.GetComponent<Collider>());
         TryAttach(true);
     }
 
