@@ -23957,7 +23957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8271968839209251626, guid: 6311c28ef1f7f8043ac315782c4c83d0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.0339999
+      value: 1.0409
       objectReference: {fileID: 0}
     - target: {fileID: 8271968839209251626, guid: 6311c28ef1f7f8043ac315782c4c83d0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -186439,7 +186439,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327973154}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.0339999}
+  m_LocalPosition: {x: 0, y: 0, z: 1.0409}
   m_LocalScale: {x: 0.0005, y: 0.00049999997, z: 0.00049999997}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -186462,7 +186462,7 @@ ParentConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 1
-  m_TranslationAtRest: {x: -0.631, y: 1.0885425, z: 1.0339999}
+  m_TranslationAtRest: {x: -0.631, y: 1.0885425, z: 1.0409}
   m_RotationAtRest: {x: 0, y: 0, z: 0}
   m_TranslationOffsets:
   - {x: 0, y: 0, z: 0}
@@ -269667,6 +269667,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testEmptySpace: {fileID: 0}
+  cablePlaces:
+    CPU: {fileID: 0}
+    GPU: {fileID: 0}
+    Motherboard: {fileID: 0}
+    SATA: {fileID: 0}
+  instrumentSpawn: {fileID: 0}
   OnWorkingStatusEvent:
     m_PersistentCalls:
       m_Calls: []

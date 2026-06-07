@@ -32,6 +32,7 @@ public class ScrewdriverManager : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         interactable = GetComponent<XRGrabInteractable>();
+        interactable.activated.AddListener(TryActivateAction);
         interactable.selectEntered.AddListener(OnGrabEnter);
         interactable.selectExited.AddListener(OnGrabExit);
     }
@@ -149,20 +150,11 @@ public class ScrewdriverManager : MonoBehaviour
     private void OnGrabEnter(SelectEnterEventArgs args)
     {
         interactor = args.interactorObject;
-        if (interactor.transform.TryGetComponent<HandInfo>(out var info))
-        {
-            info.activateAction.performed += TryActivateAction;
-        }
-        
     }
 
     private void OnGrabExit(SelectExitEventArgs args)
     {
         interactor = args.interactorObject;
-        if (interactor.transform.TryGetComponent<HandInfo>(out var info))
-        {
-            info.activateAction.performed -= TryActivateAction;
-        }
         if (isInUse)
         {
             RemoveInUseState();
@@ -234,7 +226,7 @@ public class ScrewdriverManager : MonoBehaviour
     }
 
     // Активация кнопки подключения/отключения объекта
-    private void TryActivateAction(InputAction.CallbackContext context)
+    private void TryActivateAction(ActivateEventArgs arg0)
     {
         if (isInUse)
         {

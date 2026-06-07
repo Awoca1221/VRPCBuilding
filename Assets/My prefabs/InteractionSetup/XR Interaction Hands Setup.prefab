@@ -2606,7 +2606,6 @@ GameObject:
   - component: {fileID: 4495737280882796401}
   - component: {fileID: 7113908265843099966}
   - component: {fileID: 4582808292336140043}
-  - component: {fileID: 3781315387013015678}
   - component: {fileID: 3996856894907257345}
   m_Layer: 0
   m_Name: Direct Interactor
@@ -2742,19 +2741,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.08
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3781315387013015678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239929770654017922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccf5dfb4a4ecdad4185ba2cda1557d4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: 0
 --- !u!114 &3996856894907257345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14098,7 +14084,6 @@ GameObject:
   - component: {fileID: 2240936819791183087}
   - component: {fileID: 3853702097538377683}
   - component: {fileID: 396209014532047355}
-  - component: {fileID: 8501099005031682763}
   - component: {fileID: 1468181157854155504}
   m_Layer: 0
   m_Name: Direct Interactor
@@ -14234,19 +14219,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.08
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8501099005031682763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6325362061812096219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccf5dfb4a4ecdad4185ba2cda1557d4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: 1
 --- !u!114 &1468181157854155504
 MonoBehaviour:
   m_ObjectHideFlags: 0

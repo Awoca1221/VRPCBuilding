@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class MenuManager : MonoBehaviour
+public class PlayerMenuManager : MonoBehaviour
 {
     [Tooltip("Ссылка на микшер")]
     [SerializeField] private AudioMixer audioMixer;

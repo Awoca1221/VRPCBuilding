@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
-[RequireComponent(typeof(Rigidbody), typeof(XRGrabInteractable))]
+[RequireComponent(typeof(Rigidbody), typeof(XRGrabInteractable), typeof(AudioManager))]
 public abstract class AttachObject : MonoBehaviour
 {
     public GameObject attachPoint;
@@ -17,6 +17,7 @@ public abstract class AttachObject : MonoBehaviour
     protected XRInteractionManager interactionManager;
     protected IXRSelectInteractor interactor;
     protected XRGrabInteractable interactable;
+    protected AudioManager audioManager;
     protected Collider checkCollider;
     public bool objIsAttached { get; protected set; }
     protected GameObject _highlightParent = null;
@@ -30,15 +31,18 @@ public abstract class AttachObject : MonoBehaviour
     protected virtual void Start()
     {
         interactable = GetComponent<XRGrabInteractable>();
+        audioManager = GetComponent<AudioManager>();
         interactionManager = GameObject.Find("XR Interaction Manager").GetComponent<XRInteractionManager>();
 
         // Создать модель для выделения места подключения
         StartCoroutine(CreateHighlight());
 
         // Отслеживание нажатия кнопки для подключения и отключения объекта
+        interactable.activated.AddListener(TryActivateAction);
         interactable.selectEntered.AddListener(OnGrabEnter);
         interactable.selectExited.AddListener(OnGrabExit);
 
+        // Автоматическая настройка отслеживания задач подключения кабелей в туториале
         if (MultipleConnections)
         {
             OnConnectEvents.AddListener(MultipleConOnConnect);
@@ -75,23 +79,15 @@ public abstract class AttachObject : MonoBehaviour
     protected void OnGrabEnter(SelectEnterEventArgs args)
     {
         interactor = args.interactorObject;
-        if (interactor.transform.TryGetComponent<HandInfo>(out var info))
-        {
-            info.activateAction.performed += TryActivateAction;
-        }
     }
 
     protected virtual void OnGrabExit(SelectExitEventArgs args)
     {
-        if (interactor.transform.TryGetComponent<HandInfo>(out var info))
-        {
-            info.activateAction.performed -= TryActivateAction;
-        }
         interactor = null;
     }
 
     // Активация кнопки подключения/отключения объекта
-    protected void TryActivateAction(InputAction.CallbackContext context)
+    protected void TryActivateAction(ActivateEventArgs arg0)
     {
         if (objIsAttached)
             TryUnattach();

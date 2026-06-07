@@ -66,16 +66,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayInsertSound()
+    public void PlayInsertSound(float highPassCutoff = 1000f)
     {
         if (audioPreset.insertSounds == null || audioPreset.insertSounds.Length == 0) return;
-        PlaySound(audioPreset.insertSounds, 1000f);
+        PlaySound(audioPreset.insertSounds, highPassCutoff);
     }
 
-    public void PlayEjectSound()
+    public void PlayEjectSound(float highPassCutoff = 1000f)
     {
         if (audioPreset.ejectSounds == null || audioPreset.ejectSounds.Length == 0) return;
-        PlaySound(audioPreset.ejectSounds, 1000f);
+        PlaySound(audioPreset.ejectSounds, highPassCutoff);
     }
 
     public void PlayOpenDoorSound()

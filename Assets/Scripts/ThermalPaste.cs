@@ -18,17 +18,14 @@ public class ThermalPaste : MonoBehaviour
     public Transform needleOrCloth;
     private XRGrabInteractable interact;
     private Collider[] colliders;
-    private ActivateEvent evnt;
 
     [field: SerializeField] private UnityEvent OnUseEvents { get; set; } = null;
     
     // Start is called before the first frame update
     void Start()
     {
-        evnt = new ActivateEvent();
         interact = GetComponent<XRGrabInteractable>();
-        interact.activated = evnt;
-        evnt.AddListener(Use);
+        interact.activated.AddListener(Use);
     }
 
     public void Use(ActivateEventArgs arg0)

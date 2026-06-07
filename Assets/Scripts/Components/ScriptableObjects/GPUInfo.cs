@@ -7,7 +7,7 @@ public class GPUInfo : DeviceInfo
     [IncludeInDict][field: SerializeField] public GPUManufacturer GPUManufacturer { get; private set; } = GPUManufacturer.NotSelected;
     [IncludeInDict][field: SerializeField] public string Model { get; private set; } = "";
     [IncludeInDict][field: SerializeField] public uint MemoryAmountGB { get; private set; } = 0;
-    [IncludeInDict][field: SerializeField] public PCIEType PCIESupport { get; private set; } = PCIEType.NotSelected;
+    [IncludeInDict] public PCIEType PCIESupport { get; private set; } = PCIEType.NotSelected;
     [IncludeInDict][field: SerializeField] public uint Performance { get; private set; } = 0;
     [IncludeInDict][field: SerializeField] public uint TDP { get; private set; } = 0;
 }

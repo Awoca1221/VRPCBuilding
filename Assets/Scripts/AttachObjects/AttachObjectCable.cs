@@ -83,60 +83,69 @@ public class AttachObjectCable : AttachObject
 
     protected override void TryAttach(bool forced = false)
     {   
-        if (checkCollider != null)
+        if (checkCollider == null) return;
+        
+        // Сохранение прошлой иерархии и смена на новую
+        Transform oldPlace = attachPoint.transform.parent;
+        attachPoint.transform.SetParent(checkCollider.gameObject.transform);
+        attachPoint.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        
+        // Возврат к прошлой иерархии
+        attachPoint.transform.SetParent(oldPlace);
+        
+        // Скрепление объекта с разъёмом через FixedJoint
+        attachPoint.AddComponent<FixedJoint>();
+        attachPoint.GetComponent<FixedJoint>().connectedBody = checkCollider.GetComponentInParent<Rigidbody>();
+        attachPoint.GetComponent<FixedJoint>().enablePreprocessing = false;
+        
+        checkCollider.tag = "Unavailable";
+        objIsAttached = true;
+        SetupPoint setupPoint = checkCollider.GetComponent<SetupPoint>();
+        if (!setupPoint.isRequired)
         {
-            // Сохранение прошлой иерархии и смена на новую
-            Transform oldPlace = attachPoint.transform.parent;
-            attachPoint.transform.SetParent(checkCollider.gameObject.transform);
-            attachPoint.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-            
-            // Возврат к прошлой иерархии
-            attachPoint.transform.SetParent(oldPlace);
-            
-            // Скрепление объекта с разъёмом через FixedJoint
-            attachPoint.AddComponent<FixedJoint>();
-            attachPoint.GetComponent<FixedJoint>().connectedBody = checkCollider.GetComponentInParent<Rigidbody>();
-            attachPoint.GetComponent<FixedJoint>().enablePreprocessing = false;
-            
-            checkCollider.tag = "Unavailable";
-            objIsAttached = true;
-            SetupPoint setupPoint = checkCollider.GetComponent<SetupPoint>();
-            if (!setupPoint.isRequired)
-            {
-                IsPowered = true;
-            }
-            if (secondSocket.IsPowered)
-            {
-                setupPoint.SetSecured();
-            } else if (IsPowered)
-            {
-                secondSocket.UpdateIsPowered();
-            }
-
-            if (interactor != null)
-                interactionManager.SelectExit(interactor, interactable);
-
-            OnConnectEvents?.Invoke();
+            IsPowered = true;
         }
+        if (secondSocket.IsPowered)
+        {
+            setupPoint.SetSecured();
+        } else if (IsPowered)
+        {
+            secondSocket.UpdateIsPowered();
+        }
+
+        if (!forced)
+        {
+            audioManager.PlayInsertSound(2000f);
+        }
+
+        if (interactor != null)
+            interactionManager.SelectExit(interactor, interactable);
+
+        OnConnectEvents?.Invoke();
     }
 
     public override void TryUnattach(bool forced = false)
     {
-        if (objIsAttached)
+        if (!objIsAttached) return;
+
+        Destroy(attachPoint.GetComponent<FixedJoint>());
+        objIsAttached = false;
+        IsPowered = false;
+        if (checkCollider == null)
         {
-            Destroy(attachPoint.GetComponent<FixedJoint>());
-            objIsAttached = false;
-            IsPowered = false;
-            if (checkCollider == null)
-            {
-                OnDisconnectEvents?.Invoke();
-                return;
-            }
-            checkCollider.tag = tag;
-            secondSocket.UpdateIsPowered();
-            checkCollider.GetComponent<SetupPoint>().SetUnsecured();
             OnDisconnectEvents?.Invoke();
+            return;
         }
+        checkCollider.tag = tag;
+        secondSocket.UpdateIsPowered();
+        checkCollider.GetComponent<SetupPoint>().SetUnsecured();
+
+        if (!forced)
+        {
+            audioManager.PlayEjectSound(2000f);
+        }
+
+        OnDisconnectEvents?.Invoke();
     }
 
     private void DoCompatibleTest(Collider collider)

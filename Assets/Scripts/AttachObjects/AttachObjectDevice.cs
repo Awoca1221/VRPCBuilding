@@ -305,9 +305,10 @@ public class AttachObjectDevice : AttachObject
             {
                 if (forced)
                 {
-                    conPoint.OnConnect(gameObject, false);
+                    conPoint.OnConnect(gameObject);
                 } else {
                     conPoint.OnConnect(gameObject);
+                    audioManager.PlayInsertSound();
                 }
                 Transform conPointParent = conPoint.transform.parent;
                 if (conPointParent.TryGetComponent<PCBuildManager>(out var pcBuildRef))
@@ -368,9 +369,12 @@ public class AttachObjectDevice : AttachObject
             if (checkCollider.TryGetComponent<ConnectionPoint>(out var conPoint))
             {
                 if (forced)
-                    conPoint.OnDisconnect(false);
-                else
+                {
                     conPoint.OnDisconnect();
+                } else {
+                    conPoint.OnDisconnect();
+                    audioManager.PlayEjectSound();
+                }
             }
 
             // Необходимо для разблокировки процессора при отключении кулера
