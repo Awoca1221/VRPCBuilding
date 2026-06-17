@@ -559,7 +559,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 2, z: 0.5}
+  m_Size: {x: 0.5, y: 2.1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &38419842
 MonoBehaviour:
@@ -575,7 +575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders:
-  - {fileID: 0}
+  - {fileID: 38419841}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2319,7 +2319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 404703602}
   - component: {fileID: 404703599}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2494,7 +2494,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 353577069926394473, guid: f5b2a787bb0188649a5e37870a76ac0b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2796354196625916819, guid: f5b2a787bb0188649a5e37870a76ac0b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2546,7 +2546,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4004772592846929669, guid: f5b2a787bb0188649a5e37870a76ac0b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8143768566965001176, guid: f5b2a787bb0188649a5e37870a76ac0b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2790,7 +2794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 555713176}
   - component: {fileID: 555713173}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7942,7 +7946,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1681571497}
   - component: {fileID: 1681571494}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9244,7 +9248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1988357624}
   - component: {fileID: 1988357621}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
